@@ -647,8 +647,27 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
 
     //                delete button table
                     $('#dataPembelian > tbody > tr > td > div > a.delete').click(function(){
-                        var id = $(this).attr('data-href');
-                        alert(id);
+                        var ids = $(this).attr('data-href');
+                        if (confirm('Yakin Menghapus data ini?')) {
+                          $.post("php/deleteSubmitter.php",
+                          {
+                            id: ids
+                            
+                          },
+                          function(data,status){
+                            if (status=="success") {
+                              $('#statInputMsg').html(data);
+                              $('#statInputMsg').toast('show');
+                              inisiateData();
+                            }else{
+                              alert("Error tidak bisa mengirim data!");
+                            }
+                            
+                            // alert("Data: " + data + "\nStatus: " + status);
+                          });
+                        }else{
+                          //tidak terjadi apa apa
+                        }
                     });
                 }
 
