@@ -1,0 +1,766 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"word",
+				"word-wrap\tproperty"
+			],
+			[
+				"filterBu",
+				"filterBulan"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"add",
+				"addClass"
+			],
+			[
+				"btn-ou",
+				"btn-outline-primary"
+			],
+			[
+				"remo",
+				"removeClass"
+			],
+			[
+				"filter",
+				"filterBulan"
+			],
+			[
+				"checked",
+				"checkedBulan"
+			],
+			[
+				"query",
+				"queryBulan"
+			],
+			[
+				"qu",
+				"queryBulan"
+			],
+			[
+				"bulan",
+				"bulanss"
+			],
+			[
+				"bula",
+				"bulanss"
+			],
+			[
+				"Lih",
+				"LihatDataRequest"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"stat",
+				"statInputMsg"
+			],
+			[
+				"fil",
+				"filterButton"
+			],
+			[
+				"inisia",
+				"inisiateData"
+			],
+			[
+				"id",
+				"idEdit"
+			],
+			[
+				"in",
+				"input\tTag"
+			],
+			[
+				"is",
+				"is_connected"
+			],
+			[
+				"c",
+				"contents"
+			],
+			[
+				"get",
+				"get_attribute"
+			],
+			[
+				"cost",
+				"costDrop2"
+			],
+			[
+				"model",
+				"MODEL"
+			],
+			[
+				"pem",
+				"PEMBAYARAN"
+			],
+			[
+				"nama",
+				"NAMA"
+			],
+			[
+				"nom",
+				"NOMOR"
+			],
+			[
+				"find",
+				"find_element_by_xpath"
+			],
+			[
+				"fin",
+				"find_element_by_xpath"
+			],
+			[
+				"tg",
+				"tglString"
+			],
+			[
+				"tr",
+				"try\tTry/Except"
+			],
+			[
+				"rg",
+				"rgba()\tbackground-color"
+			],
+			[
+				"background",
+				"background-color\tproperty"
+			],
+			[
+				"back",
+				"background-color\tproperty"
+			],
+			[
+				"if",
+				"if\tIf Condition"
+			],
+			[
+				"try",
+				"try\tTry/Except"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"gsea",
+				"gSearchSimple"
+			],
+			[
+				"h",
+				"h1\tTag"
+			],
+			[
+				"ali",
+				"align-items\tproperty"
+			],
+			[
+				"max",
+				"max-height\tproperty"
+			],
+			[
+				"close",
+				"closeNavBawah"
+			],
+			[
+				"marg",
+				"margin-bottom\tproperty"
+			],
+			[
+				"font-s",
+				"font-size\tproperty"
+			],
+			[
+				"min",
+				"min-width\tproperty"
+			],
+			[
+				"ba",
+				"background-image\tproperty"
+			],
+			[
+				"margi",
+				"margin-top\tproperty"
+			],
+			[
+				"alig",
+				"align-items\tproperty"
+			],
+			[
+				"wid",
+				"width\tproperty"
+			],
+			[
+				"padd",
+				"padding-left\tproperty"
+			],
+			[
+				"backgr",
+				"background-position\tproperty"
+			],
+			[
+				"st",
+				"style"
+			],
+			[
+				"iostrea",
+				"I-iostream\tinc"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/xampp/htdocs/sites/staff/pembelian/css/style.css",
+			"settings":
+			{
+				"buffer_size": 1556,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/xampp/htdocs/sites/staff/pembelian/php/LihatDataRequest.php",
+			"settings":
+			{
+				"buffer_size": 4321,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/xampp/htdocs/sites/staff/pembelian/php/SubmitterData.php",
+			"settings":
+			{
+				"buffer_size": 2019,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/xampp/htdocs/sites/staff/pembelian/php/editSubmitter.php",
+			"settings":
+			{
+				"buffer_size": 1399,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/xampp/htdocs/sites/staff/pembelian/staffInputPembelian.php",
+			"settings":
+			{
+				"buffer_size": 21254,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/C++11/C++11.sublime-build",
+					""
+				],
+				[
+					"Packages/C++11/C++11.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"php",
+				"Set Syntax: PHP"
+			],
+			[
+				"batch",
+				"Set Syntax: Batch File"
+			],
+			[
+				"Snippet: ",
+				"Snippet: Lorem ipsum"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/xampp/htdocs",
+		"/C/xampp/htdocs/Contoh",
+		"/C/xampp/htdocs/Contoh/bsExample",
+		"/C/Users/Coolwolf/Downloads/Compressed/phpdesktop-chrome-57.0-rc-php-7.1.3/phpdesktop-chrome-57.0-rc-php-7.1.3/www"
+	],
+	"file_history":
+	[
+		"/D/Programming/python/python bot 2.py",
+		"/D/Husen Files 2/doc kuliah/semester 8/3 [Rabu] KP/Note Meeting KP Pertemuan 1.txt",
+		"/C/xampp/htdocs/Andalani/test/tes-array-get.php",
+		"/C/xampp/htdocs/Andalani/test/tes-array-get-tujuan.php",
+		"/C/xampp/htdocs/Andalani/index.php",
+		"/C/xampp/htdocs/Contoh/inventory_uas/assets/php func/action_edit_barang.php",
+		"/C/xampp/htdocs/Contoh/imk-alihusen.php",
+		"/D/Programming/python/python bot.py",
+		"/C/xampp/htdocs/Contoh/imk-style.css",
+		"/D/Programming/python/pandas training.py",
+		"/C/Users/Coolwolf/Downloads/Compressed/phpdesktop-chrome-57.0-rc-php-7.1.3/phpdesktop-chrome-57.0-rc-php-7.1.3/www/bats/turnOff.bat",
+		"/C/Users/Coolwolf/Downloads/Compressed/phpdesktop-chrome-57.0-rc-php-7.1.3/phpdesktop-chrome-57.0-rc-php-7.1.3/www/controller.php",
+		"/C/Users/Coolwolf/Downloads/Compressed/phpdesktop-chrome-57.0-rc-php-7.1.3/phpdesktop-chrome-57.0-rc-php-7.1.3/www/bats/turnOn.bat",
+		"/C/xampp/htdocs/testAutosearch.php",
+		"/C/xampp/htdocs/testAutoScript.php",
+		"/C/Users/Coolwolf/Desktop/netsh/test.bat",
+		"/C/Users/Coolwolf/Desktop/netsh/turnOn.bat",
+		"/C/Users/Coolwolf/Desktop/netsh/controller.php",
+		"/C/xampp/htdocs/Andalani/Blogger Version/index.js",
+		"/C/xampp/htdocs/Andalani/Blogger Version/index.html",
+		"/C/xampp/htdocs/Andalani/new.html",
+		"/C/xampp/htdocs/Andalani/dist/css/bootstrap.min.css",
+		"/C/xampp/htdocs/Andalani/style.css",
+		"/C/xampp/htdocs/Andalani/template.html",
+		"/C/xampp/htdocs/Andalani/dist/w3/font.css",
+		"/C/xampp/htdocs/Andalani/Andalani.sublime-project",
+		"/C/Program Files/Sublime Text 3/Packages/PHP.sublime-package",
+		"/C/Users/Coolwolf/Desktop/coba.cpp",
+		"/D/CodeBlocks/share/CodeBlocks/plugins/classwizard.dll",
+		"/D/CodeBlocks/share/CodeBlocks/plugins/codecompletion.dll",
+		"/C/Users/Coolwolf/Documents/default.conf"
+	],
+	"find":
+	{
+		"height": 40.0
+	},
+	"find_in_files":
+	{
+		"height": 104.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"\\n",
+			"for",
+			"$rowName",
+			"toast",
+			"excelForm",
+			"filter",
+			"livesearch",
+			"livesarch",
+			"topJumpBtn",
+			"scroll",
+			"top",
+			"table",
+			"setNilaiEditDialog",
+			"addActionRupiah",
+			"8da6a4e57c7bda4bc4f9",
+			"6e2248e85e7b5b44941f",
+			"raw_input",
+			"footer",
+			"false",
+			"SupplyNovember",
+			"SupplyOktober",
+			"SupplySeptember",
+			"SupplyAgustus",
+			"SupplyJuli",
+			"SupplyJuni",
+			"SupplyMei",
+			"SupplyApril",
+			"SupplyMaret",
+			"SupplyFebruari",
+			"SupplyJanuari",
+			"Januari",
+			"Warna",
+			"Thn",
+			"FEE MEDIATOR",
+			"HARGA BELI",
+			"TGL BELI",
+			"Thn",
+			"No. Pol",
+			"REKONDISI",
+			"PAJAK/BLN",
+			"FEE MEDIATOR",
+			"HARGA BELI",
+			"MEDIATOR",
+			"Thn",
+			"Warna",
+			"Tsm",
+			"Merk/Type",
+			"php",
+			"Toggle navigation",
+			"round",
+			"button",
+			"dev",
+			"<colour_sets",
+			"<colour_sets/>",
+			"colour"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"wad",
+			",",
+			"input",
+			"SupplyDesember",
+			"SupplyNovember",
+			"SupplyOktober",
+			"SupplySeptember",
+			"SupplyAgustus",
+			"SupplyJuli",
+			"SupplyJuni",
+			"SupplyMei",
+			"SupplyApril",
+			"SupplyMaret",
+			"SupplyFebruari",
+			"Februari",
+			"MEDIATOR",
+			"Warna",
+			"REKONDISI",
+			"FEE MEDIATOR",
+			"HARGA BELI",
+			"TGL BELI",
+			"NOPOL",
+			"Pos",
+			"REKONDISI",
+			"PAJAK/BLN",
+			"FEE MEDIATOR",
+			"HARGA BELI",
+			"MEDIATOR",
+			"Thn",
+			"Warna",
+			"Tsm"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/xampp/htdocs/sites/staff/pembelian/css/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1556,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								480,
+								480
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 270.4,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/xampp/htdocs/sites/staff/pembelian/php/LihatDataRequest.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4321,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2652,
+								2652
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1108.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/xampp/htdocs/sites/staff/pembelian/php/SubmitterData.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2019,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								535,
+								535
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 40.8,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/xampp/htdocs/sites/staff/pembelian/php/editSubmitter.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1399,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1342,
+								1342
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/xampp/htdocs/sites/staff/pembelian/staffInputPembelian.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 21254,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								439,
+								439
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 300.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.2
+	},
+	"input":
+	{
+		"height": 39.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 161.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Andalani.sublime-project",
+	"replace":
+	{
+		"height": 51.2
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 257.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

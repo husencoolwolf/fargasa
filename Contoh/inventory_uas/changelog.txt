@@ -1,0 +1,56 @@
+daftar perubahan pertanggal
+() uplaod 000webhost terakhir tgl 17 april 2020
+
+18 april 2020--------------
+header-guest.php
+header-user.php
+header-control.php
+header-admin.php
+index.php
+<> index.php--> tombol kanan kiri quote sudah di fix positionnya.
+
+<> validasi-login.php-->tambah variable session id.
+?? --> index.php --> bikin array dengan key barang dan isi arraynya semua isi database. line 13.
+
+19 Arpil 2020 -------------------
+<> header-user.php --> position notif sudah selesai, dan sudah bisa deteksi barang yang ada di data keranjang
+<> index.php -->logic biikin array dengan key yang isinya array sudah solved.
+<> detail-barang-user.php telah di masuki php action. (tanpa action external)
+
+3 Mei 2020 ---------------------
+<> produk-viewer-user.php --> klo kosong bg pink
+<> header-user.php --> format nya berubah (ada harga sekarang) dan di jadiin form format
+checkout.php
+
+5 mei 2020 ----------------------------
+<> index.css --> style khusus buat jumlah kluaran.
+<> checkout.php --> another update.
+DATABASE STRUKTUR UPDATE !!!
+
+7 mei 2020 -----------------------------
+<> tampil barang user --> fix.
+<> detail barang user --> posisi button sudah fix
+
+8 mei 2020 -----------------------------
+<> header-user.php --> tambah max item
+<> index.php --> tambah "Lebih Banyak >>"
+<> detail barang user --> kalau kosong stoknya, tombol pesan disable.
+<> status bar --> query agar ngitung transaksi per transaksi, bukan per item
+detail-keranjang.php
+action_delete_keranjang.php
+
+9 mei 2020 ----------
+<> action delete keranjang --> bug kalo hapus index ke 0. barang tinggal 1 doank (fixed)
+() uplaod 000webhost terakhir tgl 19 mei 2020 1:34 pm.
+<> sidebar : admin, guest, dan user| regiser --> gambar pathnya di bnerin
+<> sidebar user --> ganti isi menunya
+<> input abrang --> link referensi css di taro di head.
+<> detail barang admin --> Rp. di hilangkan karna ganggu.
+TODO ::::: action input masukan.php | klo abis checkout, stok berkurang.
+
+11 mei 2020 -----------------
+action_input_masukan.php .
+<> action checkout --> tambah fitur.
+<> input masukan --> link taro dihead || style input di tengah.
+<> checkout --> sty input di tengah
+DATABASE --> tambah 1 field setelah id_keluaran : tag_keluaran, int(10).

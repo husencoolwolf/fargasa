@@ -1,0 +1,45 @@
+.nav-link{
+	background-color: rgba(255,255,255,0.035);
+	margin-right: 1rem;
+}
+#carouselExampleIndicators{
+
+}
+.carousel-caption{
+	background-color: rgba(0,0,0,0.2);
+
+}
+
+.rounded-circle{
+	border-width: 3px;
+}
+
+.jumbotron {
+  background-image: url(/assets/imk/bg.jpeg);
+  
+  /* Image is centered vertically and horizontally at all times */
+  background-position: center center;
+  
+  /* Image doesn't repeat */
+  background-repeat: no-repeat;
+  
+  /* Makes the image fixed in the viewport so that it doesn't move when 
+     the content height is greater than the image height */
+  /*background-attachment: fixed;*/
+  
+  /* This is what makes the background image rescale based on its container's size */
+  background-size: cover;
+  
+  /* Pick a solid background color that will be displayed while the background image is loading */
+  background-color:#464646;
+
+  height: 576px;
+
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: center;
+
+}
