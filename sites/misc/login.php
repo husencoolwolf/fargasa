@@ -32,7 +32,7 @@
 
     </head>
     <body class="text-center">
-        <form class="form-signin" action="index.php" method="POST">
+        <form class="form-signin" action="index.php?action=login" method="POST">
             <img class="mb-4" src="assets/Fargasa Logo Circle.png" alt="" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
             <?php 

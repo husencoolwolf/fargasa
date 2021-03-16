@@ -23,10 +23,9 @@ if(isset($_SESSION['privilege'])){
         
     }
 
-    if (isset($_GET['action'])) {
-        if ($_GET['action']=="login") {
+    if (isset($_GET['action']) && $_GET['action']) {
             include "sites/misc/login.php";
-        }
+        
     }else{
         include "sites/misc/landpage.php";
     }
