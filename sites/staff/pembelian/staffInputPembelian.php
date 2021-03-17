@@ -29,6 +29,9 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
   </head>
   <body>
       <div class="bg-white border-dark" id="excelForm">
+          <div class="p-4">
+            <a href=""><button class="btn btn-info"><h5>Download Template untuk melakukan Multi Input</h5></button>
+          </div>
           <div class="d-flex text-center align-items-center justify-content-center h-100">
               <!--<button>Test</button>-->
               <div class="border border-success p-3">
@@ -36,7 +39,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                 <br>
                 <form action="php/excelReadAction.php" id="Form-Excel" enctype="multipart/form-data" method="POST">
                     <div class="form-group">
-                        <input type="file" class="form-control-file" accept=".xls,.xlsx" name="fileExcel" id="excelInput">
+                        <input type="file" class="form-control-file" accept=".xls, .xlsx" name="fileExcel" id="excelInput">
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-success" id="uploadSubmit">
@@ -201,8 +204,8 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
 
                   <div class="row">
                     <div class="col-md-6 mb-3">
-                      <label for="mediator" class="font-weight-bold live-search-input">Mediator<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control live-search-input" id="mediator" placeholder="Mediator Beli" required>
+                      <label for="mediator" class="font-weight-bold live-search-input">Mediator</label>
+                        <input type="text" class="form-control live-search-input" id="mediator" placeholder="Mediator Beli">
                         <div class="list-group liveSearch" id="mediatorSearch"></div>
                       <div class="invalid-feedback">
                         Mediator wajib di isi!.
@@ -218,8 +221,8 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                   </div>
                     
                   <div class="mb-3">
-                    <label for="pajak" class="font-weight-bold">Pajak<span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="pajak" placeholder="Bulan Pajak" required>
+                    <label for="pajak" class="font-weight-bold">Pajak</label>
+                    <input type="number" class="form-control" id="pajak" placeholder="Bulan Pajak">
                     <div class="invalid-feedback">
                       Pajak perlu di isi.
                     </div>

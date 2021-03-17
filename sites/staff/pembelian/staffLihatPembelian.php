@@ -166,11 +166,11 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
 
                   <div class="row">
                     <div class="col-md-6 mb-3">
-                      <label for="mediator" class="font-weight-bold live-search-input">Mediator<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control live-search-input" id="mediator" placeholder="Mediator Beli" value=""  required>
+                      <label for="mediator" class="font-weight-bold live-search-input">Mediator</label>
+                        <input type="text" class="form-control live-search-input" id="mediator" placeholder="Mediator Beli" value="">
                         <div class="list-group liveSearch" id="mediatorSearch"></div>
                       <div class="invalid-feedback">
-                        Mediator wajib di isi!.
+                        Mediator Error!.
                       </div>
                     </div>
                     <div class="col-md-6 mb-3">
@@ -183,8 +183,8 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                   </div>
                     
                   <div class="mb-3">
-                    <label for="pajak" class="font-weight-bold">Pajak<span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="pajak" placeholder="Bulan Pajak" value="" required>
+                    <label for="pajak" class="font-weight-bold">Pajak</label>
+                    <input type="number" class="form-control" id="pajak" placeholder="Bulan Pajak" value="">
                     <div class="invalid-feedback">
                       Pajak perlu di isi.
                     </div>
