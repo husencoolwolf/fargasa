@@ -29,11 +29,14 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
   </head>
   <body>
       <div class="bg-white border-dark" id="excelForm">
-          <div class="p-4">
-            <a href=""><button class="btn btn-info"><h5>Download Template untuk melakukan Multi Input</h5></button>
+          <div class="d-flex text-center justify-content-center">
+            <div class="p-4">
+              <a href="/assets/MULTI INPUT TEMPLATE.xls" target="_blank"><button class="btn btn-info"><h5>Download Template untuk melakukan Multi Input <i class="fa fa-download" aria-hidden="true"></i></h5></button></a>
+            </div>
           </div>
-          <div class="d-flex text-center align-items-center justify-content-center h-100">
+          <div class="d-flex text-center align-items-center justify-content-center" id="ExcelDivBox">
               <!--<button>Test</button>-->
+
               <div class="border border-success p-3">
                 <h3>Masukkan File Excel untuk di input</h3>
                 <br>

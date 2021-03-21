@@ -19,6 +19,11 @@
     display: none;
 }
 
+#ExcelDivBox{
+    height: 80%;
+    padding: 1.5rem;
+}
+
 /*.searchBar{
     display: inline;
 }*/
@@ -96,6 +101,10 @@
     .navbar-brand > img{
         width:  60px;
         /* height: 100px; */
+    }
+
+    #ExcelDivBox{
+        height: 50%;
     }
 
     .responsive-text{

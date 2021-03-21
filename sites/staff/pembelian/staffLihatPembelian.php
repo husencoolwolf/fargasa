@@ -212,16 +212,30 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
       
       <!--Chart-->
       <div class="container">
-          <ul class="nav nav-tabs">
+        <div class="d-flex tabs justify-content-between align-items-center">
+          <ul class="nav nav-tabs h-100" style="overflow-x: auto;flex-wrap: nowrap;overflow-y: hidden;">
             <li class="nav-item">
               <a class="nav-link active" style="cursor: pointer">Banyak Transaksi</a>
-              
             </li>
             <li class="nav-item">
                 <a class="nav-link " style="cursor: pointer">Total Pembelian</a>
             </li>
-            
+            <!-- <li class="nav-item">
+                <a class="nav-link " style="cursor: pointer">Total Pembelian</a>
+            </li> -->
           </ul>
+          <ul class="px-2 m-0">
+              <select class="form-control form-control-sm" id="filterGrafik" >
+                  <option disabled selected value>Default</option>
+                  <option>tes</option>
+                </select>
+          </ul>
+        </div>
+        
+          
+          <!-- FilterGrafik -->
+
+          
           <div id="Charts" class="border-bottom border-right border-left rounded-bottom shadow" style="border-color: rgb(222, 226, 230);">
             <div id="morrisChartJmlPembelian" class=""></div>
             <div id="morrisChartJmlHarga" class=""></div>

@@ -64,7 +64,7 @@
     unlink($_FILES['fileExcel']['name']);
     if($entry_success==$baris-1 && $entry_fail==0){
         echo '<div class="alert alert-success text-center">
-                  '.$baris.' Entry telah berhasil dimasukkan.<br>
+                  '.$entry_success.' Entry telah berhasil dimasukkan.<br>
                   '.$entry_fail.' Entry Gagal Dimasukkan
                 </div>';
     }else{
