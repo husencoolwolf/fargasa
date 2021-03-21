@@ -2,8 +2,10 @@
 include $_SERVER['DOCUMENT_ROOT'].'/ref/koneksi.php';
 $conn = new createCon();
 $con = $conn->connect();
-$dataChart=$conn->chartMaker();
-$dataChartTotalPembelian=$conn->ChartTotalPembelianBulanan();
+$tahunData = $conn->tahunGetter();
+$indTahunTerbaru = count($tahunData) - 1;
+$dataChart=$conn->chartMaker($tahunData[$indTahunTerbaru]);
+$dataChartTotalPembelian=$conn->ChartTotalPembelianBulanan($tahunData[$indTahunTerbaru]);
 
 session_start();
 if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
@@ -707,6 +709,10 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                   });
                   $.get('php/TahunGetter.php' , function(data){
                     $('#filterTahun').html(data);
+                    $('#filterGrafik').html(data);
+                    var dd = $('#filterGrafik');
+                    var tahunTerbaru = $('#filterGrafik > option').eq(dd.length).val();
+                    dd.val(tahunTerbaru);
                   });
                 }
 

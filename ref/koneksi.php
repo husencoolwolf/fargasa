@@ -57,21 +57,21 @@ class createCon  {
         return $angka;
     }
     
-    function chartMaker(){
+    function chartMaker($tahun){
         $jml_transaksi= array();
         $outChart='';
-        $data = mysqli_query($this->connect() ,"SELECT (SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='1') as januari, "
-                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='2') as februari, "
-                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='3') as maret, "
-                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='4') as april, "
-                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='5') as mei, "
-                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='6') as juni, "
-                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='7') as juli, "
-                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='8') as agustus, "
-                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='9') as september, "
-                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='10') as oktober, "
-                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='11') as november, "
-                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='12') as desember ");
+        $data = mysqli_query($this->connect() ,"SELECT (SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='1' AND year(tgl_beli)='$tahun') as januari, "
+                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='2' AND year(tgl_beli)='$tahun') as februari, "
+                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='3' AND year(tgl_beli)='$tahun') as maret, "
+                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='4' AND year(tgl_beli)='$tahun') as april, "
+                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='5' AND year(tgl_beli)='$tahun') as mei, "
+                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='6' AND year(tgl_beli)='$tahun') as juni, "
+                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='7' AND year(tgl_beli)='$tahun') as juli, "
+                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='8' AND year(tgl_beli)='$tahun') as agustus, "
+                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='9' AND year(tgl_beli)='$tahun') as september, "
+                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='10' AND year(tgl_beli)='$tahun') as oktober, "
+                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='11' AND year(tgl_beli)='$tahun') as november, "
+                . "(SELECT COUNT(nopol) FROM pembelian WHERE month(tgl_beli)='12' AND year(tgl_beli)='$tahun') as desember ");
         if(!$data){
                die ("Data User Kosong" . mysqli_error($this->connect()));
         }else{
@@ -106,21 +106,21 @@ class createCon  {
     }
 
     
-    function ChartTotalPembelianBulanan(){
+    function ChartTotalPembelianBulanan($tahun){
         $total= array();
         $outChart='';
-        $data = mysqli_query($this->connect() ,"SELECT(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='1') as januari,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='2') as februari,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='3') as maret,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='4') as april,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='5') as mei,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='6') as juni,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='7') as juli,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='8') as agustus,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='9') as september,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='10') as oktober,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='11') as november,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='12') as desember");
+        $data = mysqli_query($this->connect() ,"SELECT(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='1' AND year(tgl_beli)='$tahun') as januari,"
+                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='2' AND year(tgl_beli)='$tahun') as februari,"
+                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='3' AND year(tgl_beli)='$tahun') as maret,"
+                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='4' AND year(tgl_beli)='$tahun') as april,"
+                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='5' AND year(tgl_beli)='$tahun') as mei,"
+                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='6' AND year(tgl_beli)='$tahun') as juni,"
+                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='7' AND year(tgl_beli)='$tahun') as juli,"
+                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='8' AND year(tgl_beli)='$tahun') as agustus,"
+                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='9' AND year(tgl_beli)='$tahun') as september,"
+                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='10' AND year(tgl_beli)='$tahun') as oktober,"
+                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='11' AND year(tgl_beli)='$tahun') as november,"
+                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_beli)) from pembelian where month(tgl_beli)='12' AND year(tgl_beli)='$tahun') as desember");
         if(!$data){
                die ("Data User Kosong euy" . mysqli_error($this->connect()));
         }else{
@@ -196,6 +196,16 @@ class createCon  {
                 
         }
         
+    }
+
+    function tahunGetter(){
+    $data = mysqli_query($this->connect() ,"SELECT DISTINCT year(tgl_beli) as tahun FROM pembelian");
+    $output =   array();
+    while($row = mysqli_fetch_array($data)) {
+        array_push($output, $row['tahun']);
+    }
+
+        return $output;
     }
     
     function NullCounter($x){
