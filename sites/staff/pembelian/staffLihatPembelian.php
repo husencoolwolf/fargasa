@@ -479,7 +479,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                 });
                 
 //                Chart 1
-                new Morris.Bar({
+                chartJmlBeli = new Morris.Bar({
                     element: 'morrisChartJmlPembelian',
                     data: [<?php echo($dataChart[0]); ?>
                     ],
@@ -492,7 +492,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                 
                 var months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
 
-                Morris.Line({
+                chartJmlHarga= new Morris.Line({
                   element: 'morrisChartJmlHarga',
                   data: [<?php echo($dataChartTotalPembelian[0]);?>],
                   xkey: 'Bulan',
@@ -624,7 +624,24 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                   $("#filterTahun").val($("#filterTahun option:first").val());
                 });
 
-                
+                $('#filterGrafik').on('change',function(){
+                  alert("ganti");
+                  $.get('php/chartMaker.php?tahun='+$(this).val() , function(data){
+                      var result = eval(data);
+                      console.log(result[0]);
+
+                      chartJmlBeli.setData([result[0]]);
+                      // chartJmlBeli = new Morris.Bar({
+                      //     element: 'morrisChartJmlPembelian',
+                      //     data: [result[0]],
+                      //     xkey: 'Bulan',
+                      //     ykeys: ['Transaksi'],
+                      //     hideHover: 'auto',
+                      //     ymax: result[1] + 10 -(result[1]%10),
+                      //     labels: ['Transaksi']
+                      // });
+                  });
+                });
                 
                 
                
