@@ -85,18 +85,18 @@ class createCon  {
                             (int)$row['juni'],(int)$row['juli'],(int)$row['agustus'],
                             (int)$row['september'],(int)$row['oktober'],(int)$row['november'],
                             (int)$row['desember']);
-                    $outChart .= "{Bulan:'Januari', Transaksi:'". $row['januari'] ."'},"
-                            . "{Bulan:'Februari', Transaksi:'". $row['februari'] ."'},"
-                            . "{Bulan:'Maret', Transaksi:'". $row['maret'] ."'},"
-                            . "{Bulan:'April', Transaksi:'". $row['april'] ."'},"
-                            . "{Bulan:'Mei', Transaksi:'". $row['mei'] ."'},"
-                            . "{Bulan:'Juni', Transaksi:'". $row['juni'] ."'},"
-                            . "{Bulan:'Juli', Transaksi:'". $row['juli'] ."'},"
-                            . "{Bulan:'Agustus', Transaksi:'". $row['agustus'] ."'},"
-                            . "{Bulan:'September', Transaksi:'". $row['september'] ."'},"
-                            . "{Bulan:'Oktober', Transaksi:'". $row['oktober'] ."'},"
-                            . "{Bulan:'November', Transaksi:'". $row['november'] ."'},"
-                            . "{Bulan:'Desember', Transaksi:'". $row['desember'] ."'}";
+                    $outChart .= "{b:'Januari', t:'". $row['januari'] ."'},"
+                            . "{b:'Februari', t:'". $row['februari'] ."'},"
+                            . "{b:'Maret', t:'". $row['maret'] ."'},"
+                            . "{b:'April', t:'". $row['april'] ."'},"
+                            . "{b:'Mei', t:'". $row['mei'] ."'},"
+                            . "{b:'Juni', t:'". $row['juni'] ."'},"
+                            . "{b:'Juli', t:'". $row['juli'] ."'},"
+                            . "{b:'Agustus', t:'". $row['agustus'] ."'},"
+                            . "{b:'September', t:'". $row['september'] ."'},"
+                            . "{b:'Oktober', t:'". $row['oktober'] ."'},"
+                            . "{b:'November', t:'". $row['november'] ."'},"
+                            . "{b:'Desember', t:'". $row['desember'] ."'}";
                     
                 }
                 return array($outChart, max($jml_transaksi));

@@ -483,8 +483,8 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                     element: 'morrisChartJmlPembelian',
                     data: [<?php echo($dataChart[0]); ?>
                     ],
-                    xkey: 'Bulan',
-                    ykeys: ['Transaksi'],
+                    xkey: 'b',
+                    ykeys: ['t'],
                     hideHover: 'auto',
                     ymax: <?php echo($dataChart[1] + 10 -($dataChart[1]%10)); ?>,
                     labels: ['Transaksi']
@@ -625,22 +625,34 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                 });
 
                 $('#filterGrafik').on('change',function(){
-                  alert("ganti");
-                  $.get('php/chartMaker.php?tahun='+$(this).val() , function(data){
-                      var result = eval(data);
-                      console.log(result[0]);
-
-                      chartJmlBeli.setData([result[0]]);
-                      // chartJmlBeli = new Morris.Bar({
-                      //     element: 'morrisChartJmlPembelian',
-                      //     data: [result[0]],
-                      //     xkey: 'Bulan',
-                      //     ykeys: ['Transaksi'],
-                      //     hideHover: 'auto',
-                      //     ymax: result[1] + 10 -(result[1]%10),
-                      //     labels: ['Transaksi']
-                      // });
+                  // event ajax filter grafik morris
+                  $.get('php/chartMaker.php?tahun='+$(this).val()+"&tipe=chartJmlBeli" , function(data){
+                      // debugger;
+                      // console.log("data="+data);
+                      
+                      var result = jQuery.parseJSON(data)
+                      // console.log(result);
+                      var stringifys = JSON.stringify('['+result[0]+']');
+                      // console.log(stringifys);
+                      // console.log("parse sekali : "+jQuery.parseJSON(stringifys));
+                      // console.log("parse dua kali : "+ jQuery.parseJSON(jQuery.parseJSON(stringifys)));
+                      chartJmlBeli.options["ymax"] = result[1] + 10 -(result[1]%10);
+                      chartJmlBeli.setData(jQuery.parseJSON(jQuery.parseJSON(stringifys)));
+                      // chartJmlBeli.setData([result[0]]);
                   });
+
+                  $.get('php/chartMaker.php?tahun='+$(this).val()+"&tipe=chartJmlHarga" , function(data){
+                      var result = jQuery.parseJSON(data)
+                      // console.log(result);
+                      var stringifys = JSON.stringify('['+result[0]+']');
+                      // console.log(stringifys);
+                      // console.log("parse sekali : "+jQuery.parseJSON(stringifys));
+                      // console.log("parse dua kali : "+ jQuery.parseJSON(jQuery.parseJSON(stringifys)));
+                      chartJmlHarga.options["ymax"] = result[1] + 10 -(result[1]%10);
+                      chartJmlHarga.setData(jQuery.parseJSON(jQuery.parseJSON(stringifys)));
+                      chartJmlHarga.options["xkey"] = "Bulan";
+                  });
+
                 });
                 
                 
