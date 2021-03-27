@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"max",
+				"maxPerJuta"
+			],
+			[
 				"word",
 				"word-wrap\tproperty"
 			],
@@ -164,10 +168,6 @@
 				"align-items\tproperty"
 			],
 			[
-				"max",
-				"max-height\tproperty"
-			],
-			[
 				"close",
 				"closeNavBawah"
 			],
@@ -220,48 +220,21 @@
 	"buffers":
 	[
 		{
-			"file": "/C/xampp/htdocs/sites/staff/pembelian/css/style.css",
+			"file": "/C/xampp/htdocs/sites/staff/pembelian/staffLihatPembelian.php",
 			"settings":
 			{
-				"buffer_size": 1556,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/xampp/htdocs/sites/staff/pembelian/php/LihatDataRequest.php",
-			"settings":
-			{
-				"buffer_size": 4321,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/xampp/htdocs/sites/staff/pembelian/php/SubmitterData.php",
-			"settings":
-			{
-				"buffer_size": 2019,
+				"buffer_size": 39071,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/xampp/htdocs/sites/staff/pembelian/php/editSubmitter.php",
+			"file": "/C/xampp/htdocs/sites/staff/pembelian/js/chartJS.js",
 			"settings":
 			{
-				"buffer_size": 1399,
+				"buffer_size": 2728,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/xampp/htdocs/sites/staff/pembelian/staffInputPembelian.php",
-			"settings":
-			{
-				"buffer_size": 21254,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -366,12 +339,21 @@
 	"expanded_folders":
 	[
 		"/C/xampp/htdocs",
-		"/C/xampp/htdocs/Contoh",
-		"/C/xampp/htdocs/Contoh/bsExample",
+		"/C/xampp/htdocs/sites",
+		"/C/xampp/htdocs/sites/staff",
+		"/C/xampp/htdocs/sites/staff/pembelian",
+		"/C/xampp/htdocs/sites/staff/pembelian/js",
 		"/C/Users/Coolwolf/Downloads/Compressed/phpdesktop-chrome-57.0-rc-php-7.1.3/phpdesktop-chrome-57.0-rc-php-7.1.3/www"
 	],
 	"file_history":
 	[
+		"/C/xampp/htdocs/sites/staff/pembelian/staffLihatPembelian.php",
+		"/C/xampp/htdocs/fargasa/sites/staff/pembelian/staffLihatPembelian.php",
+		"/C/xampp/htdocs/sites/staff/pembelian/staffInputPembelian.php",
+		"/C/xampp/htdocs/sites/staff/pembelian/php/editSubmitter.php",
+		"/C/xampp/htdocs/sites/staff/pembelian/php/SubmitterData.php",
+		"/C/xampp/htdocs/sites/staff/pembelian/php/LihatDataRequest.php",
+		"/C/xampp/htdocs/sites/staff/pembelian/css/style.css",
 		"/D/Programming/python/python bot 2.py",
 		"/D/Husen Files 2/doc kuliah/semester 8/3 [Rabu] KP/Note Meeting KP Pertemuan 1.txt",
 		"/C/xampp/htdocs/Andalani/test/tes-array-get.php",
@@ -420,6 +402,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"updateChar",
+			"chart",
 			"\\n",
 			"for",
 			"$rowName",
@@ -523,114 +507,24 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/C/xampp/htdocs/sites/staff/pembelian/css/style.css",
+					"file": "/C/xampp/htdocs/sites/staff/pembelian/staffLihatPembelian.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1556,
+						"buffer_size": 39071,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								480,
-								480
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 270.4,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/C/xampp/htdocs/sites/staff/pembelian/php/LihatDataRequest.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4321,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2652,
-								2652
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1108.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/C/xampp/htdocs/sites/staff/pembelian/php/SubmitterData.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2019,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								535,
-								535
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 40.8,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/C/xampp/htdocs/sites/staff/pembelian/php/editSubmitter.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1399,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1342,
-								1342
+								34521,
+								34521
 							]
 						],
 						"settings":
@@ -638,40 +532,40 @@
 							"syntax": "Packages/PHP/PHP.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 15364.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "/C/xampp/htdocs/sites/staff/pembelian/staffInputPembelian.php",
+					"buffer": 1,
+					"file": "/C/xampp/htdocs/sites/staff/pembelian/js/chartJS.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 21254,
+						"buffer_size": 2728,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								439,
-								439
+								2164,
+								2164
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 300.0,
+						"translation.y": 702.4,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

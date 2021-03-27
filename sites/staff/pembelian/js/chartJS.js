@@ -25,6 +25,8 @@
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 scales: {
                     yAxes: [{
                         display: true,
@@ -42,13 +44,18 @@
             data: {
                 labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"],
                 datasets: [{
-                    label: 'Jumlah Biaya Pembelian per Bulan',
-                    data: [],
-                    backgroundColor:'rgba(54, 162, 235, 0.2)',
-                    borderWidth: 1
+                    label: 'Biaya Pembelian Bulanan (Juta)',
+                    backgroundColor: 'rgba(255, 99, 132, 0)',
+                    borderColor: 'rgb(54, 162, 235)',
+                    pointHoverBorderWidth: 10,
+                    pointBorderWidth: 5,
+                    pointHitRadius: 10,
+                    data: []
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 scales: {
                     yAxes: [{
                         display: true,

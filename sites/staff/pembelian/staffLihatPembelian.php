@@ -240,10 +240,10 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
           
           <div id="Charts" class="border-bottom border-right border-left rounded-bottom shadow" style="border-color: rgb(222, 226, 230);">
             
-            <div id="morrisChartJmlPembelian" class="">
+            <div id="morrisChartJmlPembelian" style="height: 20rem" class="">
               <canvas id="chartJmlBeli"></canvas>
             </div>
-            <div id="morrisChartJmlHarga" class="">
+            <div id="morrisChartJmlHarga" style="height: 20rem" class="">
               <canvas id="chartJmlHarga"></canvas>
             </div>
           </div>
@@ -766,7 +766,13 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                   $.get('php/chartMaker.php?tahun='+ tahun +"&tipe=chartJmlHarga" , function(data){
                       var result = jQuery.parseJSON(data);
                       var masukan = result[0].split(",");
-                      chartJmlHarga.config.options.scales.yAxes[0].ticks.max = result[1] + 10 -(result[1]%10);
+                      // debugger;
+                      for (var i = masukan.length - 1; i >= 0; i--) {
+                      	masukan[i]=masukan[i]/1000000;
+                      }
+                      var maxPerJuta = result[1]/1000000;
+                      chartJmlHarga.config.options.scales.yAxes[0].ticks.max = maxPerJuta + 100 -(maxPerJuta%100);
+                      // chartJmlHarga.config.options.scales.yAxes[0].ticks.max = 500;
                       chartJmlHarga.data.datasets[0].data = masukan;
                       chartJmlHarga.update();
                   });
