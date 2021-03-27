@@ -36,18 +36,30 @@
                                 (int)$row['juni'],(int)$row['juli'],(int)$row['agustus'],
                                 (int)$row['september'],(int)$row['oktober'],(int)$row['november'],
                                 (int)$row['desember']);
-                        $outChart .= '{"b":"Januari", "t":"'. $row['januari'] .'"},'
-                                        . '{"b":"Februari", "t":"'. $row['februari'] .'"},'
-                                        . '{"b":"Maret", "t":"'. $row['maret'] .'"},'
-                                        . '{"b":"April", "t":"'. $row['april'] .'"},'
-                                        . '{"b":"Mei", "t":"'. $row['mei'] .'"},'
-                                        . '{"b":"Juni", "t":"'. $row['juni'] .'"},'
-                                        . '{"b":"Juli", "t":"'. $row['juli'] .'"},'
-                                        . '{"b":"Agustus", "t":"'. $row['agustus'] .'"},'
-                                        . '{"b":"September", "t":"'. $row['september'] .'"},'
-                                        . '{"b":"Oktober", "t":"'. $row['oktober'] .'"},'
-                                        . '{"b":"November", "t":"'. $row['november'] .'"},'
-                                        . '{"b":"Desember", "t":"'. $row['desember'] .'"}';
+                        // $outChart .='{"'. $row['januari'] .'"},'
+                        //                 . '{"'. $row['februari'] .'"},'
+                        //                 . '{"'. $row['maret'] .'"},'
+                        //                 . '{"'. $row['april'] .'"},'
+                        //                 . '{"'. $row['mei'] .'"},'
+                        //                 . '{"'. $row['juni'] .'"},'
+                        //                 . '{"'. $row['juli'] .'"},'
+                        //                 . '{"'. $row['agustus'] .'"},'
+                        //                 . '{"'. $row['september'] .'"},'
+                        //                 . '{"'. $row['oktober'] .'"},'
+                        //                 . '{"'. $row['november'] .'"},'
+                        //                 . '{"'. $row['desember'] .'"}';
+                        $outChart .=$row['januari'] .','
+                                       . $row['februari'] .','
+                                       . $row['maret'] .','
+                                       . $row['april'] .','
+                                       . $row['mei'] .','
+                                       . $row['juni'] .','
+                                       . $row['juli'] .','
+                                       . $row['agustus'] .','
+                                       . $row['september'] .','
+                                       . $row['oktober'] .','
+                                       . $row['november'] .','
+                                       . $row['desember'] .'';
                         
                     }
                     echo json_encode(array($outChart, max($jml_transaksi)));
@@ -83,18 +95,18 @@
                                 (int)$row['juni'],(int)$row['juli'],(int)$row['agustus'],
                                 (int)$row['september'],(int)$row['oktober'],(int)$row['november'],
                                 (int)$row['desember']);
-                        $outChart .= '{"Bulan":"2020-01", "TtlPembelian":"'. $conn->NullCounter($row['januari']) .'"},'
-        .'{"Bulan":"2020-02", "TtlPembelian":"'. $conn->NullCounter($row['februari']) .'"},'
-        .'{"Bulan":"2020-03", "TtlPembelian":"'. $conn->NullCounter($row['maret']) .'"},'
-        .'{"Bulan":"2020-04", "TtlPembelian":"'. $conn->NullCounter($row['april']) .'"},'
-        .'{"Bulan":"2020-05", "TtlPembelian":"'. $conn->NullCounter($row['mei']) .'"},'
-        .'{"Bulan":"2020-06", "TtlPembelian":"'. $conn->NullCounter($row['juni']) .'"},'
-        .'{"Bulan":"2020-07", "TtlPembelian":"'. $conn->NullCounter($row['juli']) .'"},'
-        .'{"Bulan":"2020-08", "TtlPembelian":"'. $conn->NullCounter($row['agustus']) .'"},'
-        .'{"Bulan":"2020-09", "TtlPembelian":"'. $conn->NullCounter($row['september']) .'"},'
-        .'{"Bulan":"2020-10", "TtlPembelian":"'. $conn->NullCounter($row['oktober']) .'"},'
-        .'{"Bulan":"2020-11", "TtlPembelian":"'. $conn->NullCounter($row['november']) .'"},'
-        .'{"Bulan":"2020-12", "TtlPembelian":"'. $conn->NullCounter($row['desember']) .'"}';
+                        $outChart .= $conn->NullCounter($row['januari']) .','
+        .$conn->NullCounter($row['februari']) .','
+        .$conn->NullCounter($row['maret']) .','
+        .$conn->NullCounter($row['april']) .','
+        .$conn->NullCounter($row['mei']) .','
+        .$conn->NullCounter($row['juni']) .','
+        .$conn->NullCounter($row['juli']) .','
+        .$conn->NullCounter($row['agustus']) .','
+        .$conn->NullCounter($row['september']) .','
+        .$conn->NullCounter($row['oktober']) .','
+        .$conn->NullCounter($row['november']) .','
+        .$conn->NullCounter($row['desember']) .'';
                         
                     }
                     echo json_encode(array($outChart, max($total)));

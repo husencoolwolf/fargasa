@@ -239,8 +239,13 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
 
           
           <div id="Charts" class="border-bottom border-right border-left rounded-bottom shadow" style="border-color: rgb(222, 226, 230);">
-            <div id="morrisChartJmlPembelian" class=""></div>
-            <div id="morrisChartJmlHarga" class=""></div>
+            
+            <div id="morrisChartJmlPembelian" class="">
+              <canvas id="chartJmlBeli"></canvas>
+            </div>
+            <div id="morrisChartJmlHarga" class="">
+              <canvas id="chartJmlHarga"></canvas>
+            </div>
           </div>
           
       </div>
@@ -448,6 +453,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
         <script src="/dist/js/bootstrap.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
         
         <script>
 //            reg js start
@@ -457,7 +463,10 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
             
 //            reg js end
         </script>
-        <script>
+        
+        <script src="js/chartJS.js"></script>
+
+        <script>  
             $(document).ready(function(){
 //                jquery start
 //                data inisiate
@@ -478,37 +487,39 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                     $('#Charts > div').eq($(this).index()).show();
                 });
                 
-//                Chart 1
-                chartJmlBeli = new Morris.Bar({
-                    element: 'morrisChartJmlPembelian',
-                    data: [<?php echo($dataChart[0]); ?>
-                    ],
-                    xkey: 'b',
-                    ykeys: ['t'],
-                    hideHover: 'auto',
-                    ymax: <?php echo($dataChart[1] + 10 -($dataChart[1]%10)); ?>,
-                    labels: ['Transaksi']
-                });
-                
-                var months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
 
-                chartJmlHarga= new Morris.Line({
-                  element: 'morrisChartJmlHarga',
-                  data: [<?php echo($dataChartTotalPembelian[0]);?>],
-                  xkey: 'Bulan',
-                  ykeys: ['TtlPembelian'],
-                  hideHover: 'auto', 
-                  labels: ['Total Pembelian'],
-                  xLabelFormat: function(x) { // <--- x.getMonth() returns valid index
-                    var month = months[x.getMonth()];
-                    return month;
-                  },
+
+//                Chart 1
+                // chartJmlBeli = new Morris.Bar({
+                //     element: 'morrisChartJmlPembelian',
+                //     data: [<?php echo($dataChart[0]); ?>
+                //     ],
+                //     xkey: 'b',
+                //     ykeys: ['t'],
+                //     hideHover: 'auto',
+                //     ymax: <?php echo($dataChart[1] + 10 -($dataChart[1]%10)); ?>,
+                //     labels: ['Transaksi']
+                // });
+                
+                // var months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+
+                // chartJmlHarga= new Morris.Line({
+                //   element: 'morrisChartJmlHarga',
+                //   data: [<?php echo($dataChartTotalPembelian[0]);?>],
+                //   xkey: 'Bulan',
+                //   ykeys: ['TtlPembelian'],
+                //   hideHover: 'auto', 
+                //   labels: ['Total Pembelian'],
+                //   xLabelFormat: function(x) { // <--- x.getMonth() returns valid index
+                //     var month = months[x.getMonth()];
+                //     return month;
+                //   },
                   
-                  dateFormat: function(x) {
-                    var month = months[new Date(x).getMonth()];
-                    return month;
-                  },
-                });
+                //   dateFormat: function(x) {
+                //     var month = months[new Date(x).getMonth()];
+                //     return month;
+                //   },
+                // });
                 
                 $('#Charts > div').hide();
                 $('#Charts > div').eq(0).show();
@@ -626,32 +637,19 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
 
                 $('#filterGrafik').on('change',function(){
                   // event ajax filter grafik morris
-                  $.get('php/chartMaker.php?tahun='+$(this).val()+"&tipe=chartJmlBeli" , function(data){
-                      // debugger;
-                      // console.log("data="+data);
-                      
-                      var result = jQuery.parseJSON(data)
-                      // console.log(result);
-                      var stringifys = JSON.stringify('['+result[0]+']');
-                      // console.log(stringifys);
-                      // console.log("parse sekali : "+jQuery.parseJSON(stringifys));
-                      // console.log("parse dua kali : "+ jQuery.parseJSON(jQuery.parseJSON(stringifys)));
-                      chartJmlBeli.options["ymax"] = result[1] + 10 -(result[1]%10);
-                      chartJmlBeli.setData(jQuery.parseJSON(jQuery.parseJSON(stringifys)));
-                      // chartJmlBeli.setData([result[0]]);
-                  });
+                  updateChart($(this).val());
 
-                  $.get('php/chartMaker.php?tahun='+$(this).val()+"&tipe=chartJmlHarga" , function(data){
-                      var result = jQuery.parseJSON(data)
-                      // console.log(result);
-                      var stringifys = JSON.stringify('['+result[0]+']');
-                      // console.log(stringifys);
-                      // console.log("parse sekali : "+jQuery.parseJSON(stringifys));
-                      // console.log("parse dua kali : "+ jQuery.parseJSON(jQuery.parseJSON(stringifys)));
-                      chartJmlHarga.options["ymax"] = result[1] + 10 -(result[1]%10);
-                      chartJmlHarga.setData(jQuery.parseJSON(jQuery.parseJSON(stringifys)));
-                      chartJmlHarga.options["xkey"] = "Bulan";
-                  });
+                  // $.get('php/chartMaker.php?tahun='+$(this).val()+"&tipe=chartJmlHarga" , function(data){
+                  //     var result = jQuery.parseJSON(data)
+                  //     // console.log(result);
+                  //     var stringifys = JSON.stringify('['+result[0]+']');
+                  //     // console.log(stringifys);
+                  //     // console.log("parse sekali : "+jQuery.parseJSON(stringifys));
+                  //     // console.log("parse dua kali : "+ jQuery.parseJSON(jQuery.parseJSON(stringifys)));
+                  //     chartJmlHarga.options["ymax"] = result[1] + 10 -(result[1]%10);
+                  //     chartJmlHarga.setData(jQuery.parseJSON(jQuery.parseJSON(stringifys)));
+                  //     chartJmlHarga.options["xkey"] = "Bulan";
+                  // });
 
                 });
                 
@@ -731,23 +729,50 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                 }
 
                 function inisiateData(){
+                  //inisiasi tabel data
                   $.get('php/LihatDataRequest.php?tipe=Init' , function(data){
                       $('#dataPembelian tbody').html(data);
                       addActionButtonEvent();
                       
                   });
+
+                  //inisisasi filter Grafik data
                   $.get('php/TahunGetter.php' , function(data){
-                    $('#filterTahun').html(data);
+                    $('#filterTahun').html('<option>SEMUA TAHUN</option>'+data);
                     $('#filterGrafik').html(data);
                     var dd = $('#filterGrafik');
                     var tahunTerbaru = $('#filterGrafik > option').eq(dd.length).val();
                     dd.val(tahunTerbaru);
+                    // console.log(tahunTerbaru);
+                    updateChart(tahunTerbaru);
+                    // updateChart(tahunTerbaru);
                   });
+                  // console.log($('#filterGrafik').val());
+                  //inisisasi chartJmlBeli data
+                  
                 }
 
         //Rubah input ke rupiah
                 
-                
+                function updateChart(tahun){
+                  $.get('php/chartMaker.php?tahun='+ tahun +"&tipe=chartJmlBeli" , function(data){
+                      var result = jQuery.parseJSON(data);
+                      var masukan = result[0].split(",");
+                      chartJmlBeli.config.options.scales.yAxes[0].ticks.max = result[1] + 10 -(result[1]%10);
+                      chartJmlBeli.data.datasets[0].data = masukan;
+                      chartJmlBeli.update();
+                  });
+
+                  $.get('php/chartMaker.php?tahun='+ tahun +"&tipe=chartJmlHarga" , function(data){
+                      var result = jQuery.parseJSON(data);
+                      var masukan = result[0].split(",");
+                      chartJmlHarga.config.options.scales.yAxes[0].ticks.max = result[1] + 10 -(result[1]%10);
+                      chartJmlHarga.data.datasets[0].data = masukan;
+                      chartJmlHarga.update();
+                  });
+                }
+
+
                 function addActionRupiah(){
                     var uang = document.getElementsByClassName("rupiah");
                     for (var i = 0; i < uang.length; i++) { // loop over them

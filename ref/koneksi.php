@@ -85,18 +85,18 @@ class createCon  {
                             (int)$row['juni'],(int)$row['juli'],(int)$row['agustus'],
                             (int)$row['september'],(int)$row['oktober'],(int)$row['november'],
                             (int)$row['desember']);
-                    $outChart .= "{b:'Januari', t:'". $row['januari'] ."'},"
-                            . "{b:'Februari', t:'". $row['februari'] ."'},"
-                            . "{b:'Maret', t:'". $row['maret'] ."'},"
-                            . "{b:'April', t:'". $row['april'] ."'},"
-                            . "{b:'Mei', t:'". $row['mei'] ."'},"
-                            . "{b:'Juni', t:'". $row['juni'] ."'},"
-                            . "{b:'Juli', t:'". $row['juli'] ."'},"
-                            . "{b:'Agustus', t:'". $row['agustus'] ."'},"
-                            . "{b:'September', t:'". $row['september'] ."'},"
-                            . "{b:'Oktober', t:'". $row['oktober'] ."'},"
-                            . "{b:'November', t:'". $row['november'] ."'},"
-                            . "{b:'Desember', t:'". $row['desember'] ."'}";
+                    $outChart .= $row['januari'] .","
+                            . $row['februari'] .","
+                            . $row['maret'] .","
+                            . $row['april'] .","
+                            . $row['mei'] .","
+                            . $row['juni'] .","
+                            . $row['juli'] .","
+                            . $row['agustus'] .","
+                            . $row['september'] .","
+                            . $row['oktober'] .","
+                            . $row['november'] .","
+                            . $row['desember'] ."";
                     
                 }
                 return array($outChart, max($jml_transaksi));
