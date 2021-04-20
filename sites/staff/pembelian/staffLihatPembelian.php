@@ -527,14 +527,12 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                           $.get('php/LihatDataRequest.php?tipe='+tipe , function(data){
                               $('#dataPembelian tbody').html(data);
                               addActionButtonEvent();
-                              inisiateDataTables();
                           });
                       }else{
                           tipe = "search";
                           $.get('php/LihatDataRequest.php?query='+$(this).val()+'&tipe='+tipe , function(data){
                               $('#dataPembelian tbody').html(data);
                               addActionButtonEvent();
-                              inisiateDataTables();
                           });
                       }
                     }else{
@@ -547,7 +545,6 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                       $.get('php/LihatDataRequest.php?tipe='+'searchFilter&bulan='+bulan2+'&query='+ $('.form-control#searchData').val() , function(data){
                           $('#dataPembelian tbody').html(data);
                           addActionButtonEvent();
-                          inisiateDataTables();
                       });
                     }
                     
@@ -733,6 +730,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                   //inisiasi tabel data
                   $.get('php/LihatDataRequest.php?tipe=Init' , function(data){
                       $('#dataPembelian tbody').html(data);
+                      console.log(data);
                       addActionButtonEvent();
                       inisiateDataTables();
                   });
@@ -754,12 +752,15 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                 }
 
                 function inisiateDataTables(){
-                  $("#dataPembelian").DataTable().destroy()
+                  // $("#dataPembelian").DataTable().destroy()
                   $('#dataPembelian').DataTable({
-                      // "searching": false,
+                      "searching": false,
+                      "processing": true,
                       "scrollY": "28rem",
-                      "ordering": false
-                      // "info":     false
+                      "sScrollX": "100%",
+                      "scrollCollapse": true,
+                      "paging": false,
+                      "info":     false
                   });
                 }
 

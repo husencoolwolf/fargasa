@@ -44,6 +44,10 @@
   color: white;
 }
 
+#dataPembelian{
+    width: 100%;
+}
+
 .liveSearch{
     display: none;
     position: absolute;
@@ -96,6 +100,8 @@
 #topJumpBtn.btn:hover{
     background-color: rgba(0, 0, 0,0.8);
 }
+
+
 
 @media screen and (max-width: 770px) {
     .navbar-brand > img{
