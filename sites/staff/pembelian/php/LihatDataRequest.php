@@ -79,20 +79,17 @@ if (isset($tipe)) {
                       <tr>
                         <input type="hidden" value="'.$row['id'].'"/>
                         <td class="wrap">'.$row['tipe'].'</td>
-                        <td>'.$row['warna'].'</td>
-                        <td class="w-100">'.$row['nopol'].'</td>
                         <td>'.$row['tahun'].'</td>
-                        <td>'.$row['mediator'].'</td>
                         <td>'.$row['tgl_beli'].'</td>
-                        <td>'.$conn->intToRupiah((int)$row['hrg_beli']).'</td>
-                        <td>'.$conn->intToRupiah((int)$row['fee_mediator']).'</td>
-                        <td>'.$row['pajak'].'</td>
-                        <td>'.$conn->intToRupiah((int)$row['rekondisi']).'</td>
-                        <td>'.$conn->intToRupiah((int)$row['hrg_beli']+(int)$row['fee_mediator']+(int)$row['rekondisi']).'</td>
+                        <td>'.$row['warna'].'</td>
+                        <td>'.$row['nopol'].'</td>
+                        <td>'.$conn->intToRupiah((int)$row['hrg_beli']+(int)$row['fee_mediator']+(int)$row['pajak']+(int)$row['rekondisi']).'</td>
                         '.$statusBadge.'
                         <td style="min-width:6rem"><div id="action-button" class="d-inline" style="width:100%;">
+                            <a class="btn-action btn btn-dark text-white btn-sm detail" data-href="'.$row['id'].'"><i class="fa fa-eye" aria-hidden="true"></i></a>
                             <a class="btn-action btn btn-primary text-white btn-sm edit" data-href="'.$row['id'].'"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                             <a class="btn-action btn btn-danger text-white btn-sm delete" data-href="'.$row['id'].'"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
                         </div>
                         </td>
                       </tr>

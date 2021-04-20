@@ -28,8 +28,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
     <link rel="stylesheet" href="/dist/font-awesome-4.7.0/css/font-awesome.css"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/dist/css/bootstrap.css">
-    <!--Morris Chart CSS-->
-    <link rel="stylesheet" href="/dist/morris.js-0.5.1/morris.css">
+    <link rel="stylesheet" href="/dist/DataTables/datatables.min.css">
     
 
     <title>Lihat Pembelian</title>
@@ -96,6 +95,8 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
       <!--end of Toast-->
       
       
+
+      <!-- Detail Modal -->
 
 
 
@@ -413,20 +414,15 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
         </div>
                 
            
-          <div  class="scrollTable">
+          <!-- <div  class="scrollTable"> -->
             <table class="table table-striped table-hover table-bordered responsive-text" id="dataPembelian" style="">
                 <thead class="thead-dark">
                     <tr>
                       <th scope="col" class="wrap">Merk/Tipe</th>
+                      <th scope="col">Tahun</th>
+                      <th scope="col">Tanggal Beli</th>
                       <th scope="col">Warna</th>
                       <th scope="col" style="min-width: 100px">Nopol</th>
-                      <th scope="col">Tahun</th>
-                      <th scope="col">Mediator</th>
-                      <th scope="col">Tanggal Beli</th>
-                      <th scope="col">Harga Beli</th>
-                      <th scope="col">Fee Mediator</th>
-                      <th scope="col">Pajak</th>
-                      <th scope="col">Rekondisi</th>
                       <th scope="col">Total Harga</th> 
                       <th scope="col">Status</th>
                       <th scope="col">Aksi</th>
@@ -437,7 +433,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
               </table>
             </div>
             </div>
-      </div>
+      <!-- </div> -->
       
       <!-- Top Scroll Button -->
       <button type="button" id="topJumpBtn" class="btn btn-dark rounded-circle">
@@ -452,7 +448,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
         <script src="/dist/js/jquery-3.5.1.js"></script>
         <script src="/dist/js/bootstrap.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.js"></script>
+        <script src="/dist/DataTables/datatables.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
         
         <script>
@@ -472,9 +468,8 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
 //                data inisiate
                 inisiateData();
                 var bulanss = [];
-                //                Morris chart
-                var ChartsId=['#morrisChartJmlPembelian',
-                '#morrisChartJmlHarga'];
+                // Data Tables inisiasi
+                 
                 
                 $('#statInputMsg').click(function(){
                     $(this).toast('hide');
@@ -523,7 +518,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                 
                 $('#Charts > div').hide();
                 $('#Charts > div').eq(0).show();
-                
+                //livesearch Data Pembelian
                 $('.form-control#searchData').on('keyup', function(){
                     if (bulanss.length==0 || bulanss.length==12){
                       var tipe="";
@@ -531,11 +526,15 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                           tipe = "Init";
                           $.get('php/LihatDataRequest.php?tipe='+tipe , function(data){
                               $('#dataPembelian tbody').html(data);
+                              addActionButtonEvent();
+                              inisiateDataTables();
                           });
                       }else{
                           tipe = "search";
                           $.get('php/LihatDataRequest.php?query='+$(this).val()+'&tipe='+tipe , function(data){
                               $('#dataPembelian tbody').html(data);
+                              addActionButtonEvent();
+                              inisiateDataTables();
                           });
                       }
                     }else{
@@ -547,6 +546,8 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                       var bulan2 = JSON.stringify(bulanss);
                       $.get('php/LihatDataRequest.php?tipe='+'searchFilter&bulan='+bulan2+'&query='+ $('.form-control#searchData').val() , function(data){
                           $('#dataPembelian tbody').html(data);
+                          addActionButtonEvent();
+                          inisiateDataTables();
                       });
                     }
                     
@@ -733,7 +734,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                   $.get('php/LihatDataRequest.php?tipe=Init' , function(data){
                       $('#dataPembelian tbody').html(data);
                       addActionButtonEvent();
-                      
+                      inisiateDataTables();
                   });
 
                   //inisisasi filter Grafik data
@@ -750,6 +751,16 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                   // console.log($('#filterGrafik').val());
                   //inisisasi chartJmlBeli data
                   
+                }
+
+                function inisiateDataTables(){
+                  $("#dataPembelian").DataTable().destroy()
+                  $('#dataPembelian').DataTable({
+                      // "searching": false,
+                      "scrollY": "28rem",
+                      "ordering": false
+                      // "info":     false
+                  });
                 }
 
         //Rubah input ke rupiah
