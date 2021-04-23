@@ -765,7 +765,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                 }
 
         //Rubah input ke rupiah
-                
+                //update Chart Event
                 function updateChart(tahun){
                   $.get('php/chartMaker.php?tahun='+ tahun +"&tipe=chartJmlBeli" , function(data){
                       var result = jQuery.parseJSON(data);
