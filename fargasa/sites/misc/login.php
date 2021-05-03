@@ -3,16 +3,16 @@
 ?>
 <html>
     <head>
-        <title>Welcome Page Fargasa Mobilindo</title>
-        <link rel="icon" type="image/png" href="assets/Fargasa Logo Circle.png" />
+        <title>Login</title>
+        <link rel="icon" type="image/png" href="/fargasa/assets/Fargasa Logo Circle.png" />
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author1" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
         <meta name="author2" content="Coolwolf Entertainment">
         <meta name="generator" content="Jekyll v4.1.1">
-        <link rel="stylesheet" href="/dist/css/bootstrap.min.css">
-        <link href="signin.css" rel="stylesheet">
+        <link rel="stylesheet" href="/fargasa/dist/css/bootstrap.min.css">
+        <link href="/fargasa/signin.css" rel="stylesheet">
         <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -32,9 +32,9 @@
 
     </head>
     <body class="text-center">
-        <form class="form-signin" action="index.php?action=login" method="POST">
-            <img class="mb-4" src="assets/Fargasa Logo Circle.png" alt="" width="72" height="72">
-            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <form class="form-signin" action="/fargasa/index.php?action=login" method="POST">
+            <img class="mb-4" src="/fargasa/assets/Fargasa Logo Circle.png" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Silahkan Log in</h1>
             <?php 
             if($errorLoginMsg<>""){
                 echo '<div class="alert alert-danger" role="alert"> '.$errorLoginMsg.' </div>';
@@ -46,11 +46,12 @@
             <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
             <div class="checkbox mb-3">
               <label>
-                <input type="checkbox" value="remember-me"> Remember me
+                <input type="checkbox" value="remember-me"> Ingat Saya
               </label>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" name="loginSubmit" type="submit">Sign in</button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+            <button class="btn btn-lg btn-primary btn-block" name="loginSubmit" type="submit">LOG IN</button>
+            <p class="mt-3">Belum terdaftar? <a href="/fargasa/index.php?action=register">Daftar disini</a></p>
+            <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
         </form>
     </body>
 
