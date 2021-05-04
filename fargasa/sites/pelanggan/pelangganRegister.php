@@ -32,7 +32,7 @@
 
     </head>
     <body class="text-center">
-        <form class="form-signin needs-validation" novalidate id="formInput">
+        <form class="form-signin needs-validation" novalidate id="formInput" method="POST" action="/fargasa/index.php?action=register">
                   
             <img class="mb-4" src="/fargasa/assets/Fargasa Logo Circle.png" alt="" width="72" height="72">
             <h1 class="font-weight-bold">DAFTAR</h1>
@@ -88,7 +88,7 @@
 
                   
                   <hr class="mb-4">
-                  <button class="btn btn-primary btn-lg btn-block mb-5" type="submit">DAFTAR</button>
+                  <button class="btn btn-primary btn-lg btn-block mb-5" name="registerSubmit" type="submit">DAFTAR</button>
                 </form>
     </body>
     <script src="/fargasa/dist/js/jquery-3.5.1.js"></script>

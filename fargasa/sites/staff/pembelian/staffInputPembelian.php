@@ -11,7 +11,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
     ?>
     <script language="JavaScript">
         alert('Session Telah Habis!!\nAnda harus login untuk mengakses halaman ini!!');
-        document.location.href='/fargasa/';
+        document.location.href='/fargasa/index.php?action=login';
     </script>
     <?php
 }else{

@@ -1,5 +1,5 @@
 <?php
-
+include $_SERVER['DOCUMENT_ROOT'].'/fargasa/dist/php/idGenerator.php';
 class createCon  {
     var $host = 'localhost';
     var $user = 'root';
@@ -44,11 +44,54 @@ class createCon  {
 
     function checkUsername($username){
         $cekuser = mysqli_query($this->connect() ,"SELECT username FROM user WHERE username = '$username'");
-        if(!$cekuser){
-               return true;
+        if(mysqli_num_rows($cekuser) > 0){
+               return "false";
         }else{
-               return false;
+               return "true";
            }
+    }
+    
+    function checkEmail($email){
+        $cekemail = mysqli_query($this->connect() ,"SELECT email FROM user WHERE email = '$email'");
+        if(mysqli_num_rows($cekemail) > 0){
+               return "false";
+        }else{
+               return "true";
+           }
+    }
+    
+    function inputPelanggan($dataArray){
+        $id = createId(8);
+
+        //cek id
+              $id = $this->checkId($this->connect(),$id);  
+        //
+
+        
+        $nama = $dataArray['nama'];
+        $username = $dataArray['username'];
+        $password = $dataArray['password'];
+        $email = $dataArray['email'];
+        $nope = $dataArray['nope'];
+        $query = "INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `email`, `no_hp`, `privilege`) "
+                . "VALUES ('$id', "
+                . "'$nama', "
+                . "'$username', "
+                . "'$password', "
+                . "'$email', "
+                . "'$nope', "
+                . "'pelanggan');";
+        $input	= mysqli_query($this->connect(),$query);
+            if ($input) {
+                //Jika Sukses
+                //input user
+                return "0";
+            }else {
+                return mysqli_error($this->connect());
+
+            }
+        
+
     }
     
     function intToRupiah($angka){
@@ -161,6 +204,16 @@ class createCon  {
                }
            }
     }
+    
+    function checkId($con,$id2){
+            $cekuser = mysqli_query($con ,"SELECT id_user FROM user WHERE id_user = '$id2'");
+                if(mysqli_num_rows($cekuser) == 0){
+                    return $id2;
+                }else{
+                    $id2 = createId(8);
+                    $this->checkId($con,$id2);
+                   }
+        }
     
     function dateToMonth($intBulan){
         switch($intBulan){

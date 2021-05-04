@@ -21,6 +21,25 @@ if(isset($_SESSION['privilege'])){
             $errorLoginMsg = $periksa;
         }
         
+    }elseif(isset($_POST['registerSubmit'])){
+        $data = array("nama"=>$_POST['nama'],
+                    "username"=>$_POST['username'],
+                    "password"=>$_POST['password'],
+                    "alamat"=>$_POST['alamat'],
+                    "email"=>$_POST['email'],
+                    "nope"=>$_POST['nope']);
+        $status = $conn->inputPelanggan($data);
+//        include_once $_SERVER['DOCUMENT_ROOT'].'/fargasa/sites/pelanggan/php/inputPelanggan.php';
+        if($status=="0"){
+            ?>
+            <script language="JavaScript">
+                alert('Register Berhasil, Silahkan Login!');
+                document.location.href='/fargasa/index.php?action=login';
+            </script>
+            <?php
+        }else{
+            $errorLoginMsg = $status;
+        }
     }
 
     if (isset($_GET['action']) && $_GET['action']=="login") {
