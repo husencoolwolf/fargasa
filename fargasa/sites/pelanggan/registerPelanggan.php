@@ -47,7 +47,7 @@
                     
                     <div class="col-md mb-3">
                       <label for="nama" class="font-weight-bold">NAMA<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" id="nama" placeholder="Nama Anda" value="" required><span class="invalid-feedback"></span>
+                      <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Anda" value="" required><span class="invalid-feedback"></span>
                       
                       
                     </div>
@@ -56,29 +56,35 @@
                   <div class="mb-3">
                     <label for="username" class="font-weight-bold">USERNAME<span class="text-danger">*</span></label>
                     <div class="input-group">
-                      <input type="text" class="form-control live-check-input" id="username" placeholder="Username Akun" required>
-                      <span class="invalid-feedback"></span>
+                      <input type="text" class="form-control live-check-input" name="username" id="username" placeholder="Username Akun" required>
+                      <div class="invalid-feedback"></div>
                     </div>
                   </div>
                         
 
                   <div class="mb-3">
                     <label for="password" class="font-weight-bold">PASSWORD <span class="text-danger">*</span></label>
-                    <input type="password" class="form-control live-password-input" id="password" placeholder="Password Akun" required>
+                    <input type="password" class="form-control live-password-input" name="password" id="password" placeholder="Password Akun" required>
                     <div class="invalid-feedback">
                       
                     </div>
                   </div>
 
+                  <div class="mb-3">
+                    <label for="alamat" class="font-weight-bold">ALAMAT<span class="text-danger">*</span></label>
+                    <textarea class="form-control" name="alamat" id="alamat" placeholder="Alamat Akun" style="height: 100px" required></textarea>
+                    <!-- <input type="email" > -->
+                  </div>
+
 
                   <div class="mb-3">
                     <label for="email" class="font-weight-bold">EMAIL</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email Akun">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Email Akun">
                   </div>
                         
                   <div class="mb-3">
                     <label for="nope" class="font-weight-bold">NOMOR HP / WHATSAPP<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control nomor-only" id="nope" placeholder="Nomor HP / Whatsapp Akun" required>
+                    <input type="number" class="form-control nomor-only" name="nope" id="nope" placeholder="Nomor HP / Whatsapp Akun" maxlength="13" required>
                   </div>
 
                   
@@ -91,7 +97,7 @@
     <script src="/fargasa/dist/js/bootstrap.js"></script>
     <script>
         
-        //Validator
+        
         
         
     </script>
