@@ -27,7 +27,7 @@ if(isset($_SESSION['privilege'])){
             include "sites/misc/login.php";
         
     }elseif(isset($_GET['action']) && $_GET['action']=="register"){
-        include "sites/misc/registerPelanggan.php";
+        include "sites/pelanggan/pelangganRegister.php";
     }else{
         include "sites/misc/landpage.php";
     }

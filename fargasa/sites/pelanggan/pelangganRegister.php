@@ -55,10 +55,9 @@
 
                   <div class="mb-3">
                     <label for="username" class="font-weight-bold">USERNAME<span class="text-danger">*</span></label>
-                    <div class="input-group">
-                      <input type="text" class="form-control live-check-input" name="username" id="username" placeholder="Username Akun" required>
+                      <input type="text" class="form-control live-check-input" name="username" id="username" placeholder="Username Akun" required autocomplete="off">
                       <div class="invalid-feedback"></div>
-                    </div>
+                    
                   </div>
                         
 
@@ -95,11 +94,7 @@
     <script src="/fargasa/dist/js/jquery-3.5.1.js"></script>
     <script src="/fargasa/dist/js/jquery-validate/jquery.validate.min.js"></script>
     <script src="/fargasa/dist/js/bootstrap.js"></script>
-    <script>
-        
-        
-        
-        
-    </script>
+    <script src="/fargasa/dist/js/jquery-validate/additional-methods.min.js"></script>
+    <script src="/fargasa/sites/pelanggan/js/validatorRegister.js"></script>
 
 </html>

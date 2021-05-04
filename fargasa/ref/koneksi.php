@@ -41,6 +41,15 @@ class createCon  {
                }
            }
     }
+
+    function checkUsername($username){
+        $cekuser = mysqli_query($this->connect() ,"SELECT username FROM user WHERE username = '$username'");
+        if(!$cekuser){
+               return true;
+        }else{
+               return false;
+           }
+    }
     
     function intToRupiah($angka){
 
