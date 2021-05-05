@@ -1,6 +1,6 @@
 <?php
 
-$data = mysqli_query($con, " SELECT * FROM pembelian");
+$data = mysqli_query($con, " SELECT * FROM stok");
 
 
 ?>
@@ -33,10 +33,12 @@ $data = mysqli_query($con, " SELECT * FROM pembelian");
     <div class="collapse navbar-collapse " id="navbarToggle">
 
       <!--   Show this only lg screens and up   -->
-      <a class="navbar-brand d-none d-lg-block" href="#">
-        <img class="" src="/fargasa/assets/Fargasa Logo Circle.png" alt="Dashboard" style="width: 80px">
-      </a>
       <ul class="navbar-nav">
+        <a class="navbar-brand d-none d-lg-block" href="#">
+          <img class="" src="/fargasa/assets/Fargasa Logo Circle.png" alt="Dashboard" style="width: 80px">
+        </a>
+      </ul>
+      <ul class="navbar-nav mx-auto">
         <li class="nav-item px-3 ml-0">
           <a class="nav-link active" href="#catalog">CATALOG <span class="sr-only">(current)</span></a>
         </li>
@@ -50,10 +52,10 @@ $data = mysqli_query($con, " SELECT * FROM pembelian");
           <a class="nav-link" href="#contact">HUBUNGI KAMI</a>
         </li>
       </ul>
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav">
 
         <li class="px-3">
-          <a href="/fargasa/?action=login" class="btn btn-dark mr-sm-2 d-flex justify-content-center rounded-pill" role="button" aria-pressed="true">LOGIN</a>
+          <a href="/fargasa/?action=login" class="btn btn-dark mr-sm-2 d-flex justify-content-center rounded-pill" role="button" aria-pressed="true">LOGIN / DAFTAR</a>
         </li>
 
       </ul>
@@ -93,10 +95,10 @@ $data = mysqli_query($con, " SELECT * FROM pembelian");
             <div class="card m-2 " style="width: 18rem;">
               <img src="..." class="card-img-top" alt="...">
               <div class="card-body">
-                <p class="card-text d-none" id="id"><b><?= $elements["id"] ?></b></p>
+                <p class="card-text d-none" id="id"><b><?= $elements["id_pembelian"] ?></b></p>
                 <h5 class="card-title" id="tipe"><b><?= $elements["tipe"] ?></b></h5>
-                <p class="card-text" id="hrg_beli"><b><?= $elements["hrg_beli"] ?></b></p>
-                <button class="btn btn-primary mx-auto d-flex justify-content-center detailbtn" data-toggle="modal" data-target="#detailmodal" data-id="<?= $elements["id"]; ?>">
+                <p class="card-text" id="hrg_beli"><b><?= $conn->intToRupiah($elements["hrg_jual"]) ?></b></p>
+                <button class="btn btn-primary mx-auto d-flex justify-content-center detailbtn" data-toggle="modal" data-target="#detailmodal" data-id="<?= $elements["id_pembelian"]; ?>">
                   Lihat detail
                 </button>
 
@@ -144,12 +146,12 @@ $data = mysqli_query($con, " SELECT * FROM pembelian");
 
   $(document).ready(function() {
     $('.detailbtn').on('click', function() {
-      id = $(this).data('id');
+      var id = $(this).data('id');
       console.log(id);
       $('#detailmodal').modal('show');
       $.ajax({
-        url: 'detail-barang.php',
-        method: 'post',
+        url: '/fargasa/sites/misc/detail-barang.php',
+        method: 'POST',
         data: {
           id: id
         },
