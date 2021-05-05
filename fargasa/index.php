@@ -9,6 +9,8 @@ if(isset($_SESSION['privilege'])){
 //    mysqli_query($con ,"Select * from user");
     if ($_SESSION['privilege']=='staff'){
         header("Location: sites/staff/staffMainMenu.php");
+    }elseif ($_SESSION['privilege']=='pelanggan'){
+        header("Location: sites/pelanggan/pelangganMainMenu.php");
     }
     
 }else{

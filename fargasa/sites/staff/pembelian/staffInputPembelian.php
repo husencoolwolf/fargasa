@@ -108,8 +108,16 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
               
                 <div class="col align-self-center order-md-1">
                     <form class="needs-validation" novalidate id="formInput">
-                  <div class="row">
-                    
+                    <div class="row justify-content-center shadow py-3 my-4">
+                        <div>
+                            <img width="100" height="100" class="img-fluid border border-dark mb-4" src="/fargasa/assets/gambar/default.png" id="imgThumbnailPreview">
+                        </div>
+                        <input class="form-control" type="file" accept="image/*" name="gambar" id="gambar" onchange="previewImage('gambar','imgThumbnailPreview')" data-url="">
+                        <label class="mb-4" for="gambar">Upload Gambar</label>
+
+                    </div>
+                        
+                    <div class="row">
                     <div class="col-md-6 mb-3">
                       <label for="tipe" class="font-weight-bold">Tipe<span class="text-danger">*</span></label>
                       <input type="text" class="form-control live-search-input" id="tipe" placeholder="Tipe Mobil" value="" required>
@@ -145,6 +153,22 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                       Tahun perlu di isi.
                     </div>
                   </div>
+                        
+                  <div class="mb-3">
+                    <label for="jarakTempuh" class="font-weight-bold">Jarak Tempuh (Optional)</label>
+                    <input type="number" class="form-control" id="jarakTempuh" placeholder="Jarak Tempuh Mobil Saat Ini">
+                    <div class="invalid-feedback">
+                      Jarak Tempuh Mengalami Error !
+                    </div>
+                  </div>
+                        
+                  <div class="mb-3">
+                    <label for="jenisBbm" class="font-weight-bold">Jenis BBM (Optional)</label>
+                    <input type="text" class="form-control" id="jenisBbm" placeholder="Jenis BBM Mobil">
+                    <div class="invalid-feedback">
+                      Jenis BBM Mengalami Error !
+                    </div>
+                  </div
 
 
                   <div class="mb-3">
@@ -156,10 +180,15 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                     <label for="hrgBeli" class="font-weight-bold">Harga Beli<span class="text-danger">*</span></label>
                     <input type="text" class="form-control rupiah" id="hrgBeli" placeholder="Harga Beli" required>
                   </div>
+                  
+                  <div class="mb-3">
+                    <label for="hrgJual" class="font-weight-bold">Harga Jual<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control rupiah" id="hrgJual" placeholder="Harga Jual" required>
+                  </div>
 
                   <div class="row">
                     <div class="col-md-6 mb-3">
-                      <label for="mediator" class="font-weight-bold live-search-input">Mediator</label>
+                      <label for="mediator" class="font-weight-bold live-search-input">Mediator (Optional)</label>
                         <input type="text" class="form-control live-search-input" id="mediator" placeholder="Mediator Beli">
                         <div class="list-group liveSearch" id="mediatorSearch"></div>
                       <div class="invalid-feedback">
@@ -167,7 +196,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                       </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                      <label for="feeMediator" class="font-weight-bold">Fee Mediator</label>
+                      <label for="feeMediator" class="font-weight-bold">Fee Mediator (Optional)</label>
                         <input type="text" class="form-control rupiah" id="feeMediator" placeholder="Fee Mediator">
                       <div class="invalid-feedback">
                         Fee Mediator Error!.
@@ -176,8 +205,8 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                   </div>
                     
                   <div class="mb-3">
-                    <label for="pajak" class="font-weight-bold">Pajak</label>
-                    <input type="number" class="form-control" id="pajak" placeholder="Bulan Pajak">
+                    <label for="pajak" class="font-weight-bold">Pajak (Optional)</label>
+                    <input type="text" class="form-control rupiah" id="pajak" placeholder="Bulan Pajak">
                     <div class="invalid-feedback">
                       Pajak perlu di isi.
                     </div>
@@ -185,7 +214,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                     
                     
                   <div class="mb-5">
-                    <label for="rekondisi" class="font-weight-bold">Rekondisi</label>
+                    <label for="rekondisi" class="font-weight-bold">Rekondisi (Optional)</label>
                     <input type="text" class="form-control rupiah" id="rekondisi" placeholder="Biaya Rekondisi">
                     <div class="invalid-feedback">
                       rekondisi mengalami kesalahan!!!.
@@ -231,24 +260,56 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
             });
             
             $('#submitDB').on('click', function(){
-                $('#statInputMsg').load("php/SubmitterData.php",{
-                    
-                    tipe: document.getElementById('tipe').value,
-                    nopol: document.getElementById('nopol').value,
-                    warna: document.getElementById('warna').value,
-                    tahun: document.getElementById('tahun').value,
-                    tgl_beli: document.getElementById('tglBeli').value,
-                    hrg_beli: document.getElementById('hrgBeli').value,
-                    mediator: document.getElementById('mediator').value,
-                    feeMediator: document.getElementById('feeMediator').value,
-                    pajak: document.getElementById('pajak').value,
-                    rekondisi: document.getElementById('rekondisi').value
-                });
-                $('#KonfirmasiModal').modal('hide');
+                var fd = new FormData();
+                var files = $('#gambar')[0].files;
+                if(files.length > 0 ){
+                    fd.append('gambar',files[0]);
+                }
+                fd.append('tipe',$('#tipe').val());
+                fd.append('nopol',$('#nopol').val());
+                fd.append('warna',$('#warna').val());
+                fd.append('tahun',$('#tahun').val());
+                fd.append('jarak_tempuh',$('#jarakTempuh').val());
+                fd.append('jenis_bbm',$('#jenisBbm').val());
+                fd.append('tgl_beli',$('#tglBeli').val());
+                fd.append('hrg_beli',$('#hrgBeli').val());
+                fd.append('hrg_jual',$('#hrgJual').val());
+                fd.append('mediator',$('#mediator').val());
+                fd.append('feeMediator',$('#feeMediator').val());
+                fd.append('pajak',$('#pajak').val());
+                fd.append('rekondisi',$('#rekondisi').val());
                 
-                $('.toast').toast('show');
-                $("#formInput")[0].reset();
-                $("#formInput").removeClass('was-validated');
+                $.ajax({
+                    url: './php/SubmitterData.php',
+                    type: 'post',
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function(response){
+                        $('.toast').html(response);
+                        $('#KonfirmasiModal').modal('hide');
+                
+                        $('.toast').toast('show');
+                        $("#formInput")[0].reset();
+                        $("#formInput").removeClass('was-validated');
+                       
+                       
+                    },
+                 });
+//                $('#statInputMsg').load("php/SubmitterData.php",{
+//                    
+//                    tipe: document.getElementById('tipe').value,
+//                    nopol: document.getElementById('nopol').value,
+//                    warna: document.getElementById('warna').value,
+//                    tahun: document.getElementById('tahun').value,
+//                    tgl_beli: document.getElementById('tglBeli').value,
+//                    hrg_beli: document.getElementById('hrgBeli').value,
+//                    mediator: document.getElementById('mediator').value,
+//                    feeMediator: document.getElementById('feeMediator').value,
+//                    pajak: document.getElementById('pajak').value,
+//                    rekondisi: document.getElementById('rekondisi').value
+//                });
+                
                 
                 
             });
@@ -353,11 +414,31 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                 return false;
             });
             
+            $('#gambar').change( function(event) {
+                var tmppath = URL.createObjectURL(event.target.files[0]);
+//                $("img").fadeIn("fast").attr('src',URL.createObjectURL(event.target.files[0]));
+
+                $(this).data('url',tmppath);
+            });
+            
             
             //end of Excel Reader upload
         });
         //end of jquery
         
+        function previewImage(sumber, view) {
+            document.getElementById(view).style.display = "block";
+            var oFReader = new FileReader();
+             oFReader.readAsDataURL(document.getElementById(sumber).files[0]);
+
+            oFReader.onload = function(oFREvent) {
+              document.getElementById(view).src = oFREvent.target.result;
+            };
+        };
+        
+        function gambarToUrl(sumber){
+            
+        }
         
         //Rubah input ke rupiah
                 var uang = document.getElementsByClassName("rupiah");
@@ -406,15 +487,18 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                   else{
                       event.preventDefault()
                       event.stopPropagation()
-                      
+
+//                      console.log(document.getElementById('gambar').value);
                       $('#KonfirmasiModalBody').load("php/getterConfirm.php",{
-                          
                           tipe: document.getElementById('tipe').value,
                           nopol: document.getElementById('nopol').value,
                           warna: document.getElementById('warna').value,
                           tahun: document.getElementById('tahun').value,
+                          jarak_tempuh: document.getElementById('jarakTempuh').value,
+                          jenis_bbm: document.getElementById('jenisBbm').value,
                           tgl_beli: document.getElementById('tglBeli').value,
                           hrg_beli: document.getElementById('hrgBeli').value,
+                          hrg_jual: document.getElementById('hrgJual').value,
                           mediator: document.getElementById('mediator').value,
                           feeMediator: document.getElementById('feeMediator').value,
                           pajak: document.getElementById('pajak').value,

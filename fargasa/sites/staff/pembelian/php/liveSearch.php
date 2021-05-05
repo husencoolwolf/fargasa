@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/ref/koneksi.php';
+include $_SERVER['DOCUMENT_ROOT'].'/fargasa/ref/koneksi.php';
 $conn = new createCon();
 $con = $conn->connect();
 

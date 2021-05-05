@@ -19,19 +19,19 @@ $(function(){
 				nowhitespace: true,
 				alphanumeric: true,
 				remote: {
-                                    url: "sites/pelanggan/php/checkUsername.php",
-                                    type: "post",
-                                    data: {
-                                      username: function() {
-                                        return $( "#username" ).val();
-                                      }
-                                    }
-                                }	
+                    url: "sites/pelanggan/php/checkUsername.php",
+                    type: "post",
+                    data: {
+                      username: function() {
+                        return $( "#username" ).val();
+                      }
+                    }
+                }	
 			},
 			password :{
 				required: true,
-                                alphanumeric: true,
-                                strongPassword: true
+                alphanumeric: true,
+                strongPassword: true
 			},
 			alamat : {
 				required: true
@@ -39,26 +39,26 @@ $(function(){
 			email : {
 				required: false,
 				email: true,
-                                remote: {
-                                    url: "sites/pelanggan/php/checkEmail.php",
-                                    type: "post",
-                                    data: {
-                                      email: function() {
-                                        return $( "#email" ).val();
-                                      }
-                                    }
-                                }
+                    remote: {
+                        url: "sites/pelanggan/php/checkEmail.php",
+                        type: "post",
+                        data: {
+                          email: function() {
+                            return $( "#email" ).val();
+                          }
+                        }
+                    }
 			},
 			nope : {
 				required: true,
 				number: true,
-                                strongNope: true
+                strongNope: true
 			}
 		},
 		messages: {
 			nama :{
 				required: 'Harap Isi Nama!',
-                                lettersonly: 'Nama hanya boleh Huruf'
+                lettersonly: 'Nama hanya boleh Huruf'
 			},
 			username :{
 				required: 'Harap Isi Username!',
@@ -68,14 +68,14 @@ $(function(){
 			},
 			password :{
 				required: 'Harap isi Password!',
-                                alphanumeric: 'password hanya boleh Huruf dan Angka!'
+                alphanumeric: 'password hanya boleh Huruf dan Angka!'
 			},
 			alamat : {
 				required: 'Harap Isi Alamat!'
 			},
 			email : {
 				email: 'Harap isi E-mail yang Valid!',
-                                remote: 'Email ini sudah terdaftar!'
+                remote: 'Email ini sudah terdaftar!'
 			},
 			nope : {
 				required: 'Harap mengisi Nomer HP',

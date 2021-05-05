@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/ref/koneksi.php';
+include $_SERVER['DOCUMENT_ROOT'].'/fargasa/ref/koneksi.php';
 $conn = new createCon();
 $con = $conn->connect();
 $tahunData = $conn->tahunGetter();
@@ -8,6 +8,9 @@ $dataChart=$conn->chartMaker($tahunData[$indTahunTerbaru]);
 $dataChartTotalPembelian=$conn->ChartTotalPembelianBulanan($tahunData[$indTahunTerbaru]);
 
 session_start();
+
+$_SESSION['page']="pembelian";
+$_SESSION['subPage']="staffLihatPembelian";
 if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
     ?>
     <script language="JavaScript">
@@ -24,11 +27,11 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/style.css"/>
-    <link rel="icon" type="image/png" href="/assets/Fargasa Logo Circle.png" />
-    <link rel="stylesheet" href="/dist/font-awesome-4.7.0/css/font-awesome.css"/>
+    <link rel="icon" type="image/png" href="/fargasa/assets/Fargasa Logo Circle.png" />
+    <link rel="stylesheet" href="/fargasa/dist/font-awesome-4.7.0/css/font-awesome.css"/>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="/dist/DataTables/datatables.min.css">
+    <link rel="stylesheet" href="/fargasa/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/fargasa/dist/DataTables/datatables.min.css">
     
 
     <title>Lihat Pembelian</title>
@@ -37,7 +40,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
     
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/">
-          <img class="" src="/assets/Fargasa Logo Circle.png" alt="Dashboard">
+          <img class="" src="/farasa/assets/Fargasa Logo Circle.png" alt="Dashboard">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -80,7 +83,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownAkun">
                 <a class="dropdown-item" href="#">Profil</a>
-                <a class="dropdown-item text-danger" href="/sesDes.php">Logout</a>
+                <a class="dropdown-item text-danger" href="/fargasa/sesDes.php">Logout</a>
               </div>
             </li>
           </ul>

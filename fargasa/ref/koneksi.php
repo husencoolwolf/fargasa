@@ -10,7 +10,7 @@ class createCon  {
     function connect() {
         $con = mysqli_connect($this->host, $this->user, $this->pass, $this->db);
         if (!$con) {
-            header('Location: /500.php?url='.$_SERVER['REQUEST_URI']);
+            header('Location: /fargasa/500.php?url='.$_SERVER['REQUEST_URI']);
         } else {
             $this->myconn = $con;
 //            echo 'Connection established!';

@@ -231,7 +231,7 @@
 			"file": "/C/xampp/htdocs/fargasa/sites/staff/staffMainMenu.php",
 			"settings":
 			{
-				"buffer_size": 1317,
+				"buffer_size": 1339,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -249,7 +249,7 @@
 			"file": "/C/xampp/htdocs/fargasa/sites/pelanggan/pelangganRegister.php",
 			"settings":
 			{
-				"buffer_size": 4536,
+				"buffer_size": 4616,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -258,16 +258,7 @@
 			"file": "/C/xampp/htdocs/fargasa/sites/pelanggan/js/validatorRegister.js",
 			"settings":
 			{
-				"buffer_size": 1272,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/xampp/htdocs/fargasa/sites/pelanggan/php/checkUsername.php",
-			"settings":
-			{
-				"buffer_size": 145,
+				"buffer_size": 2404,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -276,7 +267,7 @@
 			"file": "/C/xampp/htdocs/fargasa/index.php",
 			"settings":
 			{
-				"buffer_size": 974,
+				"buffer_size": 1779,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -285,7 +276,7 @@
 			"file": "/C/xampp/htdocs/fargasa/sites/misc/landpage.php",
 			"settings":
 			{
-				"buffer_size": 2295,
+				"buffer_size": 6063,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -294,7 +285,7 @@
 			"file": "/C/xampp/htdocs/fargasa/ref/koneksi.php",
 			"settings":
 			{
-				"buffer_size": 10924,
+				"buffer_size": 12643,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -414,6 +405,7 @@
 	],
 	"file_history":
 	[
+		"/C/xampp/htdocs/fargasa/sites/pelanggan/php/checkUsername.php",
 		"/C/xampp/htdocs/fargasa/sites/misc/login.php",
 		"/C/xampp/htdocs/fargasa/index.php",
 		"/C/Users/Coolwolf/Downloads/Compressed/jquery-validation-1.19.3/src/additional/currency.js",
@@ -473,7 +465,7 @@
 	],
 	"find":
 	{
-		"height": 40.8
+		"height": 28.0
 	},
 	"find_in_files":
 	{
@@ -674,7 +666,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -683,15 +675,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1317,
+						"buffer_size": 1339,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6,
-								67
+								0,
+								0
 							]
 						],
 						"settings":
@@ -704,7 +696,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -732,7 +724,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -741,15 +733,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4536,
+						"buffer_size": 4616,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4431,
-								4431
+								0,
+								0
 							]
 						],
 						"settings":
@@ -762,7 +754,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -771,15 +763,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1272,
+						"buffer_size": 2404,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								210,
-								210
+								2404,
+								2404
 							]
 						],
 						"settings":
@@ -791,52 +783,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/C/xampp/htdocs/fargasa/sites/pelanggan/php/checkUsername.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 145,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								145,
-								145
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 4,
 					"file": "/C/xampp/htdocs/fargasa/index.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 974,
+						"buffer_size": 1779,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6,
-								57
+								0,
+								0
 							]
 						],
 						"settings":
@@ -853,20 +817,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 5,
 					"file": "/C/xampp/htdocs/fargasa/sites/misc/landpage.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2295,
+						"buffer_size": 6063,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								127,
-								127
+								0,
+								0
 							]
 						],
 						"settings":
@@ -879,24 +843,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 6,
 					"file": "/C/xampp/htdocs/fargasa/ref/koneksi.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10924,
+						"buffer_size": 12643,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1428,
-								1441
+								0,
+								0
 							]
 						],
 						"settings":
@@ -906,10 +870,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 824.0,
+						"translation.y": 744.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]

@@ -12,7 +12,7 @@ $url = $_GET["url"];
         <title>Koneksi Ke Database Error!</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="/fargasa/dist/css/bootstrap.css">
     </head>
     <body>
         <div class="jumbotron">
