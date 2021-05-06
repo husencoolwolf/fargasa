@@ -1,13 +1,12 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/ref/koneksi.php';
-include $_SERVER['DOCUMENT_ROOT'].'/dist/php/idGenerator.php';
+include $_SERVER['DOCUMENT_ROOT'].'/fargasa/ref/koneksi.php';
 $conn = new createCon();
 $con = $conn->connect();
 session_start();
 
 $id =$_POST['id'];
 
-$input	=mysqli_query($con,"DELETE FROM `pembelian` WHERE id='$id'");
+$input	=mysqli_query($con,"DELETE FROM `pembelian` WHERE id_pembelian='$id'");
 
 if (mysqli_affected_rows($con) >=0){
 	echo '<div class="toast-body alert alert-success text-center" id="isiStat" value="success">

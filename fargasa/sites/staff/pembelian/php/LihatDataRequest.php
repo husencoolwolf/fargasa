@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/ref/koneksi.php';
+include $_SERVER['DOCUMENT_ROOT'].'/fargasa/ref/koneksi.php';
 $conn = new createCon();
 $con = $conn->connect();
 
@@ -70,6 +70,8 @@ if (isset($tipe)) {
                 $statusBadge;
                 if($row['status']=="Belum Terjual"){
                     $statusBadge = '<td><span class="badge badge-warning">'.$row['status'].'</span></td>';
+                }elseif($row['status']=="siap"){
+                    $statusBadge = '<td><span class="badge badge-primary">'.$row['status'].'</span></td>';
                 }else{
                     $statusBadge = '<td><span class="badge badge-success">'.$row['status'].'</span></td>';
                 }
@@ -77,18 +79,18 @@ if (isset($tipe)) {
 
                     $output .= '
                       <tr>
-                        <input type="hidden" value="'.$row['id'].'"/>
-                        <td class="wrap">'.$row['tipe'].'</td>
+                        <input type="hidden" value="'.$row['id_pembelian'].'"/>
+                        <td>'.$row['tipe'].'</td>
                         <td>'.$row['tahun'].'</td>
                         <td>'.$row['tgl_beli'].'</td>
                         <td>'.$row['warna'].'</td>
                         <td>'.$row['nopol'].'</td>
                         <td>'.$conn->intToRupiah((int)$row['hrg_beli']+(int)$row['fee_mediator']+(int)$row['pajak']+(int)$row['rekondisi']).'</td>
                         '.$statusBadge.'
-                        <td style="min-width:6rem"><div id="action-button" class="d-inline" style="width:100%;">
-                            <a class="btn-action btn btn-dark text-white btn-sm detail" data-href="'.$row['id'].'"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                            <a class="btn-action btn btn-primary text-white btn-sm edit" data-href="'.$row['id'].'"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <a class="btn-action btn btn-danger text-white btn-sm delete" data-href="'.$row['id'].'"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        <td><div id="action-button" class="d-inline" style="width:100%;">
+                            <a class="btn-action btn btn-dark text-white btn-sm detail" data-href="'.$row['id_pembelian'].'" title="Detail"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <a class="btn-action btn btn-primary text-white btn-sm edit" data-href="'.$row['id_pembelian'].'" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a class="btn-action btn btn-danger text-white btn-sm delete" data-href="'.$row['id_pembelian'].'" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 
                         </div>
                         </td>

@@ -1,6 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/ref/koneksi.php';
-include $_SERVER['DOCUMENT_ROOT'].'/dist/php/idGenerator.php';
+include $_SERVER['DOCUMENT_ROOT'].'/fargasa/ref/koneksi.php';
 $conn = new createCon();
 $con = $conn->connect();
 session_start();
@@ -20,7 +19,7 @@ $pajak = $_POST['pajak'];
 $rekondisi = $_POST['rekondisi'];
 $rekondisi = $conn->rupiahToInt($rekondisi);
 
-$input	=mysqli_query($con,"UPDATE `pembelian` SET `nopol`='$nopol', `tipe`='$tipe',`warna`='$warna', `tahun`= '$tahun', `mediator`='$mediator', `tgl_beli`='$tgl_beli', `hrg_beli`='$hrg_beli', `fee_mediator`='$feeMediator', `pajak`='$pajak', `rekondisi`='$rekondisi' WHERE id='$id'");
+$input	=mysqli_query($con,"UPDATE `pembelian` SET `nopol`='$nopol', `tipe`='$tipe',`warna`='$warna', `tahun`= '$tahun', `mediator`='$mediator', `tgl_beli`='$tgl_beli', `hrg_beli`='$hrg_beli', `fee_mediator`='$feeMediator', `pajak`='$pajak', `rekondisi`='$rekondisi' WHERE id_pembelian='$id'");
 
 if (mysqli_affected_rows($con) >=0){
 	echo '<div class="toast-body alert alert-success text-center" id="isiStat" value="success">

@@ -38,58 +38,8 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
   </head>
   <body>
     
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">
-          <img class="" src="/farasa/assets/Fargasa Logo Circle.png" alt="Dashboard">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Dashboard </a>
-            </li>
-            <li class="nav-item px-3">
-              <a class="nav-link" href="#">Cek Stok</a>
-            </li>
-            
-            <li class="nav-item px-3 dropdown active">
-              <a class="nav-link dropdown-toggle font-weight-bold" href="#" id="navbarDropdownPembelian" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Pembelian
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownPembelian">
-                <a class="dropdown-item active font-weight-bold" href="/sites/staff/pembelian/staffLihatPembelian.php">Lihat Pembelian<span class="sr-only">(current)</span></a>
-                <a class="dropdown-item" href="/sites/staff/pembelian/staffInputPembelian.php">Input Pembelian</a>
-              </div>
-            </li>
-            <li class="nav-item px-3 dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPenjualan" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Penjualan
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownPenjualan">
-                <a class="dropdown-item" href="#">Lihat Penjualan</a>
-                <a class="dropdown-item" href="#">Input Penjualan</a>
-              </div>
-            </li>
-            <li class="nav-item px-3">
-              <a class="nav-link" href="#">Laporan</a>
-            </li>
-          </ul>
-          <ul class="navbar-nav">
-            <li class="nav-item px-3 dropdown">
-              <a class="nav-link dropdown-toggle text-primary font-weight-bold" href="#" id="navbarDropdownAkun" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <?php echo strtoupper($_SESSION['nama']); ?>
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownAkun">
-                <a class="dropdown-item" href="#">Profil</a>
-                <a class="dropdown-item text-danger" href="/fargasa/sesDes.php">Logout</a>
-              </div>
-            </li>
-          </ul>
-            
-        </div>
-      </nav>
+      <!-- navbar -->
+      <?php include_once $_SERVER['DOCUMENT_ROOT']."/fargasa/sites/misc/navbar/staffNavbar.php";?>
 
       <!--Toast-->
         <div class="toast" id="statInputMsg" data-delay="10000">
@@ -421,12 +371,12 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
             <table class="table table-striped table-hover table-bordered responsive-text" id="dataPembelian" style="">
                 <thead class="thead-dark">
                     <tr>
-                      <th scope="col" class="wrap">Merk/Tipe</th>
+                      <th scope="col">Merk/Tipe</th>
                       <th scope="col">Tahun</th>
                       <th scope="col">Tanggal Beli</th>
                       <th scope="col">Warna</th>
-                      <th scope="col" style="min-width: 100px">Nopol</th>
-                      <th scope="col">Total Harga</th> 
+                      <th scope="col">Nopol</th>
+                      <th scope="col">Total Harga Beli</th>
                       <th scope="col">Status</th>
                       <th scope="col">Aksi</th>
                     </tr>
@@ -448,10 +398,10 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
       </button>
       <!-- end of Top Scroll Button -->
       
-        <script src="/dist/js/jquery-3.5.1.js"></script>
-        <script src="/dist/js/bootstrap.js"></script>
+        <script src="/fargasa/dist/js/jquery-3.5.1.js"></script>
+        <script src="/fargasa/dist/js/bootstrap.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-        <script src="/dist/DataTables/datatables.min.js"></script>
+        <script src="/fargasa/dist/DataTables/datatables.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
         
         <script>
@@ -470,6 +420,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
 //                jquery start
 //                data inisiate
                 inisiateData();
+                inisiateDataTables();
                 var bulanss = [];
                 // Data Tables inisiasi
                  
@@ -735,7 +686,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                       $('#dataPembelian tbody').html(data);
                       console.log(data);
                       addActionButtonEvent();
-                      inisiateDataTables();
+                      
                   });
 
                   //inisisasi filter Grafik data
@@ -760,7 +711,6 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                       "searching": false,
                       "processing": true,
                       "scrollY": "28rem",
-                      "sScrollX": "100%",
                       "scrollCollapse": true,
                       "paging": false,
                       "info":     false

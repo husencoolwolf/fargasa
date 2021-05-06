@@ -32,7 +32,7 @@ class createCon  {
                        return 'Password Anda Salah!';
 
                 } else {
-                $_SESSION['user_id'] = $hasil['user_id'];
+                $_SESSION['id_user'] = $hasil['id_user'];
                 $_SESSION['nama'] = $hasil['nama'];
                 $_SESSION['username'] = $hasil['username'];
                 $_SESSION['privilege'] = $hasil['privilege'];
