@@ -66,9 +66,17 @@ echo '<ul class="list-group mb-3">
         <li class="list-group-item list-group-item-action d-flex">
           <div>
           <h6 class="my-0">'.$hrg_beli .'</h6>
-          <small>Tanggal Beli</small>
+          <small>Harga Beli</small>
           </div>
         </li>
+        <li class="list-group-item list-group-item-action d-flex">
+          <div>
+          <h6 class="my-0">'.$hrg_jual .'</h6>
+          <small>Harga Jual</small>
+          </div>
+        </li>
+        
+
         <li class="list-group-item list-group-item-action d-flex">
         <div>
           <h6 class="my-0">'.$mediator .'</h6>

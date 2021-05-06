@@ -40,7 +40,7 @@ $rekondisi = $_POST['rekondisi'];
 $rekondisi = $conn->rupiahToInt($rekondisi);
 $nama = $_SESSION['nama'];
 
-$input	= mysqli_query($con,"INSERT INTO `pembelian` (`id_pembelian`, `nopol`, `tipe`, `warna`, `tahun`, `jarak_tempuh`, `jenis_bbm`, `mediator`, `tgl_beli`, `hrg_beli`, `fee_mediator`, `pajak`, `rekondisi`, `status`, `author`, `gambar`, `id_pelanggan`) 
+$input	= mysqli_query($con,"INSERT INTO `pembelian` (`id_pembelian`, `nopol`, `tipe`, `warna`, `tahun`, `jarak_tempuh`, `jenis_bbm`, `mediator`, `tgl_beli`, `hrg_beli`, `hrg_jual` , `fee_mediator`, `pajak`, `rekondisi`, `status`, `author`, `gambar`, `id_pelanggan`) 
     VALUES ('".$id ."', "
         . "'".$nopol."', "
         . "'".$tipe."', "
@@ -51,6 +51,7 @@ $input	= mysqli_query($con,"INSERT INTO `pembelian` (`id_pembelian`, `nopol`, `t
         . "'".$mediator."', "
         . "'".$tgl_beli."', "
         . "'".$hrg_beli."', "
+        . "'".$hrg_jual."', "
         . "'".$feeMediator."', "
         . "'".$pajak."', "
         . "'".$rekondisi."', "

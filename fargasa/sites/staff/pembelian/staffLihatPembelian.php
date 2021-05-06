@@ -50,7 +50,24 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
       
 
       <!-- Detail Modal -->
-
+      <div class="modal fade" id="DetailModal" tabindex="-1" aria-labelledby="DetailModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="DetailModalLabel">Detail Mobil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body overflow-auto" id="DetailModalBody">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
       <!--Edit Modal-->
@@ -102,6 +119,22 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                       Tahun perlu di isi.
                     </div>
                   </div>
+                  
+                  <div class="mb-3">
+                    <label for="jarakTempuh" class="font-weight-bold">Jarak Tempuh</label>
+                    <input type="number" class="form-control" id="jarakTempuh" placeholder="Jarak Tempuh Mobil" value="">
+                    <div class="invalid-feedback">
+                      Error : Input Jarak temput bermasalah!
+                    </div>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="jenisBbm" class="font-weight-bold">Jenis BBM</label>
+                    <input type="text" class="form-control" id="jenisBbm" placeholder="Jenis BBM Mobil" value="">
+                    <div class="invalid-feedback">
+                      Error : Input Jenis BBM bermasalah!
+                    </div>
+                  </div>
 
 
                   <div class="mb-3">
@@ -117,6 +150,14 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                     <input type="text" class="form-control rupiah" id="hrgBeli" placeholder="Harga Beli" value="" required>
                     <div class="invalid-feedback">
                       Harga Beli perlu di isi.
+                    </div>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="hrgJual" class="font-weight-bold">Harga Jual<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control rupiah" id="hrgJual" placeholder="Harga Jual" value="" required>
+                    <div class="invalid-feedback">
+                      Harga Jual perlu di isi.
                     </div>
                   </div>
 
@@ -140,7 +181,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                     
                   <div class="mb-3">
                     <label for="pajak" class="font-weight-bold">Pajak</label>
-                    <input type="number" class="form-control" id="pajak" placeholder="Bulan Pajak" value="">
+                    <input type="text" class="form-control rupiah" id="pajak" placeholder="Bulan Pajak" value="">
                     <div class="invalid-feedback">
                       Pajak perlu di isi.
                     </div>
@@ -421,6 +462,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
 //                data inisiate
                 inisiateData();
                 inisiateDataTables();
+                addActionRupiah();
                 var bulanss = [];
                 // Data Tables inisiasi
                  
@@ -535,7 +577,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                 $('#filterButton').on('click',function(){
                   $('#filterBulan').toggle(
                     function(){
-                      console.log("buka");
+//                      console.log("buka");
                       $(this).animate({height: "100%"},500, function(){
                         $('#filterButton').removeClass('btn-outline-primary');
                         $('#filterButton').addClass('btn-primary');
@@ -619,22 +661,22 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                     $('#dataPembelian > tbody > tr > td > div > .btn-action.edit').on("click",function(){
 
                         var id = $(this).attr('data-href');
-                        var barisData = $(this).parent().parent().parent();
-                        var data = [];
-                        data.push(id);
-                        data.push(barisData.find("td").eq(0).html()); //tipe
-                        data.push(barisData.find("td").eq(2).html()); //nopol
-                        data.push(barisData.find("td").eq(1).html()); //warna
-                        data.push(barisData.find("td").eq(3).html()); //tahun
-                        data.push(barisData.find("td").eq(5).html()); //tgl_beli
-                        data.push(barisData.find("td").eq(6).html()); //hrg_beli
-                        data.push(barisData.find("td").eq(4).html()); //mediator
-                        data.push(barisData.find("td").eq(7).html()); //feeMediator
-                        data.push(barisData.find("td").eq(8).html()); //pajak
-                        data.push(barisData.find("td").eq(9).html()); //rekondisi
-//                        console.log(barisData.find("td").eq(1).html());
-//                        console.log(barisData.find("td").eq(11).children().html());
-                        setNilaiEditDialog(data);
+                        var dataEdit = [];
+//                        debugger;
+                        $.ajax({
+                            url:'php/editGetter.php',
+                            type: 'post',
+                            data: {
+                                id: id
+                            },
+                            success: function(response){
+                                
+                                dataEdit = JSON.parse(response);
+                                setNilaiEditDialog(dataEdit);
+                            },
+                        });
+                        console.log(dataEdit);
+                        
                         addActionRupiah();
                         $('#EditModal').modal('show');
                         
@@ -664,27 +706,40 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                           //tidak terjadi apa apa
                         }
                     });
+                    
+                    $('#dataPembelian > tbody > tr > td > div > a.detail').click(function(){
+                        var id = $(this).attr('data-href');
+                       $('#DetailModalBody').load("php/detailGetter.php",{
+                          id: id
+                      });
+                      $('#DetailModal').modal('show');
+                    });
                 }
 
                 function setNilaiEditDialog(data){
+                    
                     $('input[name ="idEdit"]').val(data[0]);
                     $('#tipe').val(data[1]);
                     $('#nopol').val(data[2]);
                     $('#warna').val(data[3]);
                     $('#tahun').val(data[4]);
-                    $('#tglBeli').val(data[5]);
-                    $('#hrgBeli').val(data[6]);
+                    $('#jarakTempuh').val(data[5]);
+                    $('#jenisBbm').val(data[6]);
+                    $('#tglBeli').val(data[8]);
+                    $('#hrgBeli').val(data[9]);
+                    $('#hrgJual').val(data[10]);
                     $('#mediator').val(data[7]);
-                    $('#feeMediator').val(data[8]);
-                    $('#pajak').val(data[9]);
-                    $('#rekondisi').val(data[10]);
+                    $('#feeMediator').val(data[11]);
+                    $('#pajak').val(data[12]);
+                    $('#rekondisi').val(data[13]);
+//                    $('#gambarEdit').attr('src',data[15]);
                 }
 
                 function inisiateData(){
                   //inisiasi tabel data
                   $.get('php/LihatDataRequest.php?tipe=Init' , function(data){
                       $('#dataPembelian tbody').html(data);
-                      console.log(data);
+//                      console.log(data);
                       addActionButtonEvent();
                       
                   });
@@ -797,8 +852,11 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                           nopol: $('#nopol').val(),
                           warna : $('#warna').val(),
                           tahun: $('#tahun').val(),
+                          jarak_tempuh: $('#jarakTempuh').val(),
+                          jenis_bbm: $('#jenisBbm').val(),
                           tglBeli: $('#tglBeli').val(),
                           hrgBeli: $('#hrgBeli').val(),
+                          hrgJual: $('#hrgJual').val(),
                           mediator: $('#mediator').val(),
                           feeMediator: $('#feeMediator').val(),
                           pajak: $('#pajak').val(),
@@ -807,8 +865,8 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                         },
                         function(data,status){
                           if (status=="success") {
-                            console.log(typeof data);
-                            console.log(data);
+//                            console.log(typeof data);
+//                            console.log(data);
                             $('#statInputMsg').html(data);
                             $('#statInputMsg').toast('show');
                             inisiateData();

@@ -270,6 +270,32 @@ class createCon  {
         return $output;
     }
     
+    function editPembelianGetter($id){
+        $data = mysqli_query($this->connect() ,"SELECT * FROM pembelian where id_pembelian='".$id."'");
+    $output =   array();
+    while($row = mysqli_fetch_array($data)) {
+        array_push($output, $row['id_pembelian']);
+        array_push($output, $row['tipe']);
+        array_push($output, $row['nopol']);
+        array_push($output, $row['warna']);
+        array_push($output, $row['tahun']);
+        array_push($output, $row['jarak_tempuh']);
+        array_push($output, $row['jenis_bbm']);
+        array_push($output, $row['mediator']);
+        array_push($output, $row['tgl_beli']);
+        array_push($output, $row['hrg_beli']);
+        array_push($output, $row['hrg_jual']);
+        array_push($output, $row['fee_mediator']);
+        array_push($output, $row['pajak']);
+        array_push($output, $row['rekondisi']);
+        array_push($output, $row['status']);
+        array_push($output, $row['gambar']);
+    }
+
+        return json_encode($output) ;
+        
+    }
+    
     function NullCounter($x){
         if($x==NULL or $x==""){
             return '0';
