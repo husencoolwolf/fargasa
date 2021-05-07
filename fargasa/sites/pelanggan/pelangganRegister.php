@@ -77,7 +77,7 @@
 
 
                   <div class="mb-3">
-                    <label for="email" class="font-weight-bold">EMAIL</label>
+                    <label for="email" class="font-weight-bold">EMAIL (Optional)</label>
                     <input type="email" class="form-control" name="email" id="email" placeholder="Email Akun">
                   </div>
                         

@@ -21,7 +21,7 @@ if (isset($_SESSION['subPage'])) {
 
       <!--   Show this only lg screens and up   -->
       <ul class="navbar-nav">
-        <a class="navbar-brand d-none d-lg-block" href="#">
+        <a class="navbar-brand d-none d-lg-block" href="/fargasa/">
           <img class="" src="/fargasa/assets/Fargasa Logo Circle.png" alt="Dashboard" style="width: 80px">
         </a>
       </ul>

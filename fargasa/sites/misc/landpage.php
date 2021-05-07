@@ -15,7 +15,7 @@ $data = mysqli_query($con, " SELECT * FROM stok");
   <link rel="icon" type="image/png" href="/fargasa/assets/Fargasa Logo Circle.png" />
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="/fargasa/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="/fargasa/dist/css/style.css">
+  <link rel="stylesheet" href="/fargasa/dist/css/style-index.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 </head>
 

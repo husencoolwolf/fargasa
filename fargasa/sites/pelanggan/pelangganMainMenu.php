@@ -37,6 +37,7 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="icon" type="image/png" href="/fargasa/assets/Fargasa Logo Circle.png" />
+    <link rel="stylesheet" href="/fargasa/dist/font-awesome-4.7.0/css/font-awesome.css"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/fargasa/dist/css/bootstrap.css">
 
