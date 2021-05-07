@@ -1,16 +1,13 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/fargasa/ref/koneksi.php';
-session_start();
-$conn = new createCon();
-$con = $conn->connect();
-$id = $_GET["id"];
+
+$id = $_SESSION['id_user'];
 $data = mysqli_query($con, "SELECT * FROM user where id_user = $id");
 $elements = mysqli_fetch_array($data);
 
 
 
 
-function edit($data)
+function edit($con, $data)
 {
     $id      = htmlspecialchars($_POST['id']);
     $nama    = htmlspecialchars($_POST['nama']);
@@ -19,8 +16,6 @@ function edit($data)
     $email   = htmlspecialchars($_POST['email']);
     $no_hp   = htmlspecialchars($_POST['no_hp']);
 
-    $conn = new createCon();
-    $con = $conn->connect();
 
     $sql = "UPDATE user SET 
      id_user  =   '$id',

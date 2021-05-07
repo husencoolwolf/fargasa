@@ -1,0 +1,23 @@
+
+.navbar-brand > img{
+    width:  80px;
+    /* height: 100px; */
+}
+
+@media screen and (max-width: 770px) {
+    .navbar-brand > img{
+        width:  60px;
+        /* height: 100px; */
+    }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

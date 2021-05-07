@@ -49,7 +49,7 @@ if (isset($_SESSION['subPage'])) {
                 <?php echo strtoupper($_SESSION['nama']); ?>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownAkun">
-                <a class="dropdown-item" href="#">Profil</a>
+                <a class="dropdown-item" href="/fargasa/sites/staff/profil/tampilProfile.php">Profil</a>
                 <a class="dropdown-item text-danger" href="/fargasa/sesDes.php">Logout</a>
               </div>
             </li>

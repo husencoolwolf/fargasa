@@ -1,28 +1,12 @@
 <?php
-
-require 'php/editprofil.php';
-
-
-if (isset($_POST['edit'])) {
-    if (edit($_POST) > 0) {
-        echo
-        "
-            <script>
-                alert('data berhasil diubah')
-                document.location.href='staffMainMenu.php';
-            </script>
-            ";
-    } else {
-        echo "
-        <script>
-        alert('ada yang salah!!, data tidak bisa ditambah')
-        </script>
-        ";
-    }
-}
+include $_SERVER['DOCUMENT_ROOT'] . '/fargasa/ref/koneksi.php';
+session_start();
+$conn = new createCon();
+$con = $conn->connect();
 
 
-if (isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
+
+if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 ?>
     <script language="JavaScript">
         alert('Session Telah Habis!!\nAnda harus login untuk mengakses halaman ini!!');
@@ -30,6 +14,27 @@ if (isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
     </script>
 <?php
 } else {
+    require 'php/editprofil.php';
+    if (isset($_POST['edit'])) {
+        if (edit($con, $_POST) > 0) {
+            $_SESSION['nama']=$_POST['nama'];
+            echo
+            "
+                <script>
+                    alert('data berhasil diubah')
+                    document.location.href='../staffMainMenu.php';
+                </script>
+                ";
+        } else {
+            echo "
+            <script>
+            alert('ada yang salah!!, data tidak bisa ditambah')
+            </script>
+            ";
+        }
+    }
+
+
 ?>
 
     <!DOCTYPE html>
@@ -74,14 +79,6 @@ if (isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                     </div>
                     <div class="row my-3">
                         <div class="col">
-                            Password
-                        </div>
-                        <div class="col">
-                            <?= $elements['password']; ?>
-                        </div>
-                    </div>
-                    <div class="row my-3">
-                        <div class="col">
                             Email
                         </div>
                         <div class="col">
@@ -120,7 +117,7 @@ if (isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                                     <div class="col align-self-center order-md-1">
                                         <form method="POST" action="">
 
-                                            <input type="hidden" value="<?= $elements["id_user"]; ?>">
+                                            <input type="hidden" name="id" value="<?= $elements["id_user"]; ?>">
                                             <div class="mb-3">
                                                 <label for="nama" class="font-weight-bold">Nama</label>
                                                 <input type="text" class="form-control" name="nama" value="<?= $elements['nama']; ?>">

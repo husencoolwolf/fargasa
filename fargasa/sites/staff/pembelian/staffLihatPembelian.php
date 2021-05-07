@@ -749,9 +749,12 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                     $('#filterTahun').html('<option>SEMUA TAHUN</option>'+data);
                     $('#filterGrafik').html(data);
                     var dd = $('#filterGrafik');
-                    var tahunTerbaru = $('#filterGrafik > option').eq(dd.length).val();
+                    var tahunTerbaru = $('#filterGrafik > option').eq(dd.length-1).val();
+                    // dd.val(tahunTerbaru);
                     dd.val(tahunTerbaru);
+                    // console.log(dd.val());
                     // console.log(tahunTerbaru);
+
                     updateChart(tahunTerbaru);
                     // updateChart(tahunTerbaru);
                   });
@@ -766,6 +769,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                       "searching": false,
                       "processing": true,
                       "scrollY": "28rem",
+                      // "sScrollX": "100%",
                       "scrollCollapse": true,
                       "paging": false,
                       "info":     false
