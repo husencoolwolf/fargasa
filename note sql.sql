@@ -1,0 +1,5 @@
+SELECT stok.id_pembelian, stok.id_stok, stok.nopol, stok.tipe, book.id_booking,book.id_pembelian,book.id_pelanggan, book.booking_mulai FROM stok LEFT JOIN book ON stok.id_pembelian=book.id_pembelian;
+>= now() - INTERVAL 24 HOUR;
+SELECT stok.id_pembelian, stok.id_stok, stok.nopol, stok.tipe, book.id_booking,book.id_pembelian,book.id_pelanggan, book.booking_mulai FROM stok LEFT JOIN book ON stok.id_pembelian=book.id_pembelian where book.booking_mulai >= now() - INTERVAL 24 HOUR;
+SELECT DISTINCT stok.id_pembelian, stok.id_stok, stok.nopol, stok.tipe, book.id_booking, book.id_pembelian, book.id_pelanggan, book.booking_mulai FROM stok LEFT JOIN book ON stok.id_pembelian=book.id_pembelian where (book.booking_mulai >= now() - INTERVAL 24 HOUR) OR (book.booking_mulai IS NULL);
+SELECT stok.id_stok, stok.id_pembelian, stok.nopol, stok.tipe, book.id_booking, book.id_pembelian, book.id_pelanggan, book.booking_mulai FROM stok INNER JOIN book ON stok.id_pembelian=book.id_pembelian;

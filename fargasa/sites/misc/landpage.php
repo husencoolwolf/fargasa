@@ -24,7 +24,7 @@ $data = mysqli_query($con, " SELECT * FROM stok");
   <!-- navbar -->
   <?php include_once $_SERVER['DOCUMENT_ROOT']."/fargasa/sites/misc/navbar/landpageNavbar.php";?>
 
-
+  
   <!--   carousel   -->
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">

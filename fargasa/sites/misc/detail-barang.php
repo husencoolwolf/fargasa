@@ -18,6 +18,7 @@ if (isset($_POST['id'])) {
         //menampilkan data dengan table
         echo '
         <h4>'. $conn->intToRupiah($row_view['hrg_jual']) .'</h4>
+        <input type="hidden" value="'.$id.'">
 		<table class="table table-bordered">
 			<tr>
 				<th>Tipe</th>

@@ -23,7 +23,7 @@
           <a class="nav-link active" href="#catalog">CATALOG <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item px-3 ml-0">
-          <a class="nav-link" href="#">PROMO</a>
+          <a class="nav-link" href="#carouselExampleControls">PROMO</a>
         </li>
         <li class="nav-item px-3 ml-0">
           <a class="nav-link" href="#profil">PROFIL</a>

@@ -214,6 +214,35 @@ class createCon  {
                     $this->checkId($con,$id2);
                    }
         }
+
+    function checkUserBooking($idMobil, $idPelanggan){
+        $queryCheck = "SELECT stok.id_stok, stok.id_pembelian, stok.nopol, stok.tipe, book.id_booking, book.id_pembelian, book.id_pelanggan, book.booking_mulai FROM stok INNER JOIN book ON stok.id_pembelian=book.id_pembelian WHERE (book.booking_mulai >= now() - INTERVAL 24 HOUR) AND (book.id_pelanggan='$idPelanggan')";
+        $cekUser = mysqli_query($this->connect(), $queryCheck);
+        if (mysqli_num_rows($cekUser)==0) {
+            # pelanggan blm pernah booking mobil apapun 24 jam ini
+            #maka input ke table book
+            $idInsert = createId(8);
+
+            //cek id
+            $idInsert = $this->checkId($this->connect(),$idInsert);  
+            //
+            $queryInsert ="INSERT INTO `book` (`id_booking`, `id_pembelian`, `id_pelanggan`, `booking_mulai`) 
+            VALUES ('$idInsert', '$idMobil', '$idPelanggan', current_timestamp())";
+            $input  = mysqli_query($this->connect(),$queryInsert);
+            if ($input) {
+                //Jika Sukses
+                //input user
+                return 1;
+            }else {
+                return mysqli_error($this->connect());
+
+            }
+            
+        }else{
+            #pelanggan sudah pernah booking mobil dalam 24 jam ini.
+            return 0;
+        }
+    }
     
     function dateToMonth($intBulan){
         switch($intBulan){

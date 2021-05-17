@@ -12,7 +12,7 @@ $(function(){
 		rules: {
 			nama :{
 				required: true,
-                                lettersonly: true
+                lettersonly: true
 			},
 			username :{
 				required: true,
