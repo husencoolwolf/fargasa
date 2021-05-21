@@ -1,7 +1,37 @@
 <?php
 $_SESSION['page'] = "landpage";
-$data = mysqli_query($con, " SELECT * FROM stok");
+$data = mysqli_query($con, "SELECT stok.id_pembelian, stok.id_stok, stok.nopol, stok.tipe,stok.tahun, stok.hrg_jual, stok.gambar, book.id_booking,book.id_pembelian,book.id_pelanggan, book.booking_stop FROM stok LEFT JOIN book ON stok.id_pembelian=book.id_pembelian where (book.booking_stop >= now()) OR (book.booking_stop IS NULL)");
+$cek = array();
+$b = array();
+$i=0;
+while($fetch = mysqli_fetch_array($data)){
+//    echo("<br>Fetch ke - ".$i."<br>");
+//    print_r($fetch);
+    $b["id_pembelian"] = $fetch[0];
+    $b["tipe"] = $fetch["tipe"];
+    $b["tahun"] = $fetch["tahun"];
+    $b["hrg_jual"] = $fetch["hrg_jual"];
+    $b["gambar"] = $fetch["gambar"];
 
+  $cek[$i] = $b;
+  $i++;
+  unset($b);
+}
+
+// $serialized = array_map('serialize', $cek);
+// $unique = array_unique($serialized);
+$hasil = array_values(array_unique($cek, SORT_REGULAR));
+
+//print_r($cek);
+//echo("<br>======================================<br>");
+//var_dump($hasil);
+// $cek = mysqli_fetch_array($data);
+//echo array_count_values(array_column($cek, 'id_pembelian'))[$hasil[0]["id_pembelian"]];
+$i=0;
+foreach($hasil as $x){
+    $hasil[$i]["booked"]= array_count_values(array_column($cek, 'id_pembelian'))[$x["id_pembelian"]];
+    $i++;
+}
 
 ?>
 <!DOCTYPE html>
@@ -54,19 +84,38 @@ $data = mysqli_query($con, " SELECT * FROM stok");
     <a name="catalog">
       <h4 class="text-center " style="font-size:40px; color:gray; font-family: Glegoo,serif;">Gallery Mobil</h4>
       <div class="container-fluid mt-4 row d-flex justify-content-center">
-        <?php foreach ($data as $elements) : ?>
+        <?php foreach ($hasil as $elements) : ?>
           <div class="row d-inline-flex mx-2">
             <div class="card m-2 " style="width: 18rem;">
               <img class="img-fluid" src="/fargasa/assets/gambar/<?= $elements["gambar"] ?>" class="card-img-top" alt="...">
               <div class="card-body">
                 <p class="card-text d-none" id="id"><b><?= $elements["id_pembelian"] ?></b></p>
-                <h5 class="card-title" id="tipe"><b><?= $elements["tipe"] ?></b></h5>
+                <h5 class="card-title" id="tipe"><b><?= $elements["tipe"] ?></b><span><small class="font-weight-bold font-italic border-left border-dark ml-2"> <?php echo $elements["tahun"]; ?></small></span></h5>
                 <p class="card-text" id="hrg_beli"><b><?= $conn->intToRupiah($elements["hrg_jual"]) ?></b></p>
-                <button class="btn btn-primary mx-auto d-flex justify-content-center detailbtn" data-toggle="modal" data-target="#detailmodal" data-id="<?= $elements["id_pembelian"]; ?>">
-                  Lihat detail
-                </button>
-
+                <?php if($elements["booked"]<3){
+                    echo '<button class="btn btn-primary mx-auto d-flex justify-content-center detailbtn" data-toggle="modal" data-target="#detailmodal" data-id='.$elements["id_pembelian"].'" data-booked="false">
+                            Lihat detail
+                        </button>';
+                }else{
+                    echo '<button class="btn btn-primary mx-auto d-flex justify-content-center detailbtn" data-toggle="modal" data-target="#detailmodal" data-id='.$elements["id_pembelian"].'" data-booked="true">
+                            Lihat detail
+                        </button>';
+                }?>
+             
+                
               </div>
+              <?php
+                if($elements["booked"]<3){
+                    echo '<div class="w-100 mt-2 p-2 badge badge-secondary d-none statusBooked" style="position: absolute; bottom:0;">
+                            Booking Penuh
+                        </div>';
+                }else{
+                    echo '<div class="w-100 mt-2 p-2 badge badge-secondary statusBooked" style="position: absolute; bottom:0;">
+                            Booking Penuh
+                        </div>';
+                }
+              ?>
+              
             </div>
           </div>
         <?php endforeach; ?>
@@ -89,7 +138,7 @@ $data = mysqli_query($con, " SELECT * FROM stok");
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Booking Now</button>
+          <a href="/fargasa/index.php?action=login"> <button type="button" class="btn btn-primary">Login untuk Book</button></a>
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ $(function(){
 		rules: {
 			nama :{
 				required: true,
-                lettersonly: true
+                                alphanumeric: true
 			},
 			username :{
 				required: true,
@@ -58,7 +58,7 @@ $(function(){
 		messages: {
 			nama :{
 				required: 'Harap Isi Nama!',
-                lettersonly: 'Nama hanya boleh Huruf'
+                            alphanumeric: 'Hanya diperkenankan huruf, angka, dan underscore'
 			},
 			username :{
 				required: 'Harap Isi Username!',

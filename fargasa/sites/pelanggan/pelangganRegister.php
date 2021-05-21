@@ -34,7 +34,7 @@
     <body class="text-center">
         <form class="form-signin needs-validation" novalidate id="formInput" method="POST" action="/fargasa/index.php?action=register">
                   
-            <img class="mb-4" src="/fargasa/assets/Fargasa Logo Circle.png" alt="" width="72" height="72">
+            <a href="/fargasa/"><img class="mb-4" src="/fargasa/assets/Fargasa Logo Circle.png" alt="" width="72" height="72"></a>
             <h1 class="font-weight-bold">DAFTAR</h1>
             <h1 class="h3 mb-3 font-weight-normal">Isi Data Diri</h1>
             <?php 

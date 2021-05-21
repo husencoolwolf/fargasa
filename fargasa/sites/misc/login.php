@@ -33,7 +33,7 @@
     </head>
     <body class="text-center">
         <form class="form-signin" action="/fargasa/index.php?action=login" method="POST">
-            <img class="mb-4" src="/fargasa/assets/Fargasa Logo Circle.png" alt="" width="72" height="72">
+            <a href="/fargasa/"><img class="mb-4" src="/fargasa/assets/Fargasa Logo Circle.png" alt="" width="72" height="72"></a>
             <h1 class="h3 mb-3 font-weight-normal">Silahkan Log in</h1>
             <?php 
             if($errorLoginMsg<>""){
