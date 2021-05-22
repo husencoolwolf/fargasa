@@ -1,35 +1,60 @@
 <?php
 $_SESSION['page'] = "landpage";
-$data = mysqli_query($con, "SELECT stok.id_pembelian, stok.id_stok, stok.nopol, stok.tipe,stok.tahun, stok.hrg_jual, stok.gambar, book.id_booking,book.id_pembelian,book.id_pelanggan, book.booking_stop FROM stok LEFT JOIN book ON stok.id_pembelian=book.id_pembelian where (book.booking_stop >= now()) OR (book.booking_stop IS NULL)");
+$dataStok = mysqli_query($con, "SELECT * FROM stok");
+$dataBook = mysqli_query($con, "SELECT stok.id_pembelian, stok.id_stok, stok.nopol, stok.tipe,stok.tahun, stok.hrg_jual, stok.gambar, book.id_booking,book.id_pembelian,book.id_pelanggan, book.booking_stop FROM stok LEFT JOIN book ON stok.id_pembelian=book.id_pembelian where (book.booking_stop >= now()) OR (book.booking_stop IS NULL)");
 $cek = array();
+$stok = array();
 $b = array();
 $i=0;
-while($fetch = mysqli_fetch_array($data)){
+while($fetch = mysqli_fetch_array($dataBook)){
 //    echo("<br>Fetch ke - ".$i."<br>");
 //    print_r($fetch);
     $b["id_pembelian"] = $fetch[0];
-    $b["tipe"] = $fetch["tipe"];
-    $b["tahun"] = $fetch["tahun"];
-    $b["hrg_jual"] = $fetch["hrg_jual"];
-    $b["gambar"] = $fetch["gambar"];
+    // $b["tipe"] = $fetch["tipe"];
+    // $b["tahun"] = $fetch["tahun"];
+    // $b["hrg_jual"] = $fetch["hrg_jual"];
+    // $b["gambar"] = $fetch["gambar"];
 
   $cek[$i] = $b;
   $i++;
   unset($b);
 }
 
+$i=0; // set ulang index
+while($fetch = mysqli_fetch_array($dataStok)){ //Fetch ke array
+  $b["id_pembelian"] = $fetch["id_pembelian"];
+  $b["tipe"] = $fetch["tipe"];
+  $b["tahun"] = $fetch["tahun"];
+  $b["hrg_jual"] = $fetch["hrg_jual"];
+  $b["gambar"] = $fetch["gambar"];
+
+  $stok[$i] = $b;
+  $i++;
+  unset($b);
+}
 // $serialized = array_map('serialize', $cek);
 // $unique = array_unique($serialized);
-$hasil = array_values(array_unique($cek, SORT_REGULAR));
+// $hasil = array_values(array_unique($cek, SORT_REGULAR));
 
 //print_r($cek);
 //echo("<br>======================================<br>");
-//var_dump($hasil);
+//var_dump($cek);
 // $cek = mysqli_fetch_array($data);
 //echo array_count_values(array_column($cek, 'id_pembelian'))[$hasil[0]["id_pembelian"]];
 $i=0;
-foreach($hasil as $x){
-    $hasil[$i]["booked"]= array_count_values(array_column($cek, 'id_pembelian'))[$x["id_pembelian"]];
+// foreach($hasil as $x){
+//     $hasil[$i]["booked"]= array_count_values(array_column($cek, 'id_pembelian'))[$x["id_pembelian"]];
+//     $i++;
+// }
+//var_dump($stok[1]["id_pembelian"]);
+//var_dump(array_column($cek, "id_pembelian"));
+//var_dump(in_array($stok[2]["id_pembelian"], array_column($cek, "id_pembelian")));
+foreach($stok as $x){
+    if (in_array($x["id_pembelian"], array_column($cek, "id_pembelian")) == true){
+        $stok[$i]["booked"]= array_count_values(array_column($cek, 'id_pembelian'))[$x["id_pembelian"]];
+    }else{
+        $stok[$i]["booked"] = 0;
+    }
     $i++;
 }
 
@@ -84,7 +109,7 @@ foreach($hasil as $x){
     <a name="catalog">
       <h4 class="text-center " style="font-size:40px; color:gray; font-family: Glegoo,serif;">Gallery Mobil</h4>
       <div class="container-fluid mt-4 row d-flex justify-content-center">
-        <?php foreach ($hasil as $elements) : ?>
+        <?php foreach ($stok as $elements) : ?>
           <div class="row d-inline-flex mx-2">
             <div class="card m-2 " style="width: 18rem;">
               <img class="img-fluid" src="/fargasa/assets/gambar/<?= $elements["gambar"] ?>" class="card-img-top" alt="...">
