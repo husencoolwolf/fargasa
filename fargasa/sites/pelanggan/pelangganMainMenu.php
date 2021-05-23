@@ -148,6 +148,17 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
                     }?>
 
                   </div>
+                  <?php
+                    if($elements["booked"]<3){
+                        echo '<div class="w-100 mt-2 p-2 badge badge-secondary d-none statusBooked" style="position: absolute; bottom:0;">
+                                Booking Penuh
+                            </div>';
+                    }else{
+                        echo '<div class="w-100 mt-2 p-2 badge badge-secondary statusBooked" style="position: absolute; bottom:0;">
+                                Booking Penuh
+                            </div>';
+                    }
+                  ?>
                 </div>
               </div>
             <?php endforeach; ?>
