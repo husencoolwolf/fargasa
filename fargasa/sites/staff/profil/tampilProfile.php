@@ -174,7 +174,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                 console.log(id);
                 $('#detailmodal').modal('show');
                 $.ajax({
-                    url: '/fargasa/sites/staff/tampilProfil.php',
+                    url: '/fargasa/sites/staff/profil/tampilProfile.php',
                     method: 'POST',
                     data: {
                         id: id

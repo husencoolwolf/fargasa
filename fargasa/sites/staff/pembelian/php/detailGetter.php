@@ -27,7 +27,6 @@ include $_SERVER['DOCUMENT_ROOT'].'/fargasa/ref/koneksi.php';
 /*15*/       array_push($output, $row['gambar']);
     
     }
-
 echo '<ul class="list-group mb-3">
         
         <li class="list-group-item list-group-item-action d-flex lh-condensed">
