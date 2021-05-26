@@ -6,7 +6,7 @@
 
 	// $tipe = $_GET["tipe"];
 	$output = "";
-	$data = mysqli_query($con ,"SELECT DISTINCT year(tgl_beli) as tahun FROM pembelian");
+	$data = mysqli_query($con ,"SELECT DISTINCT year(tgl_beli) as tahun FROM stok");
 	// if ($tipe=="filterTahun") {
 	// 	$output.="<option>SEMUA TAHUN</option>\n";
 

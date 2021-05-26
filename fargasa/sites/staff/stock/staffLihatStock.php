@@ -5,8 +5,8 @@ $con = $conn->connect();
 
 session_start();
 
-$_SESSION['page'] = "CekStok";
-$_SESSION['subPage'] = "staffCekStok";
+$_SESSION['page'] = "staffCekStok";
+$_SESSION['subPage'] = "";
 if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 ?>
   <script language="JavaScript">
@@ -200,42 +200,6 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
     </div>
     <!--End of Modal-->
 
-    <!--Chart-->
-    <div class="container">
-      <div class="d-flex tabs justify-content-between align-items-center">
-        <ul class="nav nav-tabs h-100" style="overflow-x: auto;flex-wrap: nowrap;overflow-y: hidden;">
-          <li class="nav-item">
-            <a class="nav-link active" style="cursor: pointer">Banyak Transaksi</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " style="cursor: pointer">Total Stok</a>
-          </li>
-
-        </ul>
-        <ul class="px-2 m-0">
-          <select class="form-control form-control-sm" id="filterGrafik">
-            <option disabled selected value>Default</option>
-            <option>tes</option>
-          </select>
-        </ul>
-      </div>
-
-
-      <!-- FilterGrafik -->
-
-
-      <div id="Charts" class="border-bottom border-right border-left rounded-bottom shadow" style="border-color: rgb(222, 226, 230);">
-
-        <div id="morrisChartJmlStok" style="height: 20rem" class="">
-          <canvas id="chartJmlJual"></canvas>
-        </div>
-        <div id="morrisChartJmlHarga" style="height: 20rem" class="">
-          <canvas id="chartJmlHarga"></canvas>
-        </div>
-      </div>
-
-    </div>
-    <hr>
 
 
 
@@ -409,7 +373,6 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
               <th scope="col">Tahun</th>
               <th scope="col">Warna</th>
               <th scope="col">Nopol</th>
-              <th scope="col">KM </th>
               <th scope="col">Harga Jual</th>
               <th scope="col">Status</th>
               <th scope="col">Aksi</th>
@@ -434,7 +397,6 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
     <script src="/fargasa/dist/js/jquery-3.5.1.js"></script>
     <script src="/fargasa/dist/js/bootstrap.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="/fargasa/dist/DataTables/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 
@@ -447,7 +409,6 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
       //            reg js end
     </script>
 
-    <script src="js/chartJS.js"></script>
 
     <script>
       $(document).ready(function() {
@@ -472,11 +433,6 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
         });
 
 
-
-
-
-        $('#Charts > div').hide();
-        $('#Charts > div').eq(0).show();
         //livesearch Data Stok
         $('.form-control#searchData').on('keyup', function() {
           if (bulanss.length == 0 || bulanss.length == 12) {
@@ -519,24 +475,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
           });
         });
 
-        // $('#filterButton').toggle(
-        //     function(){
-        //         $('#panel').animate({
-        //             height: "150", 
-        //             padding:"20px 0",
-        //             backgroundColor:'#000000',
-        //             opacity:.8
-        //         }, 500);
 
-        //     },
-        //     function(){
-        //         $('#panel').animate({
-        //             height: "0", 
-        //             padding:"0px 0",
-        //             opacity:.2
-        //         }, 500);     
-
-        // });
 
 
         $('#filterButton').on('click', function() {
@@ -601,23 +540,6 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
           $("#filterTahun").val($("#filterTahun option:first").val());
         });
 
-        $('#filterGrafik').on('change', function() {
-          // event ajax filter grafik morris
-          updateChart($(this).val());
-
-          // $.get('php/chartMaker.php?tahun='+$(this).val()+"&tipe=chartJmlHarga" , function(data){
-          //     var result = jQuery.parseJSON(data)
-          //     // console.log(result);
-          //     var stringifys = JSON.stringify('['+result[0]+']');
-          //     // console.log(stringifys);
-          //     // console.log("parse sekali : "+jQuery.parseJSON(stringifys));
-          //     // console.log("parse dua kali : "+ jQuery.parseJSON(jQuery.parseJSON(stringifys)));
-          //     chartJmlHarga.options["ymax"] = result[1] + 10 -(result[1]%10);
-          //     chartJmlHarga.setData(jQuery.parseJSON(jQuery.parseJSON(stringifys)));
-          //     chartJmlHarga.options["xkey"] = "Bulan";
-          // });
-
-        });
 
 
 
@@ -654,29 +576,6 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
         });
 
-        //                delete button table
-        $('#dataStok > tbody > tr > td > div > a.delete').click(function() {
-          var ids = $(this).attr('data-href');
-          if (confirm('Yakin Menghapus data ini?')) {
-            $.post("php/deleteSubmitter.php", {
-                id: ids
-
-              },
-              function(data, status) {
-                if (status == "success") {
-                  $('#statInputMsg').html(data);
-                  $('#statInputMsg').toast('show');
-                  inisiateData();
-                } else {
-                  alert("Error tidak bisa mengirim data!");
-                }
-
-                // alert("Data: " + data + "\nStatus: " + status);
-              });
-          } else {
-            //tidak terjadi apa apa
-          }
-        });
 
         $('#dataStok > tbody > tr > td > div > a.detail').click(function() {
           var id = $(this).attr('data-href');
@@ -717,19 +616,9 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
         //inisisasi filter Grafik data
         $.get('php/TahunGetter.php', function(data) {
           $('#filterTahun').html('<option>SEMUA TAHUN</option>' + data);
-          $('#filterGrafik').html(data);
-          var dd = $('#filterGrafik');
-          var tahunTerbaru = $('#filterGrafik > option').eq(dd.length - 1).val();
-          // dd.val(tahunTerbaru);
-          dd.val(tahunTerbaru);
-          // console.log(dd.val());
-          // console.log(tahunTerbaru);
-
-          updateChart(tahunTerbaru);
-          // updateChart(tahunTerbaru);
+          
         });
-        // console.log($('#filterGrafik').val());
-        //inisisasi chartJmlBeli data
+
 
       }
 
@@ -742,35 +631,13 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
           // "sScrollX": "100%",
           "scrollCollapse": true,
           "paging": false,
-          "info": false
+          "info": false,
+          "ordering": false
         });
       }
 
       //Rubah input ke rupiah
       //update Chart Event
-      function updateChart(tahun) {
-        $.get('php/chartMaker.php?tahun=' + tahun + "&tipe=chartJmlJual", function(data) {
-          var result = jQuery.parseJSON(data);
-          var masukan = result[0].split(",");
-          chartJmlJual.config.options.scales.yAxes[0].ticks.max = result[1] + 10 - (result[1] % 10);
-          chartJmlJual.data.datasets[0].data = masukan;
-          chartJmlJual.update();
-        });
-
-        $.get('php/chartMaker.php?tahun=' + tahun + "&tipe=chartJmlHarga", function(data) {
-          var result = jQuery.parseJSON(data);
-          var masukan = result[0].split(",");
-          // debugger;
-          for (var i = masukan.length - 1; i >= 0; i--) {
-            masukan[i] = masukan[i] / 1000000;
-          }
-          var maxPerJuta = result[1] / 1000000;
-          chartJmlHarga.config.options.scales.yAxes[0].ticks.max = maxPerJuta + 100 - (maxPerJuta % 100);
-          // chartJmlHarga.config.options.scales.yAxes[0].ticks.max = 500;
-          chartJmlHarga.data.datasets[0].data = masukan;
-          chartJmlHarga.update();
-        });
-      }
 
 
       function addActionRupiah() {
