@@ -18,7 +18,7 @@ if (isset($_SESSION['subPage'])) {
               <a class="nav-link <?php if ($page=="staffMainMenu") echo "font-weight-bold"; ?>" href="/fargasa/">Dashboard</a>
             </li>
             <li class="nav-item <?php if ($page=="staffCekStok") echo "active"; ?> px-3">
-                <a class="nav-link <?php if ($page=="staffCekStok") echo "font-weight-bold"; ?>" href="/fargasa/sites/staff/stock/staffLihatStock.php">Cek Stok</a>
+              <a class="nav-link <?php if ($page=="staffCekStok") echo "font-weight-bold"; ?>" href="#">Cek Stok</a>
             </li>
             
             <li class="nav-item px-3 dropdown <?php if ($page=="pembelian") echo "active"; ?>">
@@ -28,16 +28,15 @@ if (isset($_SESSION['subPage'])) {
               <div class="dropdown-menu" aria-labelledby="navbarDropdownPembelian">
                 <a class="dropdown-item <?php if ($subPage=="staffLihatPembelian") echo "active"; ?>" href="/fargasa/sites/staff/pembelian/staffLihatPembelian.php">Lihat Pembelian</a>
                 <a class="dropdown-item <?php if ($subPage=="staffInputPembelian") echo "active"; ?>" href="/fargasa/sites/staff/pembelian/staffInputPembelian.php">Input Pembelian</a>
-                <a class="dropdown-item <?php if ($subPage=="staffLihatPenawaran") echo "active"; ?>" href="/fargasa/sites/staff/pembelian/staffLihatPenawaran.php">Lihat Penawaran</a>
               </div>
             </li>
-            <li class="nav-item px-3 dropdown <?php if ($page=="penjualan") echo "active"; ?>">
-              <a class="nav-link dropdown-toggle <?php if ($page=="penjualan") echo "font-weight-bold"; ?>" href="#" id="navbarDropdownPenjualan" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item px-3 dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPenjualan" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Penjualan
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownPenjualan">
-                  <a class="dropdown-item <?php if ($subPage=="staffLihatPenjualan") echo "active"; ?>" href="/fargasa/sites/staff/penjualan/staffLihatPenjualan.php">Lihat Penjualan</a>
-                  <a class="dropdown-item <?php if ($subPage=="staffInputPenjualan") echo "active"; ?>" href="/fargasa/sites/staff/penjualan/staffInputPenjualan.php">Input Penjualan</a>
+                <a class="dropdown-item" href="#">Lihat Penjualan</a>
+                <a class="dropdown-item" href="#">Input Penjualan</a>
               </div>
             </li>
             <li class="nav-item px-3">

@@ -42,12 +42,5 @@ if (isset($_POST['id'])) {
 			</tr>
 		</table>
 		';
-    }else{
-        echo'<div class="alert alert-warning" role="alert">
-            <h4 class="alert-heading">Warning !</h4>
-            <p>Mobil yang anda cari telah Terjual / Hilang dari sistem</p>
-            <hr>
-            <p class="mb-0">Harap pilih Mobil yang lain</p>
-          </div>';
     }
 }

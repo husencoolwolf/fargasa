@@ -130,7 +130,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
                                             <div class="mb-3">
                                                 <label for="password" class="font-weight-bold">Password</label>
-                                                <input type="password" class="form-control" name="password" value="<?= $elements['password']; ?>">
+                                                <input type="text" class="form-control" name="password" value="<?= $elements['password']; ?>">
                                             </div>
 
                                             <div class="mb-3">
@@ -174,7 +174,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                 console.log(id);
                 $('#detailmodal').modal('show');
                 $.ajax({
-                    url: '/fargasa/sites/pelanggan/profil/tampilProfil.php',
+                    url: '/fargasa/sites/staff/tampilProfil.php',
                     method: 'POST',
                     data: {
                         id: id

@@ -60,7 +60,7 @@ $input	= mysqli_query($con,"INSERT INTO `pembelian` (`id_pembelian`, `nopol`, `t
         . "'".$filename."', "
         . "NULL);");
 
-$input2	= mysqli_query($con,"INSERT INTO `stok` (`id_pembelian`, `nopol`, `tipe`, `warna`, `tahun`, `jarak_tempuh`, `jenis_bbm`, `hrg_jual`, `tgl_beli` , `author`, `gambar`, `booked`, `id_pelanggan`) "
+$input2	= mysqli_query($con,"INSERT INTO `stok` (`id_pembelian`, `nopol`, `tipe`, `warna`, `tahun`, `jarak_tempuh`, `jenis_bbm`, `hrg_jual`, `author`, `gambar`, `booked`, `id_pelanggan`) "
         . "VALUES ('".$id."', "
         . "'".$nopol."', "
         . "'".$tipe."', "
@@ -69,7 +69,6 @@ $input2	= mysqli_query($con,"INSERT INTO `stok` (`id_pembelian`, `nopol`, `tipe`
         . "'".$jarak_tempuh."', "
         . "'".$jenis_bbm."', "
         . "'".$hrg_jual."', "
-        . "'".$tgl_beli."', "
         . "'".$nama."', "
         . "'".$filename."', "
         . "'0', "
