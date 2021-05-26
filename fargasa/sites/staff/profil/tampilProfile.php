@@ -3,7 +3,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fargasa/ref/koneksi.php';
 session_start();
 $conn = new createCon();
 $con = $conn->connect();
-
+include 'php/editprofil.php';
 
 
 if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
@@ -14,10 +14,10 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
     </script>
 <?php
 } else {
-    require 'php/editprofil.php';
+
     if (isset($_POST['edit'])) {
         if (edit($con, $_POST) > 0) {
-            $_SESSION['nama']=$_POST['nama'];
+            $_SESSION['nama'] = $_POST['nama'];
             echo
             "
                 <script>
@@ -170,11 +170,11 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
     <script>
         $(document).ready(function() {
             $('.detailbtn').on('click', function() {
-                var id = $(this).data('id');
+                var $id = $(this).data('id');
                 console.log(id);
                 $('#detailmodal').modal('show');
                 $.ajax({
-                    url: '/fargasa/sites/staff/profil/tampilProfile.php',
+                    url: '/fargasa/sites/staff/tampilProfil.php',
                     method: 'POST',
                     data: {
                         id: id
