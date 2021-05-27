@@ -110,48 +110,33 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
       <div class="text-left">
 
         <div class="col align-self-center order-md-1">
-          <form class="needs-validation" novalidate id="formInput">
+            <form class="needs-validation" novalidate id="formInput" method="POST" novalidate>
 
-            
-            <div class="mb-3">
-              <label for="stok" class="font-weight-bold">Mobil Terjual<span class="text-danger">*</span></label>
-              <div class="input-group">
-                  <select id="stok" name="stok" class="form-control" required>
-                      <option disabled selected>--Pilih Barang--</option>
-                      <option value="test">test1</option>
-                      <option value="test2">test2</option>
-                  </select>
-                <!--<input type="text" class="form-control" id="warna" placeholder="Warna Mobil" required>-->
-                <div class="invalid-feedback" style="width: 100%;">
-                  Mobil yang terjual harus di isi!
+            <div class="row justify-content-between align-items-end mb-3">
+                <div class="col-md-10">
+                    <label for="stok" class="font-weight-bold">Stok Terjual<span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <select id="stok" name="stok" class="form-control" required>
+                            <option disabled selected>--Pilih Barang--</option>
+                            <option value="test">test1</option>
+                            <option value="test2">test2</option>
+                        </select>
+                      <!--<input type="text" class="form-control" id="warna" placeholder="Warna Mobil" required>-->
+                      <div class="invalid-feedback" style="width: 100%;">
+                        Mobil yang terjual harus di isi!
+                      </div>
+                    </div>
+                  </div>
+                <div class="col-md-2">
+                    <div class="btn btn-light border border-dark disabled" id="detailStok"><i class="fa fa-eye" aria-hidden="true"></i>Detail</div>
                 </div>
-              </div>
             </div>
+            
 
 
-            <div class="mb-3">
-              <label for="tahun" class="font-weight-bold">Tahun <span class="text-danger">*</span></label>
-              <input type="number" class="form-control" id="tahun" placeholder="Tahun Mobil" required>
-              <div class="invalid-feedback">
-                Tahun perlu di isi.
               </div>
             </div>
-
-            <div class="mb-3">
-              <label for="jarakTempuh" class="font-weight-bold">Jarak Tempuh (Optional)</label>
-              <input type="number" class="form-control" id="jarakTempuh" placeholder="Jarak Tempuh Mobil Saat Ini">
-              <div class="invalid-feedback">
-                Jarak Tempuh Mengalami Error !
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="jenisBbm" class="font-weight-bold">Jenis BBM (Optional)</label>
-              <input type="text" class="form-control" id="jenisBbm" placeholder="Jenis BBM Mobil">
-              <div class="invalid-feedback">
-                Jenis BBM Mengalami Error !
-              </div>
-            </div>
+            
             <div class="mb-3">
               <label for="tglBeli" class="font-weight-bold">Tanggal Jual<span class="text-danger">*</span></label>
               <input type="date" class="form-control" id="tglJual" placeholder="" required>
@@ -165,7 +150,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="mediator" class="font-weight-bold live-search-input">Mediator (Optional)</label>
-                <input type="text" class="form-control live-search-input" id="mediator" placeholder="Mediator Beli">
+                <input type="text" class="form-control live-search-input" id="mediator" placeholder="Mediator Jual">
                 <div class="list-group liveSearch" id="mediatorSearch"></div>
                 <div class="invalid-feedback">
                   Mediator wajib di isi!.
@@ -182,52 +167,41 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="mediator" class="font-weight-bold live-search-input">Sales (Optional)</label>
-                <input type="text" class="form-control live-search-input" id="mediator" placeholder="Mediator Beli">
-                <div class="list-group liveSearch" id="mediatorSearch"></div>
+                <label for="salesSearch" class="font-weight-bold live-search-input">Sales (Optional)</label>
+                <input type="text" class="form-control live-search-input" id="mediator" placeholder="Sales">
+                <div class="list-group liveSearch" id="salesSearch"></div>
                 <div class="invalid-feedback">
                   Mediator wajib di isi!.
                 </div>
               </div>
               <div class="col-md-6 mb-3">
-                <label for="feeMediator" class="font-weight-bold">Fee Sales (Optional)</label>
-                <input type="text" class="form-control rupiah" id="feeMediator" placeholder="Fee Mediator">
+                <label for="feeSales" class="font-weight-bold">Fee Sales (Optional)</label>
+                <input type="text" class="form-control rupiah" id="feeSales" placeholder="Fee Sales">
                 <div class="invalid-feedback">
                   Fee Mediator Error!.
                 </div>
               </div>
             </div>
-
+              
             <div class="mb-3">
-              <label for="pajak" class="font-weight-bold">Pajak (Optional)</label>
-              <input type="text" class="form-control rupiah" id="pajak" placeholder="Bulan Pajak">
-              <div class="invalid-feedback">
-                Pajak perlu di isi.
-              </div>
-            </div>
-
-
+              <label for="leas" class="font-weight-bold">Leasing (Optional)</label>
+              <input type="text" class="form-control" id="leas" placeholder="Leasing">
+            </div>  
+              
             <div class="mb-3">
-              <label for="rekondisi" class="font-weight-bold">Rekondisi (Optional)</label>
-              <input type="text" class="form-control rupiah" id="rekondisi" placeholder="Biaya Rekondisi">
-              <div class="invalid-feedback">
-                rekondisi mengalami kesalahan!!!.
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="rekondisi" class="font-weight-bold">Tenor (Optional)</label>
+              <label for="tenor" class="font-weight-bold">Tenor (Optional)</label>
               <input type="text" class="form-control rupiah" id="tenor" placeholder="Biaya Rekondisi">
             </div>
 
-            <div class="mb-3">
-              <label for="rekondisi" class="font-weight-bold">Leasing (Optional)</label>
-              <input type="text" class="form-control rupiah" id="leas" placeholder="Biaya Rekondisi">
-            </div>
+            
 
             <div class="mb-3">
               <label for="rekondisi" class="font-weight-bold">Author (Optional)</label>
-              <input type="text" class="form-control rupiah" id="leas" placeholder="Biaya Rekondisi">
+              <select id="pelanggan" name="pelanggan" class="form-control" required>
+                      <option disabled selected>--Pilih Pelanggan--</option>
+                      <option value="test">test1</option>
+                      <option value="test2">test2</option>
+                  </select>
             </div>
 
             <hr class="mb-4">
@@ -404,11 +378,6 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
           }
 
-          //                var tataButton = $(this).css('right') == '0px' ? "30%" : "0px";
-          //                $(this).animate({ right: tataButton });
-          //                
-          //               var toggleWidth = $("#excelForm").width() == 0 ? "30%" : "0";
-          //               $('#excelForm').animate({ width: toggleWidth });
         });
         //            end of ExcelFormButtonEvent
 
@@ -446,6 +415,14 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
 
         //end of Excel Reader upload
+      });
+      //stok detail button toggler
+      $('.form-control#stok').on('change',function(){
+          if($(this).val()==null){
+              $('#detailStok').addClass("disabled");
+          }else{
+              $('#detailStok').removeClass("disabled");
+          }
       });
       //end of jquery
 
