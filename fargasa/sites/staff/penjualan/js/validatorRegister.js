@@ -27,9 +27,8 @@ $(function(){
 				required: true,
                                 date: true
 			},
-                        hrg_jual :{
-				required: true,
-                                alphanumeric: true
+                        hrgJual :{
+				required: true
 			},
                         feeMediator :{
 				required: true,
@@ -51,34 +50,31 @@ $(function(){
 				required: true,
                                 alphanumeric: true
 			}
+		}   
+                ,
+		messages: {
+			stok :{
+				required: 'Harap Pilih Barang Terlebih Dahulu!',
+                                valueNotEquals: 'Harap Pilih Barang Terlebih Dahulu!'
+			},
+			tglJual :{
+				required: 'Harap Isi Tanggal Jual!',
+				date: 'Format harus berupa tanggal'
+			},
+			hrgJual :{
+				required: 'Harga Jual Tidak Boleh Kosong',
+			},
+			mediator : {
+				alphanumeric: 'Hanya diperkenankan Huruf, Angka, dan UnderScore!'
+			},
+			email : {
+				email: 'Harap isi E-mail yang Valid!',
+                remote: 'Email ini sudah terdaftar!'
+			},
+			nope : {
+				required: 'Harap mengisi Nomer HP',
+				number: 'Hanya diperkenankan angka saja!'
+			}
 		}
-//                ,
-//		messages: {
-//			stok :{
-//				required: 'Harap Isi Nama!',
-//                                valueNotEquals: 'Harap Pilih Barang Terlebih Dahulu!'
-//			},
-//			username :{
-//				required: 'Harap Isi Username!',
-//				nowhitespace: 'Harap tidak menggunakan Spasi',
-//				alphanumeric: 'Hanya diperkenankan huruf, angka, dan underscore',
-//				remote: 'Username sudah terdaftar, jika sudah terdaftar silahkan <a href="/fargasa/index.php?action=login">Login</a>!'
-//			},
-//			password :{
-//				required: 'Harap isi Password!',
-//                alphanumeric: 'password hanya boleh Huruf dan Angka!'
-//			},
-//			alamat : {
-//				required: 'Harap Isi Alamat!'
-//			},
-//			email : {
-//				email: 'Harap isi E-mail yang Valid!',
-//                remote: 'Email ini sudah terdaftar!'
-//			},
-//			nope : {
-//				required: 'Harap mengisi Nomer HP',
-//				number: 'Hanya diperkenankan angka saja!'
-//			}
-//		}
 	});
 });

@@ -7,7 +7,7 @@ if (isset($_SESSION['subPage'])) {
 ?>
 
 <head>
-  <link rel="stylesheet" href="css/style-cart.css" />
+    <link rel="stylesheet" href="/fargasa/sites/pelanggan/css/style-cart.css" />
 
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">

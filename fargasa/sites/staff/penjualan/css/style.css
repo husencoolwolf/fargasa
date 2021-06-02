@@ -2,6 +2,10 @@
   backround-color: purple;
 }
 
+.error{
+    color: red;
+}
+
 #KonfirmasiModalBody{
     max-height: 28rem;
 }

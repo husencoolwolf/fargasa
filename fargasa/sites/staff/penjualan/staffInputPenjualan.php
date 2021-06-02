@@ -14,6 +14,8 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
   </script>
 <?php
 } else {
+    $dataStok = mysqli_query($con, "SELECT stok.id_pembelian, pembelian.id_pembelian, pembelian.tipe, pembelian.tahun, pembelian.nopol FROM stok INNER JOIN pembelian ON stok.id_pembelian=pembelian.id_pembelian");
+    $dataPelanggan = mysqli_query($con, "SELECT ");
 ?>
   <!doctype html>
   <html lang="en">
@@ -27,6 +29,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/fargasa/dist/font-awesome-4.7.0/css/font-awesome.css" />
     <link rel="stylesheet" href="/fargasa/dist/css/bootstrap.css">
+    
 
     <title>Input Penjualan</title>
   </head>
@@ -110,22 +113,22 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
       <div class="text-left">
 
         <div class="col align-self-center order-md-1">
-            <form class="needs-validation" novalidate id="formInput" method="POST" novalidate>
-
-            <div class="row justify-content-between align-items-end mb-3">
+            <form class="needs-validation" novalidate id="formInput">
+            <label for="stok" class="font-weight-bold">Stok Terjual<span class="text-danger">*</span></label>
+            <div class="row justify-content-between align-items-start mb-3">
                 <div class="col-md-10">
-                    <label for="stok" class="font-weight-bold">Stok Terjual<span class="text-danger">*</span></label>
-                    <div class="input-group">
+                    
+
                         <select id="stok" name="stok" class="form-control" required>
                             <option disabled selected>--Pilih Barang--</option>
-                            <option value="test">test1</option>
-                            <option value="test2">test2</option>
+                            <?php
+                            while ($row = mysqli_fetch_array($dataStok)) {
+                                var_dump($row);
+                                echo '<option value="'. $row[0] .'">'. $row["tipe"].' || '. $row["tahun"] .' || '.$row["nopol"].'</option>';
+                            }
+                            ?>
                         </select>
-                      <!--<input type="text" class="form-control" id="warna" placeholder="Warna Mobil" required>-->
-                      <div class="invalid-feedback" style="width: 100%;">
-                        Mobil yang terjual harus di isi!
-                      </div>
-                    </div>
+ 
                   </div>
                 <div class="col-md-2">
                     <div class="btn btn-light border border-dark disabled" id="detailStok"><i class="fa fa-eye" aria-hidden="true"></i>Detail</div>
@@ -133,24 +136,21 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
             </div>
             
 
-
-              </div>
-            </div>
             
             <div class="mb-3">
               <label for="tglBeli" class="font-weight-bold">Tanggal Jual<span class="text-danger">*</span></label>
-              <input type="date" class="form-control" id="tglJual" placeholder="" required>
+              <input type="date" class="form-control" id="tglJual" name="tglJual" placeholder="" required>
             </div>
 
             <div class="mb-3">
               <label for="hrgJual" class="font-weight-bold">Harga Jual<span class="text-danger">*</span></label>
-              <input type="text" class="form-control rupiah" id="hrgJual" placeholder="Harga Jual" required>
+              <input type="text" class="form-control rupiah" id="hrgJual" name="hrgJual" placeholder="Harga Jual" required>
             </div>
 
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="mediator" class="font-weight-bold live-search-input">Mediator (Optional)</label>
-                <input type="text" class="form-control live-search-input" id="mediator" placeholder="Mediator Jual">
+                <label for="mediator" class="font-weight-bold live-search-input">Mediator Jual (Optional)</label>
+                <input type="text" class="form-control live-search-input" id="mediator" name="mediator" placeholder="Mediator Jual">
                 <div class="list-group liveSearch" id="mediatorSearch"></div>
                 <div class="invalid-feedback">
                   Mediator wajib di isi!.
@@ -167,12 +167,10 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="salesSearch" class="font-weight-bold live-search-input">Sales (Optional)</label>
-                <input type="text" class="form-control live-search-input" id="mediator" placeholder="Sales">
+                <label for="salesSearch" class="font-weight-bold live-search-input">Sales <span class="text-danger">*</span></label>
+                <input type="text" class="form-control live-search-input" id="sales" name="sales" placeholder="Sales" required>
                 <div class="list-group liveSearch" id="salesSearch"></div>
-                <div class="invalid-feedback">
-                  Mediator wajib di isi!.
-                </div>
+
               </div>
               <div class="col-md-6 mb-3">
                 <label for="feeSales" class="font-weight-bold">Fee Sales (Optional)</label>
@@ -185,7 +183,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
               
             <div class="mb-3">
               <label for="leas" class="font-weight-bold">Leasing (Optional)</label>
-              <input type="text" class="form-control" id="leas" placeholder="Leasing">
+              <input type="text" class="form-control" id="leas" name="leas" placeholder="Leasing">
             </div>  
               
             <div class="mb-3">
@@ -196,11 +194,15 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
             
 
             <div class="mb-3">
-              <label for="rekondisi" class="font-weight-bold">Author (Optional)</label>
+              <label for="rekondisi" class="font-weight-bold">Pelanggan (Optional)</label>
               <select id="pelanggan" name="pelanggan" class="form-control" required>
                       <option disabled selected>--Pilih Pelanggan--</option>
-                      <option value="test">test1</option>
-                      <option value="test2">test2</option>
+                      <?php
+                        while ($row = mysqli_fetch_array($dataPelanggan)) {
+                            var_dump($row);
+                            echo '<option value="'. $row[0] .'">'. $row["tipe"].' || '. $row["tahun"] .' || '.$row["nopol"].'</option>';
+                        }
+                      ?>
                   </select>
             </div>
 
@@ -234,8 +236,8 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
     <script src="/fargasa/dist/js/bootstrap.js"></script>
     <script src="/fargasa/dist/js/jquery-validate/jquery.validate.min.js"></script>
     <script src="/fargasa/dist/js/jquery-validate/additional-methods.min.js"></script>
-    <script src="/fargasa/dist/js/jquery.form.js"></script>
-    <script src="js/validatorRegister.js"></script>
+    <!--<script src="/fargasa/dist/js/jquery.form.js"></script>-->
+    
     
     <script>
       $(document).ready(function() {
@@ -512,6 +514,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 //        }, false)
 //      }())
     </script>
+    <script src="js/validatorRegister.js"></script>
 
   </body>
 

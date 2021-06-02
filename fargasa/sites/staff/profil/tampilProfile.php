@@ -130,7 +130,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
                                             <div class="mb-3">
                                                 <label for="password" class="font-weight-bold">Password</label>
-                                                <input type="text" class="form-control" name="password" value="<?= $elements['password']; ?>">
+                                                <input type="password" class="form-control" name="password" value="<?= $elements['password']; ?>">
                                             </div>
 
                                             <div class="mb-3">
@@ -170,22 +170,10 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
     <script>
         $(document).ready(function() {
             $('.detailbtn').on('click', function() {
-                var $id = $(this).data('id');
-                console.log(id);
+
                 $('#detailmodal').modal('show');
-                $.ajax({
-                    url: '/fargasa/sites/staff/tampilProfil.php',
-                    method: 'POST',
-                    data: {
-                        id: id
-                    },
-                    success: function(data) {
-                        $('#data_pribadi').html(data);
-                        $('#detailmodal').modal("show");
-                    }
-                });
             });
-        })
+        });
     </script>
     </script>
 

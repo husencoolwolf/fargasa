@@ -3,7 +3,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fargasa/ref/koneksi.php';
 session_start();
 $conn = new createCon();
 $con = $conn->connect();
-
+include 'php/editprofil.php';
 
 
 if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
@@ -14,10 +14,10 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
     </script>
 <?php
 } else {
-    require 'php/editprofil.php';
+
     if (isset($_POST['edit'])) {
         if (edit($con, $_POST) > 0) {
-            $_SESSION['nama']=$_POST['nama'];
+            $_SESSION['nama'] = $_POST['nama'];
             echo
             "
                 <script>
@@ -53,7 +53,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
     </head>
 
     <body>
-        <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/fargasa/sites/misc/navbar/pelangganNavbar.php"; ?>
+        <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/fargasa/sites/misc/navbar/staffNavbar.php"; ?>
 
         <div class="container-fluid " style="margin-top: 50px;">
             <h4 class="text-center " style="font-size:40px; color:gray; font-family: Glegoo,serif;">Profil Pribadi</h4>
@@ -170,22 +170,10 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
     <script>
         $(document).ready(function() {
             $('.detailbtn').on('click', function() {
-                var id = $(this).data('id');
-                console.log(id);
+
                 $('#detailmodal').modal('show');
-                $.ajax({
-                    url: '/fargasa/sites/pelanggan/profil/tampilProfil.php',
-                    method: 'POST',
-                    data: {
-                        id: id
-                    },
-                    success: function(data) {
-                        $('#data_pribadi').html(data);
-                        $('#detailmodal').modal("show");
-                    }
-                });
             });
-        })
+        });
     </script>
     </script>
 
