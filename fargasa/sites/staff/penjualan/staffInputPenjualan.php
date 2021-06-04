@@ -1,4 +1,4 @@
-<?php
+ <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/fargasa/ref/koneksi.php';
 
 $conn = new createCon();
@@ -15,7 +15,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 <?php
 } else {
     $dataStok = mysqli_query($con, "SELECT stok.id_pembelian, pembelian.id_pembelian, pembelian.tipe, pembelian.tahun, pembelian.nopol FROM stok INNER JOIN pembelian ON stok.id_pembelian=pembelian.id_pembelian");
-    $dataPelanggan = mysqli_query($con, "SELECT ");
+    $dataPelanggan = mysqli_query($con, "SELECT id_user, nama, email from user WHERE privilege='pelanggan';");
 ?>
   <!doctype html>
   <html lang="en">
@@ -120,7 +120,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                     
 
                         <select id="stok" name="stok" class="form-control" required>
-                            <option disabled selected>--Pilih Barang--</option>
+                            <option disabled selected value="">--Pilih Barang--</option>
                             <?php
                             while ($row = mysqli_fetch_array($dataStok)) {
                                 var_dump($row);
@@ -188,19 +188,24 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
               
             <div class="mb-3">
               <label for="tenor" class="font-weight-bold">Tenor (Optional)</label>
-              <input type="text" class="form-control rupiah" id="tenor" placeholder="Biaya Rekondisi">
+              <input type="number" class="form-control" id="tenor" placeholder="Tenor Leasing">
+            </div>
+            
+            <div class="mb-3">
+              <label for="refund" class="font-weight-bold">Refund / Bunga (Optional)</label>
+              <input type="text" class="form-control rupiah" id="refund" placeholder="Refund">
             </div>
 
             
 
             <div class="mb-3">
-              <label for="rekondisi" class="font-weight-bold">Pelanggan (Optional)</label>
-              <select id="pelanggan" name="pelanggan" class="form-control" required>
-                      <option disabled selected>--Pilih Pelanggan--</option>
+              <label for="pelanggan" class="font-weight-bold">Pelanggan (Optional)</label>
+              <select id="pelanggan" name="pelanggan" class="form-control">
+                  <option disabled selected value="">--Pilih Pelanggan--</option>
                       <?php
                         while ($row = mysqli_fetch_array($dataPelanggan)) {
                             var_dump($row);
-                            echo '<option value="'. $row[0] .'">'. $row["tipe"].' || '. $row["tahun"] .' || '.$row["nopol"].'</option>';
+                            echo '<option value="'. $row[0] .'">'. $row["nama"].' || '. $row["email"] .'</option>';
                         }
                       ?>
                   </select>
@@ -234,9 +239,9 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
     <script src="/fargasa/dist/js/jquery-3.5.1.js"></script>
     <script src="/fargasa/dist/js/bootstrap.js"></script>
-    <script src="/fargasa/dist/js/jquery-validate/jquery.validate.min.js"></script>
-    <script src="/fargasa/dist/js/jquery-validate/additional-methods.min.js"></script>
-    <!--<script src="/fargasa/dist/js/jquery.form.js"></script>-->
+<!--    <script src="/fargasa/dist/js/jquery-validate/jquery.validate.min.js"></script>
+    <script src="/fargasa/dist/js/jquery-validate/additional-methods.min.js"></script>-->
+    <script src="/fargasa/dist/js/jquery.form.js"></script>
     
     
     <script>
@@ -250,23 +255,18 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
         $('#submitDB').on('click', function() {
           var fd = new FormData();
-          var files = $('#gambar')[0].files;
-          if (files.length > 0) {
-            fd.append('gambar', files[0]);
-          }
-          fd.append('tipe', $('#tipe').val());
-          fd.append('nopol', $('#nopol').val());
-          fd.append('warna', $('#warna').val());
-          fd.append('tahun', $('#tahun').val());
-          fd.append('jarak_tempuh', $('#jarakTempuh').val());
-          fd.append('jenis_bbm', $('#jenisBbm').val());
-          fd.append('tgl_beli', $('#tglBeli').val());
-          fd.append('hrg_beli', $('#hrgBeli').val());
-          fd.append('hrg_jual', $('#hrgJual').val());
+          
+          fd.append('id_pembelian', $('#stok').val());
+          fd.append('tglJual', $('#tglJual').val());
+          fd.append('hrgJual', $('#hrgJual').val());
           fd.append('mediator', $('#mediator').val());
           fd.append('feeMediator', $('#feeMediator').val());
-          fd.append('pajak', $('#pajak').val());
-          fd.append('rekondisi', $('#rekondisi').val());
+          fd.append('sales', $('#sales').val());
+          fd.append('feeSales', $('#feeSales').val());
+          fd.append('leas', $('#leas').val());
+          fd.append('tenor', $('#tenor').val());
+          fd.append('refund', $('#refund').val());
+          fd.append('id_pelanggan', $('#pelanggan').val());
 
           $.ajax({
             url: './php/SubmitterData.php',
@@ -408,13 +408,6 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
           return false;
         });
 
-        $('#gambar').change(function(event) {
-          var tmppath = URL.createObjectURL(event.target.files[0]);
-          //                $("img").fadeIn("fast").attr('src',URL.createObjectURL(event.target.files[0]));
-
-          $(this).data('url', tmppath);
-        });
-
 
         //end of Excel Reader upload
       });
@@ -472,49 +465,47 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
       }
 
       //validator bootstrap
-//      (function() {
-//        'use strict'
-//
-//        window.addEventListener('load', function() {
-//          // Fetch all the forms we want to apply custom Bootstrap validation styles to
-//          var forms = document.getElementsByClassName('needs-validation')
-//
-//          // Loop over them and prevent submission
-//          Array.prototype.filter.call(forms, function(form) {
-//            form.addEventListener('submit', function(event) {
-//              if (form.checkValidity() === false) {
-//                event.preventDefault()
-//                event.stopPropagation()
-//              } else {
-//                event.preventDefault()
-//                event.stopPropagation()
-//
-//                //                      console.log(document.getElementById('gambar').value);
-//                $('#KonfirmasiModalBody').load("php/getterConfirm.php", {
-//                  tipe: document.getElementById('tipe').value,
-//                  nopol: document.getElementById('nopol').value,
-//                  warna: document.getElementById('warna').value,
-//                  tahun: document.getElementById('tahun').value,
-//                  jarak_tempuh: document.getElementById('jarakTempuh').value,
-//                  jenis_bbm: document.getElementById('jenisBbm').value,
-//                  tgl_beli: document.getElementById('tglBeli').value,
-//                  hrg_beli: document.getElementById('hrgBeli').value,
-//                  hrg_jual: document.getElementById('hrgJual').value,
-//                  mediator: document.getElementById('mediator').value,
-//                  feeMediator: document.getElementById('feeMediator').value,
-//                  pajak: document.getElementById('pajak').value,
-//                  rekondisi: document.getElementById('rekondisi').value
-//                });
-//                $('#KonfirmasiModal').modal('show');
-//              }
-//              form.classList.add('was-validated')
-//
-//            }, false)
-//          })
-//        }, false)
-//      }())
+      (function() {
+        'use strict'
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation')
+
+          // Loop over them and prevent submission
+          Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault()
+                event.stopPropagation()
+              } else {
+                event.preventDefault()
+                event.stopPropagation()
+
+                //                      console.log(document.getElementById('gambar').value);
+                $('#KonfirmasiModalBody').load("php/getterConfirm.php", {
+                  id_pembelian: document.getElementById('stok').value,
+                  tglJual: document.getElementById('tglJual').value,
+                  hrgJual: document.getElementById('hrgJual').value,
+                  mediator: document.getElementById('mediator').value,
+                  feeMediator: document.getElementById('feeMediator').value,
+                  sales: document.getElementById('sales').value,
+                  feeSales: document.getElementById('feeSales').value,
+                  leas: document.getElementById('leas').value,
+                  tenor: document.getElementById('tenor').value,
+                  refund: document.getElementById('refund').value,
+                  id_pelanggan: document.getElementById('pelanggan').value
+                });
+                $('#KonfirmasiModal').modal('show');
+              }
+              form.classList.add('was-validated')
+
+            }, false)
+          })
+        }, false)   
+      }())
     </script>
-    <script src="js/validatorRegister.js"></script>
+    <!--<script src="js/validatorRegister.js"></script>-->
 
   </body>
 

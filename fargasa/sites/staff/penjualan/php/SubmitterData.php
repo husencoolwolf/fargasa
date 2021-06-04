@@ -4,12 +4,7 @@ $conn = new createCon();
 $con = $conn->connect();
 session_start();
 
-$filename="default.png";
-if(isset($_FILES['gambar']['name'])){
-    $filename = $_FILES['gambar']['name'];
-    $location = $_SERVER['DOCUMENT_ROOT']."/fargasa/assets/gambar/".$filename;
-    move_uploaded_file($_FILES['gambar']['tmp_name'],$location);
-}
+
 
 
 $id = createId(8);
@@ -20,60 +15,46 @@ $id = createId(8);
 //      $idstok = checkId($con,$idstok);
 //
 
-$tipe = $_POST['tipe'];
-$nopol = $_POST['nopol'];
-$warna = $_POST['warna'];
-$tahun = $_POST['tahun'];
-$jarak_tempuh = $_POST['jarak_tempuh'];
-$jenis_bbm = $_POST['jenis_bbm'];
-$tgl_beli = $_POST['tgl_beli'];
-$hrg_beli = $_POST['hrg_beli'];
-$hrg_beli = $conn->rupiahToInt($hrg_beli);
-$hrg_jual = $_POST['hrg_jual'];
-$hrg_jual = $conn->rupiahToInt($hrg_jual);
+$id_pembelian = $_POST['id_pembelian'];
+$tglJual = $_POST['tglJual'];
+$hrgJual = $_POST['hrgJual'];
+$hrgJual = $conn->rupiahToInt($hrgJual);
 $mediator = $_POST['mediator'];
 $feeMediator = $_POST['feeMediator'];
 $feeMediator = $conn->rupiahToInt($feeMediator);
-$pajak = $_POST['pajak'];
-$pajak = $conn->rupiahToInt($pajak);
-$rekondisi = $_POST['rekondisi'];
-$rekondisi = $conn->rupiahToInt($rekondisi);
+$sales = $_POST['sales'];
+$feeSales = $_POST['feeSales'];
+$feeSales = $conn->rupiahToInt($feeSales);
+$leas = $_POST['leas'];
+$tenor = $_POST['tenor'];
+$refund = $_POST['refund'];
+$refund = $conn->rupiahToInt($refund);
+$id_pelanggan = $_POST['id_pelanggan'];
+if($id_pelanggan==""){
+    $id_pelanggan="NULL";
+}
+
+$feeMediator = $_POST['feeMediator'];
+
 $nama = $_SESSION['nama'];
 
-$input	= mysqli_query($con,"INSERT INTO `pembelian` (`id_pembelian`, `nopol`, `tipe`, `warna`, `tahun`, `jarak_tempuh`, `jenis_bbm`, `mediator`, `tgl_beli`, `hrg_beli`, `hrg_jual` , `fee_mediator`, `pajak`, `rekondisi`, `status`, `author`, `gambar`, `id_pelanggan`) 
-    VALUES ('".$id ."', "
-        . "'".$nopol."', "
-        . "'".$tipe."', "
-        . "'".$warna."', "
-        . "'".$tahun."', "
-        . "'".$jarak_tempuh."', "
-        . "'".$jenis_bbm."', "
-        . "'".$mediator."', "
-        . "'".$tgl_beli."', "
-        . "'".$hrg_beli."', "
-        . "'".$hrg_jual."', "
-        . "'".$feeMediator."', "
-        . "'".$pajak."', "
-        . "'".$rekondisi."', "
-        . "'siap', "
-        . "'".$nama."', "
-        . "'".$filename."', "
-        . "NULL);");
+$input	= mysqli_query($con,"INSERT INTO `penjualan` (`id_penjualan`, `id_pembelian`, `mediator`, `sales`, `tgl_jual`, `hrg_jual`, `fee_mediator`, `fee_sales`, `leas`, `tenor`, `refund` , `author`, `id_pelanggan`) "
+        . "VALUES ($id, "
+        . "'$id_pembelian', "
+        . "'$mediator', "
+        . "'$sales', "
+        . "'$tglJual', "
+        . "'$hrgJual', "
+        . "'$feeMediator', "
+        . "'$feeSales', "
+        . "'$leas', "
+        . "'$tenor', "
+        . "'$refund', "
+        . "'$nama', "
+        . "'$id_pelanggan');");
 
-$input2	= mysqli_query($con,"INSERT INTO `stok` (`id_pembelian`, `nopol`, `tipe`, `warna`, `tahun`, `jarak_tempuh`, `jenis_bbm`, `hrg_jual`, `author`, `gambar`, `booked`, `id_pelanggan`) "
-        . "VALUES ('".$id."', "
-        . "'".$nopol."', "
-        . "'".$tipe."', "
-        . "'".$warna."', "
-        . "'".$tahun."', "
-        . "'".$jarak_tempuh."', "
-        . "'".$jenis_bbm."', "
-        . "'".$hrg_jual."', "
-        . "'".$nama."', "
-        . "'".$filename."', "
-        . "'0', "
-        . "NULL);");
-    if ($input && $input2) {
+
+    if ($input) {
         //Jika Sukses
         //update stok
         echo   '<div class="toast-body alert alert-success text-center" id="isiStat" value="success">
