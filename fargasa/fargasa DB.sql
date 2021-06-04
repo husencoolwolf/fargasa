@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Jun 2021 pada 18.22
+-- Waktu pembuatan: 04 Jun 2021 pada 19.23
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.3.19
 
@@ -105,7 +105,7 @@ CREATE TABLE `pembelian` (
 --
 
 INSERT INTO `pembelian` (`id_pembelian`, `nopol`, `tipe`, `warna`, `tahun`, `jarak_tempuh`, `jenis_bbm`, `mediator`, `tgl_beli`, `hrg_beli`, `hrg_jual`, `fee_mediator`, `pajak`, `rekondisi`, `status`, `author`, `gambar`, `id_pelanggan`) VALUES
-(57800832, 'A 1856 BP', 'SIGRA R M/T', 'Putih', 2020, 125000, '', '', '2021-04-04', 105000000, 115000000, 0, 2350000, 0, 'siap', 'hsuen', 'sigra r putih.jpg', NULL),
+(57800832, 'A 1856 BP', 'SIGRA R M/T', 'Putih', 2020, 125000, '', '', '2021-04-04', 105000000, 115000000, 0, 2350000, 0, 'terjual', 'hsuen', 'sigra r putih.jpg', NULL),
 (62841710, 'A 1604 AC', 'TERIOS TX M/T', 'SILVER', 2013, 0, '', '', '2021-02-16', 115000000, 130000000, 2000000, 0, 1250000, 'siap', 'hsuen', 'terios tx AT.jpg', NULL),
 (78081683, 'A 1450 FX', 'BRIO E A/T', 'MERAH', 2018, 150000, 'Bensin', '', '2021-05-05', 123000000, 125000000, 0, 0, 0, 'siap', 'hsuen', 'brio e mt merah.jpg', NULL);
 
@@ -144,9 +144,17 @@ CREATE TABLE `penjualan` (
   `fee_sales` int(11) NOT NULL,
   `leas` text DEFAULT NULL,
   `tenor` text DEFAULT NULL,
+  `refund` int(11) DEFAULT NULL,
   `author` text NOT NULL,
   `id_pelanggan` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `penjualan`
+--
+
+INSERT INTO `penjualan` (`id_penjualan`, `id_pembelian`, `mediator`, `sales`, `tgl_jual`, `hrg_jual`, `fee_mediator`, `fee_sales`, `leas`, `tenor`, `refund`, `author`, `id_pelanggan`) VALUES
+(15047043, 57800832, '', 'IIP', '2021-05-03', 114000000, 0, 1000000, 'BCA', '4', 0, 'hsuen', 40871900);
 
 --
 -- Trigger `penjualan`
@@ -160,7 +168,7 @@ $$
 DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `tr_penjualan_up_status` BEFORE INSERT ON `penjualan` FOR EACH ROW BEGIN
-	UPDATE pembelian SET pembelian.status="terjual";
+	UPDATE pembelian SET pembelian.status="terjual" WHERE pembelian.id_pembelian= NEW.id_pembelian;
 END
 $$
 DELIMITER ;
@@ -194,8 +202,7 @@ CREATE TABLE `stok` (
 
 INSERT INTO `stok` (`id_stok`, `id_pembelian`, `nopol`, `tipe`, `warna`, `tahun`, `jarak_tempuh`, `jenis_bbm`, `hrg_jual`, `tgl_beli`, `author`, `gambar`, `booked`, `id_pelanggan`) VALUES
 (5, 78081683, 'A 1450 FX', 'BRIO E A/T', 'MERAH', 2018, 150000, 'Bensin', 125000000, '2021-04-04', 'hsuen', 'brio e mt merah.jpg', 0, NULL),
-(6, 62841710, 'A 1604 AC', 'TERIOS TX M/T', 'SILVER', 2013, 0, '', 130000000, '2021-02-16', 'hsuen', 'terios tx AT.jpg', 0, NULL),
-(7, 57800832, 'A 1856 BP', 'SIGRA R M/T', 'Putih', 2020, 125000, '', 115000000, '2021-05-05', 'hsuen', 'sigra r putih.jpg', 0, NULL);
+(6, 62841710, 'A 1604 AC', 'TERIOS TX M/T', 'SILVER', 2013, 0, '', 130000000, '2021-02-16', 'hsuen', 'terios tx AT.jpg', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -224,7 +231,7 @@ INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `email`, `no_hp`,
 (40871900, 'zahra', 'zahra', 'coolwolf', '', '08777213545', 'pelanggan'),
 (63732501, 'riski', 'riski', 'riski123', '', '21312313312', 'pelanggan'),
 (71976146, 'batu', 'batu', 'babatu', '', '222555222555', 'pelanggan'),
-(74555333, 'ada', 'adaa', 'adaada', NULL, '123123123123', 'pelanggan'),
+(74555333, 'ada', 'adaa', 'adaada', '', '123123123123', 'pelanggan'),
 (76474836, 'COST_2', 'cost2', 'costumer', '', '3216542163', 'pelanggan'),
 (77945793, 'COST_1', 'cost1', 'costumer', '', '3216543161', 'pelanggan');
 
@@ -303,13 +310,13 @@ ALTER TABLE `penawaran`
 -- AUTO_INCREMENT untuk tabel `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `id_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2123466;
+  MODIFY `id_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41245290;
 
 --
 -- AUTO_INCREMENT untuk tabel `stok`
 --
 ALTER TABLE `stok`
-  MODIFY `id_stok` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_stok` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
