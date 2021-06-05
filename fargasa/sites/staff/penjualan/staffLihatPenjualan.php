@@ -404,16 +404,17 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
 
         <!-- <div  class="scrollTable"> -->
-        <table class="table table-striped table-hover table-bordered responsive-text" id="dataPenjualan" style="">
+        <table class="table table-striped table-hover table-bordered responsive-text table-responsive-md" id="dataPenjualan" style="">
           <thead class="thead-dark">
             <tr>
               <th scope="col">Merk/Tipe</th>
               <th scope="col">Tahun</th>
-              <th scope="col">Tanggal Penjualan</th>
               <th scope="col">Warna</th>
+              <th scope="col">Tgl Beli</th>
+              <th scope="col">Tgl Jual</th>
               <th scope="col">Nopol</th>
-              <th scope="col">Total Harga Penjualan</th>
-              <th scope="col">Status</th>
+              <th scope="col">Hrg Beli</th>
+              <th scope="col">Hrg Jual</th>
               <th scope="col">Aksi</th>
             </tr>
           </thead>
@@ -456,7 +457,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
         //                jquery start
         //                data inisiate
         inisiateData();
-        inisiateDataTables();
+//        inisiateDataTables();
         addActionRupiah();
         var bulanss = [];
         // Data Tables inisiasi
@@ -735,18 +736,19 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
       }
 
-      function inisiateDataTables() {
-        // $("#dataPenjualan").DataTable().destroy()
-        $('#dataPenjualan').DataTable({
-          "searching": false,
-          "processing": true,
-          "scrollY": "28rem",
-          // "sScrollX": "100%",
-          "scrollCollapse": true,
-          "paging": false,
-          "info": false
-        });
-      }
+//      function inisiateDataTables() {
+//        // $("#dataPenjualan").DataTable().destroy()
+//        $('#dataPenjualan').DataTable({
+//          "searching": false,
+//          "processing": true,
+//          "scrollY": "28rem",
+//          // "sScrollX": "100%",
+//          "scrollCollapse": true,
+//          "paging": false,
+//          "info": false,
+//          "ordering": false
+//        });
+//      }
 
       //Rubah input ke rupiah
       //update Chart Event

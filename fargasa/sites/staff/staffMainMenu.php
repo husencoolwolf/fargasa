@@ -3,7 +3,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fargasa/ref/koneksi.php';
 date_default_timezone_set("Asia/Jakarta");
 $conn = new createCon();
 $con = $conn->connect();
-$dataStok = mysqli_query($con, "SELECT * FROM stok");
+$dataStok = mysqli_query($con, "SELECT count(id_stok) as stock FROM stok");
 $dataPembelian = mysqli_query($con, "SELECT COUNT(*) FROM pembelian");
 $dataPenjualan = mysqli_query($con, "SELECT COUNT(*) FROM penjualan");
 session_start();
@@ -50,7 +50,11 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
       <div class="card m-5 text-center d-flex  " style="width: 18rem;  ">
         <div class="card-body ">
           <h5 class="card-title mt-4">Stok Mobil</h5>
-          <h2 class="card-text"> <?= mysqli_num_rows($dataStok); ?></h2>
+          <h2 class="card-text"> <?php
+        while ($row = mysqli_fetch_array($dataStok)) {
+            echo ($row[0]);
+          }
+             ?></h2>
           <a href="/fargasa/sites/staff/stock/staffLihatStock.php" class="stretched-link cad"></a>
         </div>
       </div>

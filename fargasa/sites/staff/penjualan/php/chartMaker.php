@@ -10,18 +10,18 @@ $tipe = $_GET['tipe'];
 $outChart = '';
 if ($tipe == "chartJmlJual") { //Request chart Jumlah Penjualan
         $jml_transaksi = array();
-        $data = mysqli_query($con, "SELECT (SELECT COUNT(nopol) FROM Penjualan WHERE month(tgl_jual)='1' AND year(tgl_jual)='$tahun') as januari, "
-                . "(SELECT COUNT(nopol) FROM penjualan WHERE month(tgl_jual)='2' AND year(tgl_jual)='$tahun') as februari, "
-                . "(SELECT COUNT(nopol) FROM penjualan WHERE month(tgl_jual)='3' AND year(tgl_jual)='$tahun') as maret, "
-                . "(SELECT COUNT(nopol) FROM penjualan WHERE month(tgl_jual)='4' AND year(tgl_jual)='$tahun') as april, "
-                . "(SELECT COUNT(nopol) FROM penjualan WHERE month(tgl_jual)='5' AND year(tgl_jual)='$tahun') as mei, "
-                . "(SELECT COUNT(nopol) FROM penjualan WHERE month(tgl_jual)='6' AND year(tgl_jual)='$tahun') as juni, "
-                . "(SELECT COUNT(nopol) FROM penjualan WHERE month(tgl_jual)='7' AND year(tgl_jual)='$tahun') as juli, "
-                . "(SELECT COUNT(nopol) FROM penjualan WHERE month(tgl_jual)='8' AND year(tgl_jual)='$tahun') as agustus, "
-                . "(SELECT COUNT(nopol) FROM penjualan WHERE month(tgl_jual)='9' AND year(tgl_jual)='$tahun') as september, "
-                . "(SELECT COUNT(nopol) FROM penjualan WHERE month(tgl_jual)='10' AND year(tgl_jual)='$tahun') as oktober, "
-                . "(SELECT COUNT(nopol) FROM penjualan WHERE month(tgl_jual)='11' AND year(tgl_jual)='$tahun') as november, "
-                . "(SELECT COUNT(nopol) FROM penjualan WHERE month(tgl_jual)='12' AND year(tgl_jual)='$tahun') as desember ");
+        $data = mysqli_query($con, "SELECT (SELECT COUNT(id_penjualan) FROM Penjualan WHERE month(tgl_jual)='1' AND year(tgl_jual)='$tahun') as januari, "
+                . "(SELECT COUNT(id_penjualan) FROM penjualan WHERE month(tgl_jual)='2' AND year(tgl_jual)='$tahun') as februari, "
+                . "(SELECT COUNT(id_penjualan) FROM penjualan WHERE month(tgl_jual)='3' AND year(tgl_jual)='$tahun') as maret, "
+                . "(SELECT COUNT(id_penjualan) FROM penjualan WHERE month(tgl_jual)='4' AND year(tgl_jual)='$tahun') as april, "
+                . "(SELECT COUNT(id_penjualan) FROM penjualan WHERE month(tgl_jual)='5' AND year(tgl_jual)='$tahun') as mei, "
+                . "(SELECT COUNT(id_penjualan) FROM penjualan WHERE month(tgl_jual)='6' AND year(tgl_jual)='$tahun') as juni, "
+                . "(SELECT COUNT(id_penjualan) FROM penjualan WHERE month(tgl_jual)='7' AND year(tgl_jual)='$tahun') as juli, "
+                . "(SELECT COUNT(id_penjualan) FROM penjualan WHERE month(tgl_jual)='8' AND year(tgl_jual)='$tahun') as agustus, "
+                . "(SELECT COUNT(id_penjualan) FROM penjualan WHERE month(tgl_jual)='9' AND year(tgl_jual)='$tahun') as september, "
+                . "(SELECT COUNT(id_penjualan) FROM penjualan WHERE month(tgl_jual)='10' AND year(tgl_jual)='$tahun') as oktober, "
+                . "(SELECT COUNT(id_penjualan) FROM penjualan WHERE month(tgl_jual)='11' AND year(tgl_jual)='$tahun') as november, "
+                . "(SELECT COUNT(id_penjualan) FROM penjualan WHERE month(tgl_jual)='12' AND year(tgl_jual)='$tahun') as desember ");
         if (!$data) {
                 die("Data User Kosong" . mysqli_error($con->connect()));
         } else {
@@ -70,20 +70,22 @@ if ($tipe == "chartJmlJual") { //Request chart Jumlah Penjualan
 } elseif ($tipe == "chartJmlHarga") {
         //request chart Jumlah Harga
         $total = array();
-        $data = mysqli_query($con, "SELECT(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_jual)) from Penjualan where month(tgl_jual)='1' AND year(tgl_jual)='$tahun') as januari,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_jual)) from penjualan where month(tgl_jual)='2' AND year(tgl_jual)='$tahun') as februari,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_jual)) from penjualan where month(tgl_jual)='3' AND year(tgl_jual)='$tahun') as maret,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_jual)) from penjualan where month(tgl_jual)='4' AND year(tgl_jual)='$tahun') as april,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_jual)) from penjualan where month(tgl_jual)='5' AND year(tgl_jual)='$tahun') as mei,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_jual)) from penjualan where month(tgl_jual)='6' AND year(tgl_jual)='$tahun') as juni,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_jual)) from penjualan where month(tgl_jual)='7' AND year(tgl_jual)='$tahun') as juli,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_jual)) from penjualan where month(tgl_jual)='8' AND year(tgl_jual)='$tahun') as agustus,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_jual)) from penjualan where month(tgl_jual)='9' AND year(tgl_jual)='$tahun') as september,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_jual)) from penjualan where month(tgl_jual)='10' AND year(tgl_jual)='$tahun') as oktober,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_jual)) from penjualan where month(tgl_jual)='11' AND year(tgl_jual)='$tahun') as november,"
-                . "(SELECT (SUM(fee_mediator)+SUM(rekondisi)+SUM(hrg_jual)) from penjualan where month(tgl_jual)='12' AND year(tgl_jual)='$tahun') as desember");
+        $querr = "SELECT(SELECT (SUM(penjualan.hrg_jual)-SUM(penjualan.fee_mediator)-SUM(penjualan.fee_sales)+SUM(penjualan.refund) - SUM(pembelian.hrg_beli)-SUM(pembelian.fee_mediator)-SUM(pembelian.pajak)-SUM(pembelian.rekondisi)) FROM penjualan INNER JOIN pembelian ON penjualan.id_pembelian=pembelian.id_pembelian where month(tgl_jual)='1' AND year(tgl_jual)='$tahun') as januari,"
+                . "(SELECT (SUM(penjualan.hrg_jual)-SUM(penjualan.fee_mediator)-SUM(penjualan.fee_sales)+SUM(penjualan.refund) - SUM(pembelian.hrg_beli)-SUM(pembelian.fee_mediator)-SUM(pembelian.pajak)-SUM(pembelian.rekondisi)) FROM penjualan INNER JOIN pembelian ON penjualan.id_pembelian=pembelian.id_pembelian where month(tgl_jual)='2' AND year(tgl_jual)='$tahun') as februari,"
+                . "(SELECT (SUM(penjualan.hrg_jual)-SUM(penjualan.fee_mediator)-SUM(penjualan.fee_sales)+SUM(penjualan.refund) - SUM(pembelian.hrg_beli)-SUM(pembelian.fee_mediator)-SUM(pembelian.pajak)-SUM(pembelian.rekondisi)) FROM penjualan INNER JOIN pembelian ON penjualan.id_pembelian=pembelian.id_pembelian where month(tgl_jual)='3' AND year(tgl_jual)='$tahun') as maret,"
+                . "(SELECT (SUM(penjualan.hrg_jual)-SUM(penjualan.fee_mediator)-SUM(penjualan.fee_sales)+SUM(penjualan.refund) - SUM(pembelian.hrg_beli)-SUM(pembelian.fee_mediator)-SUM(pembelian.pajak)-SUM(pembelian.rekondisi)) FROM penjualan INNER JOIN pembelian ON penjualan.id_pembelian=pembelian.id_pembelian where month(tgl_jual)='4' AND year(tgl_jual)='$tahun') as april,"
+                . "(SELECT (SUM(penjualan.hrg_jual)-SUM(penjualan.fee_mediator)-SUM(penjualan.fee_sales)+SUM(penjualan.refund) - SUM(pembelian.hrg_beli)-SUM(pembelian.fee_mediator)-SUM(pembelian.pajak)-SUM(pembelian.rekondisi)) FROM penjualan INNER JOIN pembelian ON penjualan.id_pembelian=pembelian.id_pembelian where month(tgl_jual)='5' AND year(tgl_jual)='$tahun') as mei,"
+                . "(SELECT (SUM(penjualan.hrg_jual)-SUM(penjualan.fee_mediator)-SUM(penjualan.fee_sales)+SUM(penjualan.refund) - SUM(pembelian.hrg_beli)-SUM(pembelian.fee_mediator)-SUM(pembelian.pajak)-SUM(pembelian.rekondisi)) FROM penjualan INNER JOIN pembelian ON penjualan.id_pembelian=pembelian.id_pembelian where month(tgl_jual)='6' AND year(tgl_jual)='$tahun') as juni,"
+                . "(SELECT (SUM(penjualan.hrg_jual)-SUM(penjualan.fee_mediator)-SUM(penjualan.fee_sales)+SUM(penjualan.refund) - SUM(pembelian.hrg_beli)-SUM(pembelian.fee_mediator)-SUM(pembelian.pajak)-SUM(pembelian.rekondisi)) FROM penjualan INNER JOIN pembelian ON penjualan.id_pembelian=pembelian.id_pembelian where month(tgl_jual)='7' AND year(tgl_jual)='$tahun') as juli,"
+                . "(SELECT (SUM(penjualan.hrg_jual)-SUM(penjualan.fee_mediator)-SUM(penjualan.fee_sales)+SUM(penjualan.refund) - SUM(pembelian.hrg_beli)-SUM(pembelian.fee_mediator)-SUM(pembelian.pajak)-SUM(pembelian.rekondisi)) FROM penjualan INNER JOIN pembelian ON penjualan.id_pembelian=pembelian.id_pembelian where month(tgl_jual)='8' AND year(tgl_jual)='$tahun') as agustus,"
+                . "(SELECT (SUM(penjualan.hrg_jual)-SUM(penjualan.fee_mediator)-SUM(penjualan.fee_sales)+SUM(penjualan.refund) - SUM(pembelian.hrg_beli)-SUM(pembelian.fee_mediator)-SUM(pembelian.pajak)-SUM(pembelian.rekondisi)) FROM penjualan INNER JOIN pembelian ON penjualan.id_pembelian=pembelian.id_pembelian where month(tgl_jual)='9' AND year(tgl_jual)='$tahun') as september,"
+                . "(SELECT (SUM(penjualan.hrg_jual)-SUM(penjualan.fee_mediator)-SUM(penjualan.fee_sales)+SUM(penjualan.refund) - SUM(pembelian.hrg_beli)-SUM(pembelian.fee_mediator)-SUM(pembelian.pajak)-SUM(pembelian.rekondisi)) FROM penjualan INNER JOIN pembelian ON penjualan.id_pembelian=pembelian.id_pembelian where month(tgl_jual)='10' AND year(tgl_jual)='$tahun') as oktober,"
+                . "(SELECT (SUM(penjualan.hrg_jual)-SUM(penjualan.fee_mediator)-SUM(penjualan.fee_sales)+SUM(penjualan.refund) - SUM(pembelian.hrg_beli)-SUM(pembelian.fee_mediator)-SUM(pembelian.pajak)-SUM(pembelian.rekondisi)) FROM penjualan INNER JOIN pembelian ON penjualan.id_pembelian=pembelian.id_pembelian where month(tgl_jual)='11' AND year(tgl_jual)='$tahun') as november,"
+                . "(SELECT (SUM(penjualan.hrg_jual)-SUM(penjualan.fee_mediator)-SUM(penjualan.fee_sales)+SUM(penjualan.refund) - SUM(pembelian.hrg_beli)-SUM(pembelian.fee_mediator)-SUM(pembelian.pajak)-SUM(pembelian.rekondisi)) FROM penjualan INNER JOIN pembelian ON penjualan.id_pembelian=pembelian.id_pembelian where month(tgl_jual)='12' AND year(tgl_jual)='$tahun') as desember";
+        $data = mysqli_query($con, $querr );
         if (!$data) {
-                die("Data User Kosong euy" . mysqli_error($con->connect()));
+            echo $querr;
+//                die("Data User Kosong euy" . mysqli_error($con->connect()));
         } else {
 
                 if (mysqli_num_rows($data) == 0) {
