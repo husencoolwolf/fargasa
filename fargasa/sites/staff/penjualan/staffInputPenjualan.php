@@ -100,6 +100,28 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
     </div>
 
     <!--end of modal-->
+    
+    <!-- Detail Modal -->
+    <div class="modal fade" id="DetailModal" tabindex="-1" aria-labelledby="DetailModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="DetailModalLabel">Detail Mobil</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body overflow-auto" id="DetailModalBody">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--end of detail Modal-->
 
     <!--<button type="button" class="btn btn-primary" id="myBtn">Show Toast</button>-->
 
@@ -431,9 +453,17 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
         };
       };
 
-      function gambarToUrl(sumber) {
-
-      }
+      $('#detailStok').click(function(){
+          if($(this).hasClass("disabled")){
+          }else{
+            var id = $('.form-control#stok').val();
+            $('#DetailModalBody').load("php/detailGetter.php", {
+                id: id
+              });
+              $('#DetailModal').modal('show'); 
+          }
+          
+      });
 
       //Rubah input ke rupiah
       var uang = document.getElementsByClassName("rupiah");

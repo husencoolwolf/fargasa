@@ -6,11 +6,12 @@ $con = $conn->connect();
 session_start();
 $id = $_POST['id'];
 
-$data = mysqli_query($con, "SELECT * FROM penjualan where id_penjualan='" . $id . "'");
+$data = mysqli_query($con, "SELECT * FROM pembelian where id_pembelian='" . $id . "'");
+
 $output = array();
 while ($row = mysqli_fetch_array($data)) {
   /*0*/
-  array_push($output, $row['id_penjualan']);
+  array_push($output, $row['id_pembelian']);
   /*1*/
   array_push($output, $row['tipe']);
   /*2*/
@@ -26,7 +27,7 @@ while ($row = mysqli_fetch_array($data)) {
   /*7*/
   array_push($output, $row['mediator']);
   /*8*/
-  array_push($output, $row['tgl_jual']);
+  array_push($output, $row['tgl_beli']);
   /*9*/
 
   /*10*/
@@ -69,21 +70,21 @@ echo '<ul class="list-group mb-3">
           </div>
           
         </li>
-        <li class="list-group-item list-group-item-action d-flex bg-light">
+        <li class="list-group-item list-group-item-action d-flex lh-condensed">
           <div>
             <h6 class="my-0">' . $output[4] . '</h6>
             <small>Tahun Mobil</small>
           </div>
           
         </li>
-        <li class="list-group-item list-group-item-action d-flex bg-light">
+        <li class="list-group-item list-group-item-action d-flex lh-condensed">
           <div>
             <h6 class="my-0">' . $output[5] . '</h6>
             <small>Jarak Tempuh Mobil</small>
           </div>
           
         </li>
-        <li class="list-group-item list-group-item-action d-flex bg-light">
+        <li class="list-group-item list-group-item-action d-flex lh-condensed">
           <div>
             <h6 class="my-0">' . $output[6] . '</h6>
             <small>Jenis BBM Mobil</small>
@@ -94,20 +95,20 @@ echo '<ul class="list-group mb-3">
         <li class="list-group-item list-group-item-action d-flex">
           <div>
             <h6 class="my-0">' . $output[8] . '</h6>
-            <small>Tanggal Penjualan</small>
+            <small>Tanggal Beli</small>
           <div>
         </li>
         <li class="list-group-item list-group-item-action d-flex">
           <div>
           <h6 class="my-0"> <b>' . $output[9] . '</b></h6>
-          <small>Harga Jual</small>
+          <small>Harga Beli</small>
           </div>
         </li>    
 
         <li class="list-group-item list-group-item-action d-flex">
         <div>
           <h6 class="my-0">' . $output[7] . '</h6>
-          <small>Mediator Penjualan</small>
+          <small>Mediator Beli</small>
         </div>
         </li>
         <li class="list-group-item list-group-item-action d-flex">
