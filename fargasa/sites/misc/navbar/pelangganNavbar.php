@@ -7,7 +7,7 @@ if (isset($_SESSION['subPage'])) {
 ?>
 
 <head>
-  <link rel="stylesheet" href="/fargasa/sites/pelanggan/css/style-cart.css" />
+    <link rel="stylesheet" href="/fargasa/sites/pelanggan/css/style-cart.css" />
 
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -16,7 +16,9 @@ if (isset($_SESSION['subPage'])) {
   <a class="navbar-brand d-lg-none" href="#">
     <img class="" src="/fargasa/assets/Fargasa Logo Circle.png" alt="Dashboard" style="width: 80px">
   </a>
-
+  <button class="navbar-toggler btn btn-dark cartButton" style="background-color: black; color: white;">
+          <i class="fa fa-bell" aria-hidden="true"></i>
+        </button>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -32,16 +34,16 @@ if (isset($_SESSION['subPage'])) {
     </ul>
     <ul class="navbar-nav mx-auto">
       <li class="nav-item px-3 ml-0">
-        <a class="nav-link active" href="/fargasa/#catalog">CATALOG <span class="sr-only">(current)</span></a>
+        <a class="nav-link active" href="#catalog">CATALOG <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item px-3 ml-0">
-        <a class="nav-link" href="/fargasa/#">PROMO</a>
+        <a class="nav-link" href="#">PROMO</a>
       </li>
       <li class="nav-item px-3 ml-0">
-        <a class="nav-link" href="/fargasa/#profil">PROFIL</a>
+        <a class="nav-link" href="#profil">PROFIL</a>
       </li>
       <li class="nav-item px-3 ml-0">
-        <a class="nav-link" href="/fargasa/#contact">HUBUNGI KAMI</a>
+        <a class="nav-link" href="#contact">HUBUNGI KAMI</a>
       </li>
       <li class="nav-item px-3 ml-0">
         <a class="nav-link" href="/fargasa/sites/pelanggan/PelangganInputPenawaran.php">BUAT PENAWARAN</a>
@@ -53,7 +55,7 @@ if (isset($_SESSION['subPage'])) {
     <ul class="navbar-nav">
       <!-- Profile Button -->
       <li>
-        <button class="btn btn-dark cart" id="cart">
+        <button class="btn btn-dark cartButton">
           <i class="fa fa-bell" aria-hidden="true"></i>
         </button>
       </li>
@@ -72,12 +74,13 @@ if (isset($_SESSION['subPage'])) {
 </nav>
 
 <div class="container">
-  <div class="shopping-cart">
+    <div class="shopping-cart" style="display: none">
     <div class="shopping-cart-header">
-      <i class="fa fa-shopping-cart cart-icon"></i><span class="badge"></span>
+      <i class="fa fa-bookmark cart-icon"></i><span class="badge"></span>
       <div class="shopping-cart-waktu">
         <span class="lighter-text">Waktu Tersisa:</span>
-        <span class="main-color-text">19:26</span>
+        <span class="digital-clock"> 00:00:00</span>
+        
       </div>
     </div>
     <!--end shopping-cart-header -->
@@ -85,14 +88,14 @@ if (isset($_SESSION['subPage'])) {
     <ul class="shopping-cart-items" style="list-style-type: none;">
       <li class="clearfix">
         <div class="item-cart">
-          <img src=" /fargasa/assets/Fargasa Logo Circle.png" alt="item1" />
-          <span class="item-name">Sony DSC-RX100M III</span>
-          <span class="item-price">Rp....</span>
-          <span class="item-quantity">Quantity: 01</span>
+            <img src=" /fargasa/assets/gambar/<?=$sisaWaktu["gambar"];?>" id="imgBook" />
+            <span class="item-name" id="tipeBook"><?php echo ($sisaWaktu["tipe"]." ".$sisaWaktu["tahun"])?></span>
+            <span class="text-black" id="hrgBook"><small><?=$sisaWaktu["hrg_jual"];?></small></span>
         </div>
       </li>
 
-      <a href="#" class="button-cek">Lihat Detail</a>
+      <button class="btn btn-primary button-cek-book detailbtn" data-id="<?= $sisaWaktu["id_pembelian"] ?>">Lihat Detail</button>
+    </ul>
   </div>
   <!--end shopping-cart -->
 
@@ -102,10 +105,8 @@ if (isset($_SESSION['subPage'])) {
 <script>
   (function() {
 
-    $(".shopping-cart").hide()
-    $(".cart").on("click", function() {
+    $(".cartButton").on("click", function() {
       $(".shopping-cart").fadeToggle("fast");
-
     });
 
   })();

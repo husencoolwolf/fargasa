@@ -20,9 +20,12 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
     <?php
 }else{
     $dataStok = mysqli_query($con, "SELECT * FROM stok");
-    $dataBook = mysqli_query($con, "SELECT stok.id_pembelian, stok.id_stok, stok.nopol, stok.tipe,stok.tahun, stok.hrg_jual, stok.gambar, book.id_booking,book.id_pembelian,book.id_pelanggan, book.booking_stop FROM stok LEFT JOIN book ON stok.id_pembelian=book.id_pembelian where (book.booking_stop >= now()) OR (book.booking_stop IS NULL)");
+    $dataBook = mysqli_query($con, "SELECT stok.id_pembelian, stok.id_stok, stok.nopol, stok.tipe,stok.tahun, stok.hrg_jual, stok.gambar, book.id_booking,book.id_pembelian,book.id_pelanggan, book.booking_stop FROM stok LEFT JOIN book ON stok.id_pembelian=book.id_pembelian where (book.booking_stop >= now())");
+    $queryDataSisaWaktu= "SELECT b.id_pembelian, current_timestamp() as sekarang, b.booking_stop, p.tipe, p.tahun, p.gambar, p.hrg_jual from book b INNER JOIN pembelian p ON b.id_pembelian=p.id_pembelian where (b.id_pelanggan=".$_SESSION["id_user"].") AND (b.booking_stop >= now())";
+    $dataSisaWaktu = mysqli_query($con, $queryDataSisaWaktu);
     $cek = array();
     $stok = array();
+    $sisaWaktu = array();
     $b = array();
     $i=0;
     while($fetch = mysqli_fetch_array($dataBook)){
@@ -51,23 +54,20 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
       $i++;
       unset($b);
     }
-    // $serialized = array_map('serialize', $cek);
-    // $unique = array_unique($serialized);
-    // $hasil = array_values(array_unique($cek, SORT_REGULAR));
-
-    //print_r($cek);
-    //echo("<br>======================================<br>");
-//    var_dump($cek);
-    // $cek = mysqli_fetch_array($data);
-    //echo array_count_values(array_column($cek, 'id_pembelian'))[$hasil[0]["id_pembelian"]];
+    
+    $i=0; // set ulang index
+    while($fetch = mysqli_fetch_array($dataSisaWaktu)){ //Fetch ke array
+      $sisaWaktu["booking_stop"] = $fetch["booking_stop"];
+      $sisaWaktu["sekarang"] = $fetch["sekarang"];
+      $sisaWaktu["id_pembelian"] = $fetch["id_pembelian"];
+      $sisaWaktu["tipe"] = $fetch["tipe"];
+      $sisaWaktu["tahun"] = $fetch["tahun"];
+      $sisaWaktu["gambar"] = $fetch["gambar"];
+      $sisaWaktu["hrg_jual"] = $fetch["hrg_jual"];
+      
+    }
     $i=0;
-    // foreach($hasil as $x){
-    //     $hasil[$i]["booked"]= array_count_values(array_column($cek, 'id_pembelian'))[$x["id_pembelian"]];
-    //     $i++;
-    // }
-    //var_dump($stok[1]["id_pembelian"]);
-    //var_dump(array_column($cek, "id_pembelian"));
-    //var_dump(in_array($stok[2]["id_pembelian"], array_column($cek, "id_pembelian")));
+
     foreach($stok as $x){
         if (in_array($x["id_pembelian"], array_column($cek, "id_pembelian")) == true){
             $stok[$i]["booked"]= array_count_values(array_column($cek, 'id_pembelian'))[$x["id_pembelian"]];
@@ -245,8 +245,67 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
       </footer>
       <script src="/fargasa/dist/js/jquery-3.5.1.js"></script>
       <script src="/fargasa/dist/js/bootstrap.js"></script>
+
     </body>
     <script>
+        
+        //timer
+        // Set the date we're counting down to
+        var countDownDate;
+        var now;
+        <?php
+            if (count($sisaWaktu)<>0){
+                ?>
+                    countDownDate =  new Date("<?= $sisaWaktu["booking_stop"]?>").getTime();
+                    now = new Date("<?= $sisaWaktu["sekarang"]?>").getTime();
+                <?php
+            }
+        ?>
+        
+        
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+                    mulaiTimer();
+                }, 1000);
+        <?php if(count($sisaWaktu)==0){
+            ?>
+//                alert("kocak");
+                clearInterval(x);
+            <?php
+        }?>
+            
+//        fungsi mulai timer
+        function mulaiTimer(){
+ 
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Get today's date and time
+            now = updateNow(now);
+//            console.log(now);
+            // Time calculations for days, hours, minutes and seconds
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id="demo"
+
+            $('.digital-clock').html( hours + "h "
+            + minutes + "m " + seconds + "s ");
+
+            // If the count down is over, write some text 
+            if (distance < 0) {
+              clearInterval(x);
+              $('.digital-clock').html("EXPIRED") ;
+            }
+          }
+        
+
+        function updateNow(time){
+            return time+1000;
+        }
+        
+        
       if ($(window).width() < 768) {
         $('#brandMobile').show();
         $('#brandPC').hide();
@@ -306,11 +365,31 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
               id: id
             },
             success: function(data) {
-              $('#statInputMsg').html(data);
+//                console.log(jQuery.parseJSON(data));
+                var hasil = jQuery.parseJSON(data);
+              $('#statInputMsg').html(hasil[0]);
               $('.toast').toast('show');
+              if(hasil[0])
+              var waktu = jQuery.parseJSON(hasil[1]);
+                //0-booking stop, 1-sekarnag, 2-id beli, 3-tipe, 4-tahun, 5-gambar, 6-hrg jual
+              console.log(waktu[0]);
+              if(waktu[0]!==null){
+                $('#tipeBook').html(waktu[3]+" "+waktu[4]);
+                $('#hrgBook').html("Rp. "+waktu[6]);
+                $('#imgBook').attr("src", "fargasa/assets/gambar/"+waktu[5]);
+                $('.button-cek-book').data('id', waktu[2]);
+                countDownDate = new Date(waktu[0]).getTime();
+                now = new Date(waktu[1]).getTime();
+                x = setInterval(function() {
+                      mulaiTimer();
+                  }, 1000);
+              }
             }
           });
         });
+        
+        
+        
       })
     </script>
 

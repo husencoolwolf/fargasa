@@ -214,9 +214,12 @@ class createCon  {
                     $this->checkId($con,$id2);
                    }
         }
-
+    
+        
+        
     function checkUserBooking($idMobil, $idPelanggan){
         $queryCheck = "SELECT stok.id_stok, stok.id_pembelian, stok.nopol, stok.tipe, book.id_booking, book.id_pembelian, book.id_pelanggan, book.booking_mulai FROM stok INNER JOIN book ON stok.id_pembelian=book.id_pembelian WHERE (book.booking_mulai >= now() - INTERVAL 24 HOUR) AND (book.id_pelanggan='$idPelanggan')";
+        
         $cekUser = mysqli_query($this->connect(), $queryCheck);
         if (mysqli_num_rows($cekUser)==0) {
             # pelanggan blm pernah booking mobil apapun 24 jam ini
@@ -232,7 +235,10 @@ class createCon  {
             if ($input) {
                 //Jika Sukses
                 //input user
-                return 1;
+                
+                $dataWaktu = mysqli_query($this->connect(), "SELECT b.id_pembelian, current_timestamp() as sekarang, current_timestamp() + INTERVAL 24 HOUR as booking_stop, p.tipe, p.tahun, p.gambar, p.hrg_jual from book b INNER JOIN pembelian p ON b.id_pembelian=p.id_pembelian where id_booking=$idInsert;");
+                $fetch = mysqli_fetch_array($dataWaktu);
+                return array(1, $fetch["booking_stop"], $fetch["sekarang"], $fetch["id_pembelian"], $fetch["tipe"], $fetch["tahun"], $fetch["gambar"], $fetch["hrg_jual"]);
             }else {
                 return mysqli_error($this->connect());
 
