@@ -7,7 +7,7 @@ if (isset($_SESSION['subPage'])) {
 ?>
 
 <head>
-    <link rel="stylesheet" href="/fargasa/sites/pelanggan/css/style-cart.css" />
+  <link rel="stylesheet" href="/fargasa/sites/pelanggan/css/style-cart.css" />
 
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -32,16 +32,19 @@ if (isset($_SESSION['subPage'])) {
     </ul>
     <ul class="navbar-nav mx-auto">
       <li class="nav-item px-3 ml-0">
-        <a class="nav-link active" href="#catalog">CATALOG <span class="sr-only">(current)</span></a>
+        <a class="nav-link active" href="/fargasa/#catalog">CATALOG <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item px-3 ml-0">
-        <a class="nav-link" href="#">PROMO</a>
+        <a class="nav-link" href="/fargasa/#">PROMO</a>
       </li>
       <li class="nav-item px-3 ml-0">
-        <a class="nav-link" href="#profil">PROFIL</a>
+        <a class="nav-link" href="/fargasa/#profil">PROFIL</a>
       </li>
       <li class="nav-item px-3 ml-0">
-        <a class="nav-link" href="#contact">HUBUNGI KAMI</a>
+        <a class="nav-link" href="/fargasa/#contact">HUBUNGI KAMI</a>
+      </li>
+      <li class="nav-item px-3 ml-0">
+        <a class="nav-link" href="/fargasa/sites/pelanggan/PelangganInputPenawaran.php">BUAT PENAWARAN</a>
       </li>
     </ul>
 
@@ -50,7 +53,7 @@ if (isset($_SESSION['subPage'])) {
     <ul class="navbar-nav">
       <!-- Profile Button -->
       <li>
-        <button class="btn btn-dark" id="cart">
+        <button class="btn btn-dark cart" id="cart">
           <i class="fa fa-bell" aria-hidden="true"></i>
         </button>
       </li>
@@ -99,8 +102,10 @@ if (isset($_SESSION['subPage'])) {
 <script>
   (function() {
 
-    $("#cart").on("click", function() {
+    $(".shopping-cart").hide()
+    $(".cart").on("click", function() {
       $(".shopping-cart").fadeToggle("fast");
+
     });
 
   })();
