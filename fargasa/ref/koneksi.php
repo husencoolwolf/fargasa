@@ -236,9 +236,9 @@ class createCon  {
                 //Jika Sukses
                 //input user
                 
-                $dataWaktu = mysqli_query($this->connect(), "SELECT b.id_pembelian, current_timestamp() as sekarang, current_timestamp() + INTERVAL 24 HOUR as booking_stop, p.tipe, p.tahun, p.gambar, p.hrg_jual from book b INNER JOIN pembelian p ON b.id_pembelian=p.id_pembelian where id_booking=$idInsert;");
+                $dataWaktu = mysqli_query($this->connect(), "SELECT b.id_pembelian, current_timestamp() as sekarang, current_timestamp() + INTERVAL 24 HOUR as booking_stop, p.tipe, p.tahun, p.gambar, p.hrg_jual, b.id_booking from book b INNER JOIN pembelian p ON b.id_pembelian=p.id_pembelian where id_booking=$idInsert;");
                 $fetch = mysqli_fetch_array($dataWaktu);
-                return array(1, $fetch["booking_stop"], $fetch["sekarang"], $fetch["id_pembelian"], $fetch["tipe"], $fetch["tahun"], $fetch["gambar"], $fetch["hrg_jual"]);
+                return array(1, $fetch["booking_stop"], $fetch["sekarang"], $fetch["id_pembelian"], $fetch["tipe"], $fetch["tahun"], $fetch["gambar"], $fetch["hrg_jual"], $fetch["id_booking"]);
             }else {
                 return mysqli_error($this->connect());
 

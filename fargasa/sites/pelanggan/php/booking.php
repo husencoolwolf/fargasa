@@ -10,7 +10,7 @@ if (isset($_POST['id'])) {
 	$idPelanggan = $_SESSION['id_user'];
 	$status = $conn->checkUserBooking($id,$idPelanggan);
         
-        $waktu = array($status[1], $status[2], $status[3], $status[4], $status[5], $status[6], $status[7]);
+        $waktu = array($status[1], $status[2], $status[3], $status[4], $status[5], $status[6], $status[7], $status[8]);
         $status = $status[0];
 	if ($status==1) {
 		#Berhasil

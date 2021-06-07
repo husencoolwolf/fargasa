@@ -21,8 +21,9 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
 }else{
     $dataStok = mysqli_query($con, "SELECT * FROM stok");
     $dataBook = mysqli_query($con, "SELECT stok.id_pembelian, stok.id_stok, stok.nopol, stok.tipe,stok.tahun, stok.hrg_jual, stok.gambar, book.id_booking,book.id_pembelian,book.id_pelanggan, book.booking_stop FROM stok LEFT JOIN book ON stok.id_pembelian=book.id_pembelian where (book.booking_stop >= now())");
-    $queryDataSisaWaktu= "SELECT b.id_pembelian, current_timestamp() as sekarang, b.booking_stop, p.tipe, p.tahun, p.gambar, p.hrg_jual from book b INNER JOIN pembelian p ON b.id_pembelian=p.id_pembelian where (b.id_pelanggan=".$_SESSION["id_user"].") AND (b.booking_stop >= now())";
+    $queryDataSisaWaktu= "SELECT b.id_pembelian, current_timestamp() as sekarang, b.booking_stop, p.tipe, p.tahun, p.gambar, p.hrg_jual, b.id_booking from book b INNER JOIN pembelian p ON b.id_pembelian=p.id_pembelian where (b.id_pelanggan=".$_SESSION["id_user"].") AND (b.booking_stop >= now())";
     $dataSisaWaktu = mysqli_query($con, $queryDataSisaWaktu);
+//    var_dump($queryDataSisaWaktu);
     $cek = array();
     $stok = array();
     $sisaWaktu = array();
@@ -64,8 +65,9 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
       $sisaWaktu["tahun"] = $fetch["tahun"];
       $sisaWaktu["gambar"] = $fetch["gambar"];
       $sisaWaktu["hrg_jual"] = $fetch["hrg_jual"];
-      
+      $sisaWaktu["id_booking"] = $fetch["id_booking"];
     }
+    
     $i=0;
 
     foreach($stok as $x){
@@ -101,6 +103,7 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
             
     </div>
     
+    <section id="promo">
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -122,11 +125,13 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
           <span class="sr-only">Next</span>
         </a>
       </div>
-      </div>
+        </section>
+      
 
       <!--   catalog   -->
+      <section id="catalog">
       <div class="container-fluid" style="margin-top:50px;">
-        <a name="catalog">
+        
           <h4 class="text-center " style="font-size:40px; color:gray; font-family: Glegoo,serif;">Gallery Mobil</h4>
           <div class="container-fluid mt-4 row d-flex justify-content-center">
             <?php foreach ($stok as $elements) : ?>
@@ -164,9 +169,10 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
             <?php endforeach; ?>
           </div>
       </div>
+        </section>
       <!--container div  -->
 
-      <!-- Modal -->
+      <!-- Modal detail barang -->
       <div class="modal fade" id="detailmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -186,10 +192,33 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
           </div>
         </div>
       </div>
+      
+      <!-- Modal detail barang bookingan pelanggan-->
+      <div class="modal fade" id="detailbookmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tipe">Detail Barang</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="detailbookmodalbody" data-id="">
+
+            </div>
+            <div class="modal-footer">
+              
+              
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!--Profil  -->
+      <section id="profil">
       <div class="container mt-5 profil" style=" max-width: 100%;">
-        <a name="profil">
+          
           <h4 style="text-align: center; font-family: Glegoo,serif; font-size:40px; color:gray;">Why Choose Us</h4>
           <div class="container-fluid text-center">
             <p>CV. Fargasa Pratama Raya is committed to helping its clients reach their own cars </p>
@@ -218,10 +247,12 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
             </div>
           </div>
       </div>
+        </section>
 
       <!-- Contact -->
+      <section id="contact">
       <div class="container py-5 " style=" max-width: 100%;">
-        <a name="contact">
+        
           <h4 style="text-align: center; font-family: Glegoo,serif; font-size:40px">CONTACT US AT</h4>
           <div class="container  w-50">
             <div class="row " style="text-align: center; ">
@@ -237,18 +268,31 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
 
           </div>
       </div>
+        </section>
 
       <footer style="background-color: black;">
         <div class="footer-copyright text-center py-3">© 2021 Copyright:
           <a href=""> Alibaba Group</a>
         </div>
       </footer>
+      
+      <!-- Top Scroll Button -->
+      <button type="button" id="topJumpBtn" class="btn btn-dark rounded-circle">
+          <span class="fa fa-chevron-up align-middle" role="button">
+              <!-- <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+              </svg> -->
+          </span>
+      </button>
+      <!-- end of Top Scroll Button -->
+      
+      
       <script src="/fargasa/dist/js/jquery-3.5.1.js"></script>
       <script src="/fargasa/dist/js/bootstrap.js"></script>
-
+      
     </body>
     <script>
-        
+        $(document).ready(function() {
         //timer
         // Set the date we're counting down to
         var countDownDate;
@@ -271,6 +315,11 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
             ?>
 //                alert("kocak");
                 clearInterval(x);
+                
+            <?php
+        }else{
+            ?>
+            addBookBtnAction();
             <?php
         }?>
             
@@ -315,7 +364,9 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
       }
 
 
-      $(document).ready(function() {
+      
+          
+        
 
         $('#statInputMsg').click(function(){
             $(this).toast('hide');
@@ -325,7 +376,7 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
           var id = $(this).data('id');
           // 
           // console.log(id);
-          console.log($(this).data('booked'));
+//          console.log($(this).data('booked'));
           if($(this).data('booked')==true){//kalau booking sudah 3x
                 $('#bookBtn').html('Booking Penuh');
                 $('#bookBtn').addClass('btn-secondary').removeClass('btn-primary');
@@ -369,28 +420,95 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
                 var hasil = jQuery.parseJSON(data);
               $('#statInputMsg').html(hasil[0]);
               $('.toast').toast('show');
-              if(hasil[0])
+//              if(hasil[0])
               var waktu = jQuery.parseJSON(hasil[1]);
-                //0-booking stop, 1-sekarnag, 2-id beli, 3-tipe, 4-tahun, 5-gambar, 6-hrg jual
+                //0-booking stop, 1-sekarnag, 2-id beli, 3-tipe, 4-tahun, 5-gambar, 6-hrg jual, 7-id booking
               console.log(waktu[0]);
               if(waktu[0]!==null){
-                $('#tipeBook').html(waktu[3]+" "+waktu[4]);
-                $('#hrgBook').html("Rp. "+waktu[6]);
-                $('#imgBook').attr("src", "fargasa/assets/gambar/"+waktu[5]);
-                $('.button-cek-book').data('id', waktu[2]);
+                  $('#cart-body').html(`
+                    <li class="clearfix" >
+                    <div class="item-cart">
+                        <img src=" /fargasa/assets/gambar/${waktu[5]}" id="imgBook" />
+                        <span class="item-name" id="tipeBook">${waktu[3]+" "+waktu[4]}</span>
+                        <span class="text-black" id="hrgBook"><small{Rp. ${waktu[6]}</small></span>
+                    </div>
+                    </li>
+                    <div class="row">
+                        <div class="col">
+                              <button class="btn btn-primary h-100 button-cek-book detailBookBtn" data-id="${waktu[2]}">Lihat Detail</button>
+                        </div>
+                        <div class="col">
+                              <button type="button" id="cancelBook" class="btn btn-danger" data-id="${waktu[7]}" data-dismiss="modal">Cancel Book</button>
+                        </div>
+                    </div>
+                    `)
                 countDownDate = new Date(waktu[0]).getTime();
                 now = new Date(waktu[1]).getTime();
                 x = setInterval(function() {
                       mulaiTimer();
                   }, 1000);
+                  addBookBtnAction();
               }
             }
           });
         });
         
+        $('#topJumpBtn').each(function(){
+            $(this).click(function(){ 
+                $('html,body').animate({ scrollTop: 0 }, 'slow');
+                return false; 
+            });
+        });
+        
+        //fungsi tambah event click di button detail bookingan pelanggan
+        function addBookBtnAction(){
+            $('.detailBookBtn').on('click', function(){
+                var id = $(this).data('id');
+                $.ajax({
+                    url: '/fargasa/sites/misc/detail-barang.php',
+                    method: 'POST',
+                    data: {
+                      id: id,
+                      booked: $(this).data("booked")
+                    },
+                    success: function(data) {
+                      $('#detailbookmodalbody').html(data);
+
+                      $('#detailbookmodal').modal("show");
+
+
+                    }
+                  });
+            });
+            
+            $('#cancelBook').on('click', function(){
+                var id = $(this).data('id');
+                if (confirm('Anda yakin ingin batal Booking ?')) {
+                    $.ajax({
+                        url: '/fargasa/sites/pelanggan/php/cancelBook.php',
+                        method: 'POST',
+                        data: {
+                          id: id
+                        },
+                        success: function(data) {
+                            $('#statInputMsg').html(data);
+                            $('.toast').toast('show');
+                            $('#cart-body').html(`
+                            <div class="row">
+                                <div class="badge badge-info w-100"><span>Anda Belum Booking</span></div>
+                            </div>`);
+                            
+                            clearInterval(x);
+                            $('.digital-clock').html("-:-:-") ;
+                        }
+                    });
+                }
+                
+            });
+        }
         
         
-      })
+      });
     </script>
 
     </html>

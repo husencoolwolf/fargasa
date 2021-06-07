@@ -79,23 +79,40 @@ if (isset($_SESSION['subPage'])) {
       <i class="fa fa-bookmark cart-icon"></i><span class="badge"></span>
       <div class="shopping-cart-waktu">
         <span class="lighter-text">Waktu Tersisa:</span>
-        <span class="digital-clock"> 00:00:00</span>
+        <span class="digital-clock"> -:-:-</span>
         
       </div>
     </div>
     <!--end shopping-cart-header -->
-
-    <ul class="shopping-cart-items" style="list-style-type: none;">
-      <li class="clearfix">
+    <?php
+    if(count($sisaWaktu)<>0){ ?>
+    <ul class="shopping-cart-items" id="cart-body" style="list-style-type: none;">
+        <li class="clearfix" >
         <div class="item-cart">
             <img src=" /fargasa/assets/gambar/<?=$sisaWaktu["gambar"];?>" id="imgBook" />
             <span class="item-name" id="tipeBook"><?php echo ($sisaWaktu["tipe"]." ".$sisaWaktu["tahun"])?></span>
             <span class="text-black" id="hrgBook"><small><?=$sisaWaktu["hrg_jual"];?></small></span>
         </div>
       </li>
-
-      <button class="btn btn-primary button-cek-book detailbtn" data-id="<?= $sisaWaktu["id_pembelian"] ?>">Lihat Detail</button>
+      <div class="row">
+          <div class="col">
+                <button class="btn btn-primary h-100 button-cek-book detailBookBtn" data-id="<?= $sisaWaktu["id_pembelian"] ?>">Lihat Detail</button>
+          </div>
+          <div class="col">
+                <button type="button" id="cancelBook" class="btn btn-danger" data-id="<?= $sisaWaktu["id_booking"] ?>" data-dismiss="modal">Cancel Book</button>
+          </div>
+      </div>
     </ul>
+    <?php
+    }else{ ?>
+    <ul class="shopping-cart-items" id="cart-body" style="list-style-type: none;">
+        <div class="row">
+            <div class="badge badge-info w-100"><span>Anda Belum Booking</span></div>
+        </div>
+    </ul>
+    <?php
+    }
+    ?>
   </div>
   <!--end shopping-cart -->
 
