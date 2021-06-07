@@ -13,16 +13,17 @@ function edit($con, $data)
     $nama    = htmlspecialchars($_POST['nama']);
     $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
+    $alamat = htmlspecialchars($_POST['alamat']);
     $email   = htmlspecialchars($_POST['email']);
     $no_hp   = htmlspecialchars($_POST['no_hp']);
 
 
     $sql = "UPDATE user SET 
-     id_user  =   '$id',
      nama = '$nama', 
      username = '$username',
      password = '$password',
      email = '$email',
+     alamat = '$alamat',
      no_hp = '$no_hp' 
      WHERE id_user = '$id'";
     mysqli_query($con, $sql) or die(mysqli_error($con));

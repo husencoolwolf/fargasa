@@ -5,8 +5,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fargasa/ref/koneksi.php';
 $conn = new createCon();
 $con = $conn->connect();
 session_start();
-$_SESSION['page'] = "pembelian";
-$_SESSION['subPage'] = "staffInputPembelian";
+$_SESSION['page'] = "PelangganInputPenawaran";
+$_SESSION['subPage'] = "";
 if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'pelanggan') {
 ?>
     <script language="JavaScript">

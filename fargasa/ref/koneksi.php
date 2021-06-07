@@ -71,13 +71,15 @@ class createCon  {
         $nama = $dataArray['nama'];
         $username = $dataArray['username'];
         $password = $dataArray['password'];
+        $alamat = $dataArray['alamat'];
         $email = $dataArray['email'];
         $nope = $dataArray['nope'];
-        $query = "INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `email`, `no_hp`, `privilege`) "
+        $query = "INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `alamat` , `email`, `no_hp`, `privilege`) "
                 . "VALUES ('$id', "
                 . "'$nama', "
                 . "'$username', "
                 . "'$password', "
+                . "'$alamat', "
                 . "'$email', "
                 . "'$nope', "
                 . "'pelanggan');";

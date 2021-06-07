@@ -22,7 +22,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
             "
                 <script>
                     alert('data berhasil diubah')
-                    document.location.href='../staffMainMenu.php';
+                    document.location.href='tampilProfile.php';
                 </script>
                 ";
         } else {
@@ -53,8 +53,31 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
     </head>
 
     <body>
-        <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/fargasa/sites/misc/navbar/staffNavbar.php"; ?>
+        <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/fargasa/sites/misc/navbar/pelangganNavbar.php"; ?>
 
+        
+        <!-- Modal detail barang bookingan pelanggan-->
+        <div class="modal fade" id="detailbookmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="tipe">Detail Barang</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" id="detailbookmodalbody" data-id="">
+
+              </div>
+              <div class="modal-footer">
+
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <div class="container-fluid " style="margin-top: 50px;">
             <h4 class="text-center " style="font-size:40px; color:gray; font-family: Glegoo,serif;">Profil Pribadi</h4>
             <div class="container-fluid d-flex align-items-center justify-content-center">
@@ -75,6 +98,14 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                         </div>
                         <div class="col">
                             <?= $elements['username']; ?>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col">
+                            Alamat
+                        </div>
+                        <div class="col">
+                            <?= $elements['alamat']; ?>
                         </div>
                     </div>
                     <div class="row my-3">
@@ -119,27 +150,32 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
                                             <input type="hidden" name="id" value="<?= $elements["id_user"]; ?>">
                                             <div class="mb-3">
-                                                <label for="nama" class="font-weight-bold">Nama</label>
+                                                <label for="nama" class="font-weight-bold">Nama<span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" name="nama" value="<?= $elements['nama']; ?>">
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="username" class="font-weight-bold">Username </span></label>
+                                                <label for="username" class="font-weight-bold">Username<span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" name="username" value="<?= $elements['username']; ?>">
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="password" class="font-weight-bold">Password</label>
+                                                <label for="password" class="font-weight-bold">Password<span class="text-danger">*</span></label>
                                                 <input type="password" class="form-control" name="password" value="<?= $elements['password']; ?>">
                                             </div>
-
+                                            
                                             <div class="mb-3">
-                                                <label for="email" class="font-weight-bold">Email </label>
+                                                <label for="alamat" class="font-weight-bold">Alamat<span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" name="alamat" value="<?= $elements['alamat']; ?>">
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label for="email" class="font-weight-bold">Email(Optional)</label>
                                                 <input type="text" class="form-control" name="email" value="<?= $elements['email']; ?>">
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="no_hp" class="font-weight-bold">Nomor Telepon </span></label>
+                                                <label for="no_hp" class="font-weight-bold">Nomor Telepon<span class="text-danger">*</span></label>
                                                 <input type="number" class="form-control" name="no_hp" value="<?= $elements['no_hp']; ?>" required>
                                             </div>
 

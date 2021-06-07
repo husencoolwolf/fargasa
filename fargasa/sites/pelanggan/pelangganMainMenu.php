@@ -21,12 +21,10 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
 }else{
     $dataStok = mysqli_query($con, "SELECT * FROM stok");
     $dataBook = mysqli_query($con, "SELECT stok.id_pembelian, stok.id_stok, stok.nopol, stok.tipe,stok.tahun, stok.hrg_jual, stok.gambar, book.id_booking,book.id_pembelian,book.id_pelanggan, book.booking_stop FROM stok LEFT JOIN book ON stok.id_pembelian=book.id_pembelian where (book.booking_stop >= now())");
-    $queryDataSisaWaktu= "SELECT b.id_pembelian, current_timestamp() as sekarang, b.booking_stop, p.tipe, p.tahun, p.gambar, p.hrg_jual, b.id_booking from book b INNER JOIN pembelian p ON b.id_pembelian=p.id_pembelian where (b.id_pelanggan=".$_SESSION["id_user"].") AND (b.booking_stop >= now())";
-    $dataSisaWaktu = mysqli_query($con, $queryDataSisaWaktu);
-//    var_dump($queryDataSisaWaktu);
+    
     $cek = array();
     $stok = array();
-    $sisaWaktu = array();
+    
     $b = array();
     $i=0;
     while($fetch = mysqli_fetch_array($dataBook)){
@@ -56,17 +54,7 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
       unset($b);
     }
     
-    $i=0; // set ulang index
-    while($fetch = mysqli_fetch_array($dataSisaWaktu)){ //Fetch ke array
-      $sisaWaktu["booking_stop"] = $fetch["booking_stop"];
-      $sisaWaktu["sekarang"] = $fetch["sekarang"];
-      $sisaWaktu["id_pembelian"] = $fetch["id_pembelian"];
-      $sisaWaktu["tipe"] = $fetch["tipe"];
-      $sisaWaktu["tahun"] = $fetch["tahun"];
-      $sisaWaktu["gambar"] = $fetch["gambar"];
-      $sisaWaktu["hrg_jual"] = $fetch["hrg_jual"];
-      $sisaWaktu["id_booking"] = $fetch["id_booking"];
-    }
+    
     
     $i=0;
 
@@ -277,7 +265,7 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
       </footer>
       
       <!-- Top Scroll Button -->
-      <button type="button" id="topJumpBtn" class="btn btn-dark rounded-circle">
+      <button type="button" id="topJumpBtn" class="btn btn-primady border border-dark rounded-circle">
           <span class="fa fa-chevron-up align-middle" role="button">
               <!-- <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
@@ -292,67 +280,7 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
       
     </body>
     <script>
-        $(document).ready(function() {
-        //timer
-        // Set the date we're counting down to
-        var countDownDate;
-        var now;
-        <?php
-            if (count($sisaWaktu)<>0){
-                ?>
-                    countDownDate =  new Date("<?= $sisaWaktu["booking_stop"]?>").getTime();
-                    now = new Date("<?= $sisaWaktu["sekarang"]?>").getTime();
-                <?php
-            }
-        ?>
         
-        
-        // Update the count down every 1 second
-        var x = setInterval(function() {
-                    mulaiTimer();
-                }, 1000);
-        <?php if(count($sisaWaktu)==0){
-            ?>
-//                alert("kocak");
-                clearInterval(x);
-                
-            <?php
-        }else{
-            ?>
-            addBookBtnAction();
-            <?php
-        }?>
-            
-//        fungsi mulai timer
-        function mulaiTimer(){
- 
-            // Find the distance between now and the count down date
-            var distance = countDownDate - now;
-
-            // Get today's date and time
-            now = updateNow(now);
-//            console.log(now);
-            // Time calculations for days, hours, minutes and seconds
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Output the result in an element with id="demo"
-
-            $('.digital-clock').html( hours + "h "
-            + minutes + "m " + seconds + "s ");
-
-            // If the count down is over, write some text 
-            if (distance < 0) {
-              clearInterval(x);
-              $('.digital-clock').html("EXPIRED") ;
-            }
-          }
-        
-
-        function updateNow(time){
-            return time+1000;
-        }
         
         
       if ($(window).width() < 768) {
@@ -461,54 +389,9 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
         });
         
         //fungsi tambah event click di button detail bookingan pelanggan
-        function addBookBtnAction(){
-            $('.detailBookBtn').on('click', function(){
-                var id = $(this).data('id');
-                $.ajax({
-                    url: '/fargasa/sites/misc/detail-barang.php',
-                    method: 'POST',
-                    data: {
-                      id: id,
-                      booked: $(this).data("booked")
-                    },
-                    success: function(data) {
-                      $('#detailbookmodalbody').html(data);
-
-                      $('#detailbookmodal').modal("show");
-
-
-                    }
-                  });
-            });
-            
-            $('#cancelBook').on('click', function(){
-                var id = $(this).data('id');
-                if (confirm('Anda yakin ingin batal Booking ?')) {
-                    $.ajax({
-                        url: '/fargasa/sites/pelanggan/php/cancelBook.php',
-                        method: 'POST',
-                        data: {
-                          id: id
-                        },
-                        success: function(data) {
-                            $('#statInputMsg').html(data);
-                            $('.toast').toast('show');
-                            $('#cart-body').html(`
-                            <div class="row">
-                                <div class="badge badge-info w-100"><span>Anda Belum Booking</span></div>
-                            </div>`);
-                            
-                            clearInterval(x);
-                            $('.digital-clock').html("-:-:-") ;
-                        }
-                    });
-                }
-                
-            });
-        }
         
         
-      });
+        
     </script>
 
     </html>
