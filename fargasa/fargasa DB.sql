@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Jun 2021 pada 19.23
--- Versi server: 10.4.13-MariaDB
--- Versi PHP: 7.3.19
+-- Waktu pembuatan: 08 Jun 2021 pada 12.22
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.3.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -45,7 +46,8 @@ INSERT INTO `book` (`id_booking`, `id_pembelian`, `id_pelanggan`, `booking_mulai
 (48704006, 78081683, 77945793, '2021-05-20 01:31:22', '2021-05-21 01:31:22'),
 (25552675, 62841710, 77945793, '2021-05-25 19:19:55', '2021-05-26 19:19:55'),
 (48875875, 62841710, 76474836, '2021-05-25 19:22:14', '2021-05-26 19:22:14'),
-(54450723, 62841710, 20357528, '2021-05-25 19:27:11', '2021-05-26 19:27:11');
+(54450723, 62841710, 20357528, '2021-05-25 19:27:11', '2021-05-26 19:27:11'),
+(94434984, 62841710, 77945793, '2021-06-07 09:42:51', '2021-06-08 09:42:51');
 
 --
 -- Trigger `book`
@@ -124,7 +126,9 @@ CREATE TABLE `penawaran` (
   `jarak_tempuh` int(11) DEFAULT NULL,
   `jenis_bbm` text DEFAULT NULL,
   `harga` int(11) NOT NULL,
-  `gambar` text NOT NULL
+  `gambar` text NOT NULL,
+  `status` text NOT NULL DEFAULT 'menunggu',
+  `waktu` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -215,6 +219,7 @@ CREATE TABLE `user` (
   `nama` text NOT NULL,
   `username` text NOT NULL,
   `password` text NOT NULL,
+  `alamat` text NOT NULL,
   `email` text DEFAULT NULL,
   `no_hp` text NOT NULL,
   `privilege` text DEFAULT '\'pelanggan\''
@@ -224,16 +229,16 @@ CREATE TABLE `user` (
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `email`, `no_hp`, `privilege`) VALUES
-(15, 'hsuen', 'coolwolf', 'coolwolf', 'coowolf@gmail.com', '087771236822', 'staff'),
-(1001, 'DEMO', 'admin', 'admin', NULL, '123456123', 'staff'),
-(20357528, 'COST_3', 'cost3', 'costumer', '', '32165413216', 'pelanggan'),
-(40871900, 'zahra', 'zahra', 'coolwolf', '', '08777213545', 'pelanggan'),
-(63732501, 'riski', 'riski', 'riski123', '', '21312313312', 'pelanggan'),
-(71976146, 'batu', 'batu', 'babatu', '', '222555222555', 'pelanggan'),
-(74555333, 'ada', 'adaa', 'adaada', '', '123123123123', 'pelanggan'),
-(76474836, 'COST_2', 'cost2', 'costumer', '', '3216542163', 'pelanggan'),
-(77945793, 'COST_1', 'cost1', 'costumer', '', '3216543161', 'pelanggan');
+INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `alamat`, `email`, `no_hp`, `privilege`) VALUES
+(15, 'husen', 'coolwolf', 'coolwolf', '', 'coowolf@gmail.com', '087771236822', 'staff'),
+(1001, 'DEMO', 'admin', 'admin', '', NULL, '123456123', 'staff'),
+(20357528, 'COST_3', 'cost3', 'costumer', '', '', '32165413216', 'pelanggan'),
+(40871900, 'zahra', 'zahra', 'coolwolf', '', '', '08777213545', 'pelanggan'),
+(63732501, 'riski', 'riski', 'riski123', '', '', '21312313312', 'pelanggan'),
+(71976146, 'batu', 'batu', 'babatu', '', '', '222555222555', 'pelanggan'),
+(74555333, 'ada', 'adaa', 'adaada', '', '', '123123123123', 'pelanggan'),
+(76474836, 'COST_2', 'cost2', 'costumer', '', '', '3216542163', 'pelanggan'),
+(77945793, 'COST_1', 'cost1', 'costumer', 'ciputat', '', '3216543161', 'pelanggan');
 
 --
 -- Indexes for dumped tables
@@ -304,7 +309,7 @@ ALTER TABLE `log`
 -- AUTO_INCREMENT untuk tabel `penawaran`
 --
 ALTER TABLE `penawaran`
-  MODIFY `id_penawaran` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_penawaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80892822;
 
 --
 -- AUTO_INCREMENT untuk tabel `penjualan`

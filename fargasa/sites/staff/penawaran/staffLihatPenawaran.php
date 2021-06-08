@@ -32,10 +32,10 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
         <link rel="stylesheet" href="/fargasa/dist/font-awesome-4.7.0/css/font-awesome.css" />
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="/fargasa/dist/css/bootstrap.css">
-        <link rel="stylesheet" href="/fargasa/dist/DataTables/datatables.min.css">
+        <!--<link rel="stylesheet" href="/fargasa/dist/DataTables/datatables.min.css">-->
 
 
-        <title>Lihat Pembelian</title>
+        <title>Lihat Penawaran</title>
     </head>
 
     <body>
@@ -72,91 +72,6 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
         </div>
 
 
-        <!--Edit Modal-->
-        <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="EditModalLabel">Edit Data</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form class="needs-validation" novalidate id="formInput">
-                        <!-- input edit-->
-                        <div class="modal-body overflow-auto" id="EditModalBody">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <input type="hidden" name="idEdit" value="">
-                                    <label for="tipe" class="font-weight-bold">Tipe<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control live-search-input" id="tipe" placeholder="Tipe Mobil" value="" required>
-                                    <div class="list-group liveSearch" id="tipeSearch"></div>
-                                    <div class="invalid-feedback">
-                                        Tipe wajib di isi!.
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="warna" class="font-weight-bold">Warna<span class="text-danger">*</span></label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="warna" placeholder="Warna Mobil" value="" required>
-                                    <div class="invalid-feedback" style="width: 100%;">
-                                        Warna perlu di isi!.
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="mb-3">
-                                <label for="tahun" class="font-weight-bold">Tahun <span class="text-danger">*</span></label>
-                                <input type="number" class="form-control" id="tahun" placeholder="Tahun Mobil" value="" required>
-                                <div class="invalid-feedback">
-                                    Tahun perlu di isi.
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="jarakTempuh" class="font-weight-bold">Jarak Tempuh</label>
-                                <input type="number" class="form-control" id="jarakTempuh" placeholder="Jarak Tempuh Mobil" value="">
-                                <div class="invalid-feedback">
-                                    Error : Input Jarak temput bermasalah!
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="jenisBbm" class="font-weight-bold">Jenis BBM</label>
-                                <input type="text" class="form-control" id="jenisBbm" placeholder="Jenis BBM Mobil" value="">
-                                <div class="invalid-feedback">
-                                    Error : Input Jenis BBM bermasalah!
-                                </div>
-                            </div>
-
-
-
-
-                            <div class="mb-3">
-                                <label for="hrgBeli" class="font-weight-bold">Harga Beli<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control rupiah" id="hrgBeli" placeholder="Harga Beli" value="" required>
-                                <div class="invalid-feedback">
-                                    Harga Beli perlu di isi.
-                                </div>
-                            </div>
-
-                        </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" type="submit" id="submitDB" data-target="#konfirmasiModal">Save changes</button>
-                    <!--<button class="btn btn-primary btn-lg btn-block mb-5" type="submit">Simpan Data Pembelian</button>-->
-                </div>
-                </form>
-            </div>
-        </div>
-        </div>
-        <!--End of Modal-->
 
         <div class="container mb-3 mt-5">
             <div class="shadow-lg p-2">
@@ -170,12 +85,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                         </div>
 
                     </div>
-                    <div class="col order-0">
-                        <div id="action-button" class="responsive-text" style="height: 100%">
-                            <a href="staffInputPembelian.php"><button class="btn btn-outline-dark" title="Tambah Data"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Data</button></a>
 
-                        </div>
-                    </div>
                 </div>
                 <div id="filterBulan" class="border border-primary mb-2">
                     <!-- filter Bulan -->
@@ -321,7 +231,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
 
                 <!-- <div  class="scrollTable"> -->
-                <table class="table table-striped table-hover table-bordered responsive-text" id="dataPembelian" style="">
+                <table class="table table-striped table-hover table-bordered responsive-text table-responsive-md" id="dataPembelian" style="">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">Nama Penawar</th>
@@ -329,8 +239,6 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                             <th scope="col">Warna</th>
                             <th scope="col">Tahun</th>
                             <th scope="col">Harga Penawaran</th>
-                            <th scope="col">Jarak Tempuh</th>
-                            <th scope="col">Jenis_bbm</th>
                             <th scope="col">Status</th>
                             <th scope="col">Aksi</th>
                         </tr>
@@ -374,7 +282,6 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                 //                jquery start
                 //                data inisiate
                 inisiateData();
-                inisiateDataTables();
                 addActionRupiah();
                 var bulanss = [];
                 // Data Tables inisiasi
@@ -579,30 +486,6 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
             //Event click table
             function addActionButtonEvent() {
-                //edit button table
-                $('#dataPembelian > tbody > tr > td > div > .btn-action.edit').on("click", function() {
-
-                    var id = $(this).attr('data-href');
-                    var dataEdit = [];
-                    //                        debugger;
-                    $.ajax({
-                        url: 'php/editGetter.php',
-                        type: 'post',
-                        data: {
-                            id: id
-                        },
-                        success: function(response) {
-
-                            dataEdit = JSON.parse(response);
-                            setNilaiEditDialog(dataEdit);
-                        },
-                    });
-                    console.log(dataEdit);
-
-                    addActionRupiah();
-                    $('#EditModal').modal('show');
-
-                });
 
                 //                delete button table
                 $('#dataPembelian > tbody > tr > td > div > a.delete').click(function() {
@@ -684,18 +567,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
             }
 
-            function inisiateDataTables() {
-                // $("#dataPembelian").DataTable().destroy()
-                $('#dataPembelian').DataTable({
-                    "searching": false,
-                    "processing": true,
-                    "scrollY": "28rem",
-                    // "sScrollX": "100%",
-                    "scrollCollapse": true,
-                    "paging": false,
-                    "info": false
-                });
-            }
+            
 
             //Rubah input ke rupiah
             //update Chart Event
@@ -751,71 +623,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                 rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
                 return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
             }
-            //        fungsi formedit
-            (function() {
-                'use strict'
-
-                window.addEventListener('load', function() {
-                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                    var forms = document.getElementsByClassName('needs-validation')
-
-                    // Loop over them and prevent submission
-                    Array.prototype.filter.call(forms, function(form) {
-                        form.addEventListener('submit', function(event) {
-                            if (form.checkValidity() === false) {
-                                event.preventDefault()
-                                event.stopPropagation()
-                            } else {
-                                event.preventDefault()
-                                event.stopPropagation()
-                                if (confirm('Yakin edit data ini?')) {
-                                    $.post("php/editSubmitter.php", {
-                                            id: $('input[name ="idEdit"]').val(),
-                                            tipe: $('#tipe').val(),
-                                            nopol: $('#nopol').val(),
-                                            warna: $('#warna').val(),
-                                            tahun: $('#tahun').val(),
-                                            jarak_tempuh: $('#jarakTempuh').val(),
-                                            jenis_bbm: $('#jenisBbm').val(),
-                                            tglBeli: $('#tglBeli').val(),
-                                            hrgBeli: $('#hrgBeli').val(),
-                                            hrgJual: $('#hrgJual').val(),
-                                            mediator: $('#mediator').val(),
-                                            feeMediator: $('#feeMediator').val(),
-                                            pajak: $('#pajak').val(),
-                                            rekondisi: $('#rekondisi').val()
-                                            //Nanti mengembalikan kalau berhasil di edit bernilai 1 kalau gagal nilai 0
-                                        },
-                                        function(data, status) {
-                                            if (status == "success") {
-                                                //                            console.log(typeof data);
-                                                //                            console.log(data);
-                                                $('#statInputMsg').html(data);
-                                                $('#statInputMsg').toast('show');
-                                                inisiateData();
-                                                $('#EditModal').modal('hide');
-                                                $('#formInput').removeClass('was-validated');
-                                            } else {
-                                                $('#formInput').removeClass('was-validated');
-                                                alert("Error tidak bisa mengirim data!");
-                                            }
-
-                                            // alert("Data: " + data + "\nStatus: " + status);
-                                        });
-
-                                    // inisiateData();
-                                } else {
-                                    $('#formInput').removeClass('was-validated');
-                                }
-                                //TODO : Tambah event ajax masukin data edit modal ke database. lalu refresh ulang table pembelian
-
-                            }
-                            form.classList.add('was-validated')
-
-                        }, false)
-                    })
-                }, false)
-            }())
+            
         </script>
 
     </body>

@@ -22,7 +22,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
             "
                 <script>
                     alert('data berhasil diubah')
-                    document.location.href='../staffMainMenu.php';
+                    document.location.href='tampilProfile.php';
                 </script>
                 ";
         } else {

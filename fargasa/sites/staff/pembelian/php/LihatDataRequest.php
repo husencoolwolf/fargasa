@@ -10,15 +10,15 @@ $query;
 //versi lama
 if (isset($tipe)) {
     if ($tipe == 'Init') {
-        $query = "SELECT * from penawaran ";
+        $query = "SELECT * from pembelian ORDER BY tgl_beli DESC ";
     } else if ($tipe == 'search') {
         $keyword = $_GET['query'];
-        $query = "SELECT DISTINCT * from pembelian where tipe LIKE '%" . trim($keyword) . "%' OR "
-            . "warna LIKE '%" . trim($keyword) . "%' OR "
-            . "nopol LIKE '%" . trim($keyword) . "%' OR "
-            . "tahun LIKE '%" . trim($keyword) . "%' OR "
-            . "mediator LIKE '%" . trim($keyword) . "%' ORDER BY tgl_beli DESC";
-    } else if ($tipe == 'searchFilter') {
+        $query = "SELECT DISTINCT * from pembelian where tipe LIKE '%".trim($keyword)."%' OR "
+                . "warna LIKE '%".trim($keyword)."%' OR "
+                . "nopol LIKE '%".trim($keyword)."%' OR "
+                . "tahun LIKE '%".trim($keyword)."%' OR "
+                . "mediator LIKE '%".trim($keyword)."%' ORDER BY tgl_beli DESC";
+    }else if($tipe == 'searchFilter'){
         $keyword = $_GET['query'];
         $filterBulan = json_decode($_GET['bulan']);
         $filterTahun = $_GET['tahun'];
@@ -79,14 +79,14 @@ if (isset($tipe)) {
 
             $output .= '
                       <tr>
-                        <input type="hidden" value="' . $row['id_pembelian'] . '"/>
-                        <input type="hidden" value="' . $row['id_pelanggan'] . '"/>
-                        <td>' . $row['tipe'] . '</td>
-                        <td>' . $row['warna'] . '</td>
-                        <td>' . $row['tahun'] . '</td>
-
-                        <td>' . $conn->intToRupiah((int)$row['harga']) . '</td>
-                        ' . $statusBadge . '
+                        <input type="hidden" value="'.$row['id_pembelian'].'"/>
+                        <td>'.$row['tipe'].'</td>
+                        <td>'.$row['tahun'].'</td>
+                        <td>'.$row['tgl_beli'].'</td>
+                        <td>'.$row['warna'].'</td>
+                        <td>'.$row['nopol'].'</td>
+                        <td>'.$conn->intToRupiah((int)$row['hrg_beli']+(int)$row['fee_mediator']+(int)$row['pajak']+(int)$row['rekondisi']).'</td>
+                        '.$statusBadge.'
                         <td><div id="action-button" class="d-inline" style="width:100%;">
                             <a class="btn-action btn btn-dark text-white btn-sm detail" data-href="' . $row['id_pembelian'] . '" title="Detail"><i class="fa fa-eye" aria-hidden="true"></i></a>
                             <a class="btn-action btn btn-primary text-white btn-sm edit" data-href="' . $row['id_pembelian'] . '" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>

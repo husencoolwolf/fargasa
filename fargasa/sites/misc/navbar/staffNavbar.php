@@ -28,7 +28,7 @@ if (isset($_SESSION['subPage'])) {
               <div class="dropdown-menu" aria-labelledby="navbarDropdownPembelian">
                 <a class="dropdown-item <?php if ($subPage=="staffLihatPembelian") echo "active"; ?>" href="/fargasa/sites/staff/pembelian/staffLihatPembelian.php">Lihat Pembelian</a>
                 <a class="dropdown-item <?php if ($subPage=="staffInputPembelian") echo "active"; ?>" href="/fargasa/sites/staff/pembelian/staffInputPembelian.php">Input Pembelian</a>
-                <a class="dropdown-item <?php if ($subPage=="staffLihatPenawaran") echo "active"; ?>" href="/fargasa/sites/staff/pembelian/staffLihatPenawaran.php">Lihat Penawaran</a>
+                <a class="dropdown-item <?php if ($subPage=="staffLihatPenawaran") echo "active"; ?>" href="/fargasa/sites/staff/penawaran/staffLihatPenawaran.php">Lihat Penawaran</a>
               </div>
             </li>
             <li class="nav-item px-3 dropdown <?php if ($page=="penjualan") echo "active"; ?>">
