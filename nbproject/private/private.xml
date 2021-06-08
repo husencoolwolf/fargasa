@@ -3,12 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Programming%20Husen%20Nitip/xampp/htdocs/fargasa/sites/misc/landpage.php</file>
-            <file>file:/D:/Programming%20Husen%20Nitip/xampp/htdocs/fargasa/index.php</file>
             <file>file:/D:/Programming%20Husen%20Nitip/xampp/htdocs/fargasa/sites/misc/navbar/pelangganNavbar.php</file>
             <file>file:/D:/Programming%20Husen%20Nitip/xampp/htdocs/fargasa/ref/koneksi.php</file>
             <file>file:/D:/Programming%20Husen%20Nitip/xampp/htdocs/fargasa/sites/pelanggan/pelangganMainMenu.php</file>
-            <file>file:/D:/Programming%20Husen%20Nitip/xampp/htdocs/fargasa/sites/staff/pembelian/php/editGetter.php</file>
+            <file>file:/D:/Programming%20Husen%20Nitip/xampp/htdocs/fargasa/sites/pelanggan/pelangganRegister.php</file>
+            <file>file:/D:/Programming%20Husen%20Nitip/xampp/htdocs/fargasa/index.php</file>
+            <file>file:/D:/Programming%20Husen%20Nitip/xampp/htdocs/fargasa/sites/staff/pembelian/staffLihatPembelian.php</file>
+            <file>file:/D:/Programming%20Husen%20Nitip/xampp/htdocs/fargasa/sites/misc/navbar/staffNavbar.php</file>
+            <file>file:/D:/Programming%20Husen%20Nitip/xampp/htdocs/fargasa/sites/pelanggan/profil/tampilProfile.php</file>
+            <file>file:/D:/Programming%20Husen%20Nitip/xampp/htdocs/fargasa/sites/pelanggan/profil/php/editprofil.php</file>
         </group>
     </open-files>
 </project-private>

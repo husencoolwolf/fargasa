@@ -60,7 +60,7 @@ while($fetch = mysqli_fetch_array($dataSisaWaktu)){ //Fetch ke array
         <a class="nav-link" href="/fargasa/sites/pelanggan/pelangganMainMenu.php#contact">HUBUNGI KAMI</a>
       </li>
       <li class="nav-item px-3 ml-0 <?php if ($page=="PelangganInputPenawaran") echo "active"; ?>">
-        <a class="nav-link <?php if ($page=="PelangganInputPenawaran") echo "font-weight-bold"; ?>" href="/fargasa/sites/pelanggan/PelangganInputPenawaran.php">BUAT PENAWARAN</a>
+        <a class="nav-link <?php if ($page=="PelangganInputPenawaran") echo "font-weight-bold"; ?>" href="/fargasa/sites/pelanggan/penawaran/PelangganInputPenawaran.php">BUAT PENAWARAN</a>
       </li>
     </ul>
 

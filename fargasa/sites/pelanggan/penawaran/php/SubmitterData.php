@@ -7,7 +7,7 @@ session_start();
 $filename = "default.png";
 if (isset($_FILES['gambar']['name'])) {
     $filename = $_FILES['gambar']['name'];
-    $location = $_SERVER['DOCUMENT_ROOT'] . "/fargasa/assets/gambar/" . $filename;
+    $location = $_SERVER['DOCUMENT_ROOT'] . "/fargasa/assets/gambar/penawaran/" . $filename;
     move_uploaded_file($_FILES['gambar']['tmp_name'], $location);
 }
 
@@ -19,9 +19,8 @@ $id = createId(8);
 $id = checkId($con, $id);
 //      $idstok = checkId($con,$idstok);
 //
-$id_pelanggan = $_SESSION["id_pelanggan"];
+$id_pelanggan = $_SESSION["id_user"];
 $tipe = $_POST['tipe'];
-$nopol = $_POST['nopol'];
 $warna = $_POST['warna'];
 $tahun = $_POST['tahun'];
 $jarak_tempuh = $_POST['jarak_tempuh'];
@@ -29,27 +28,24 @@ $jenis_bbm = $_POST['jenis_bbm'];
 $harga = $_POST['harga'];
 $harga = $conn->rupiahToInt($harga);
 
-
-$input    = mysqli_query($con, "INSERT INTO `penawaran` ('id_penawaran', `id_pelanggan`, `tipe`, `warna`, `tahun`, `jarak_tempuh`, `jenis_bbm`, `harga`, `gambar`) 
+$query="INSERT INTO `penawaran` (`id_penawaran`, `id_pelanggan`, `tipe`, `warna`, `tahun`, `jarak_tempuh`, `jenis_bbm`, `harga`, `gambar`) 
     VALUES ('" . $id . "', "
     . "'" . $id_pelanggan . "', "
-    . "'" . $nopol . "', "
     . "'" . $tipe . "', "
     . "'" . $warna . "', "
     . "'" . $tahun . "', "
     . "'" . $jarak_tempuh . "', "
     . "'" . $jenis_bbm . "', "
     . "'" . $harga . "', "
-    . "'" . $nama . "', "
-    . "'" . $filename . "', "
-    . "NULL);");
+    . "'" . $filename . "');";
+$input    = mysqli_query($con, $query);
 
 
 if ($input) {
     //Jika Sukses
     //update stok
     echo   '<div class="toast-body alert alert-success text-center" id="isiStat" value="success">
-                  Data Telah Berhasil di Input!!!
+                  Penawaran Telah dibuat<br>Sales Kami akan menghubungi anda
                 </div>';
 } else {
     echo   '<div class="toast-body alert alert-danger text-center" id="isiStat" value="error">
@@ -58,7 +54,7 @@ if ($input) {
 }
 function checkId($con, $id2)
 {
-    $cekuser = mysqli_query($con, "SELECT id FROM user WHERE username = '$id2'");
+    $cekuser = mysqli_query($con, "SELECT id FROM penawaran WHERE id_penawaran = '$id2'");
     if (!$cekuser) {
         return $id2;
     } else {

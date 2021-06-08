@@ -7,6 +7,8 @@ $con = $conn->connect();
 session_start();
 $_SESSION['page'] = "PelangganInputPenawaran";
 $_SESSION['subPage'] = "";
+
+
 if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'pelanggan') {
 ?>
     <script language="JavaScript">
@@ -81,18 +83,24 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'pelanggan') {
                 <div class="col align-self-center order-md-1">
                     <form class="needs-validation" novalidate id="formInput">
                         <div class="row justify-content-center shadow py-3 my-4">
+                            
                             <div>
                                 <img width="100" height="100" class="img-fluid border border-dark mb-4" src="/fargasa/assets/gambar/default.png" id="imgThumbnailPreview">
                             </div>
-                            <input class="form-control" type="file" accept="image/*" name="gambar" id="gambar" onchange="previewImage('gambar','imgThumbnailPreview')" data-url="">
-                            <label class="mb-4" for="gambar">Upload Gambar</label>
-
+                            <div class="input-group">
+                                <input class="form-control" type="file" accept="image/*" name="gambar" id="gambar" onchange="previewImage('gambar','imgThumbnailPreview')" data-url="" required>
+                                <div class="invalid-feedback text-center" style="width: 100%;">
+                                    Gambar Perlu Diisi!!
+                                </div>
+                            </div>
+                            <label class="mb-4 mt-3" for="gambar"><span class="badge-pill badge-dark font-weight-bold">Upload Gambar<span class="text-white"> *</span> </span> <span class="badge-pill badge-warning">Foto Harus Terlihat Nomor Polisinya!</span></label>
+                            
                         </div>
 
                         <div class="mb-3">
-                            <label for="warna" class="font-weight-bold">Merk-Tipe Mobil<span class="text-danger">*</span></label>
+                            <label for="tipe" class="font-weight-bold">Merk/Tipe Mobil<span class="text-danger">*</span></label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="warna" placeholder="Contoh : Avanza GT-M" required>
+                                <input type="text" class="form-control" id="tipe" placeholder="Contoh : Avanza G A/T atau Avanza G M/T" required>
                                 <div class="invalid-feedback" style="width: 100%;">
                                     Tipe perlu di isi!.
                                 </div>
@@ -112,9 +120,9 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'pelanggan') {
 
                         <div class="mb-3">
                             <label for="tahun" class="font-weight-bold">Tahun Pembuatan Mobil<span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" id="tahun" placeholder="Contoh: 2018" required>
+                            <input type="number" class="form-control" id="tahun" placeholder="Contoh: 2018" max=<?=date("Y");?> min=2000 required>
                             <div class="invalid-feedback">
-                                Tahun perlu di isi.
+                                Harap Isi Tahun Dengan Benar!
                             </div>
                         </div>
 
@@ -135,13 +143,13 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'pelanggan') {
                         </div>
 
                         <div class="mb-3">
-                            <label for="harga" class="font-weight-bold">Harga <span class="text-danger">*</span></label>
+                            <label for="harga" class="font-weight-bold">Buka Harga Penawaran<span class="text-danger">*</span></label>
                             <input type="text" class="form-control rupiah" id="harga" placeholder="Harga Penawaran" required>
                         </div>
 
 
                         <hr class="mb-4">
-                        <button class="btn btn-primary btn-lg btn-block mb-5" type="submit" id="submitDB" data-target="#konfirmasiModal">Ajukan Penawaran Mobil</button>
+                        <button class="btn btn-primary btn-lg btn-block mb-5" type="submit" data-target="#konfirmasiModal">Ajukan Penawaran Mobil</button>
                     </form>
                 </div>
             </div>
@@ -182,7 +190,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'pelanggan') {
                     fd.append('tahun', $('#tahun').val());
                     fd.append('jarak_tempuh', $('#jarakTempuh').val());
                     fd.append('jenis_bbm', $('#jenisBbm').val());
-                    fd.append('harga', $('harga').val());
+                    fd.append('harga', $('#harga').val());
 
 
                     $.ajax({
@@ -198,6 +206,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'pelanggan') {
                             $('.toast').toast('show');
                             $("#formInput")[0].reset();
                             $("#formInput").removeClass('was-validated');
+                            $('#imgThumbnailPreview').attr('src', "/fargasa/assets/gambar/default.png");
 
 
                         },
@@ -302,16 +311,16 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'pelanggan') {
                             } else {
                                 event.preventDefault()
                                 event.stopPropagation()
+                                alert('aa');
 
                                 //                      console.log(document.getElementById('gambar').value);
                                 $('#KonfirmasiModalBody').load("php/getterConfirm.php", {
                                     tipe: document.getElementById('tipe').value,
-                                    nopol: document.getElementById('nopol').value,
                                     warna: document.getElementById('warna').value,
                                     tahun: document.getElementById('tahun').value,
                                     jarak_tempuh: document.getElementById('jarakTempuh').value,
                                     jenis_bbm: document.getElementById('jenisBbm').value,
-                                    harga: document.getElementById('harga').value,
+                                    harga: document.getElementById('harga').value
 
                                 });
                                 $('#KonfirmasiModal').modal('show');
