@@ -6,7 +6,7 @@ session_start();
 
 $id =$_POST['id'];
 
-$input	=mysqli_query($con,"DELETE FROM `pembelian` WHERE id_pembelian='$id'");
+$input	=mysqli_query($con,"DELETE FROM `user` WHERE id_user='$id'");
 
 if (mysqli_affected_rows($con) >=0){
 	echo '<div class="toast-body alert alert-success text-center" id="isiStat" value="success">

@@ -10,47 +10,49 @@ $(function(){
 
 	$('.needs-validation').validate({
 		rules: {
-			stok :{
+			nama :{
 				required: true,
                                 alphanumeric: true
 			},
-			mediator :{
+			username :{
 				required: true,
 				nowhitespace: true,
 				alphanumeric: true,
-					
+				remote: {
+                    url: "php/checkUsername.php",
+                    type: "post",
+                    data: {
+                      username: function() {
+                        return $( "#username" ).val();
+                      }
+                    }
+                }	
 			},
-                        sales :{
+			password :{
 				required: true,
-                                alphanumeric: true
+                alphanumeric: true,
+                strongPassword: true
 			},
-                        tglJual :{
-				required: true,
-                                alphanumeric: true
+			alamat : {
+				required: true
 			},
-                        hrg_jual :{
-				required: true,
-                                alphanumeric: true
+			email : {
+				required: false,
+				email: true,
+                    remote: {
+                        url: "php/checkEmail.php",
+                        type: "post",
+                        data: {
+                          email: function() {
+                            return $( "#email" ).val();
+                          }
+                        }
+                    }
 			},
-                        feeMediator :{
+			nope : {
 				required: true,
-                                alphanumeric: true
-			},
-                        feeSales :{
-				required: true,
-                                alphanumeric: true
-			},
-                        leas :{
-				required: true,
-                                alphanumeric: true
-			},
-                        tenor :{
-				required: true,
-                                alphanumeric: true
-			},
-                        pelanggan :{
-				required: true,
-                                alphanumeric: true
+				number: true,
+                strongNope: true
 			}
 		},
 		messages: {
@@ -62,7 +64,7 @@ $(function(){
 				required: 'Harap Isi Username!',
 				nowhitespace: 'Harap tidak menggunakan Spasi',
 				alphanumeric: 'Hanya diperkenankan huruf, angka, dan underscore',
-				remote: 'Username sudah terdaftar, jika sudah terdaftar silahkan <a href="/fargasa/index.php?action=login">Login</a>!'
+				remote: 'Username sudah terdaftar, Harap Ganti yang lain!'
 			},
 			password :{
 				required: 'Harap isi Password!',

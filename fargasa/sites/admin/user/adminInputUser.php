@@ -4,9 +4,9 @@ include $_SERVER['DOCUMENT_ROOT'] . '/fargasa/ref/koneksi.php';
 $conn = new createCon();
 $con = $conn->connect();
 session_start();
-$_SESSION['page'] = "penjualan";
-$_SESSION['subPage'] = "staffInputPenjualan";
-if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
+$_SESSION['page'] = "user";
+$_SESSION['subPage'] = "adminInputUser";
+if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'admin') {
 ?>
   <script language="JavaScript">
     alert('Session Telah Habis!!\nAnda harus login untuk mengakses halaman ini!!');
@@ -66,7 +66,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
       </div>
     </div>
     <!-- navbar -->
-    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/fargasa/sites/misc/navbar/staffNavbar.php"; ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/fargasa/sites/misc/navbar/adminNavbar.php"; ?>
 
     <h1><span class="badge badge-info mt-3 ml-3 px-5">Input Penjualan</span></h1>
     <hr>
@@ -111,127 +111,80 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
         <div class="col align-self-center order-md-1">
           <form class="needs-validation" novalidate id="formInput">
+            <!-- input edit-->
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <input type="hidden" name="idEdit" value="">
+                  <label for="nama" class="font-weight-bold">Nama<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama User" value="" required>
+                  <div class="invalid-feedback">
+                    Nama wajib di isi!.
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="username" class="font-weight-bold">Username<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="username" name="username" placeholder="Username User" value="" required>
+                  <div class="invalid-feedback">
+                    Username User wajib di isi!.
+                  </div>
+                </div>
+              </div>
 
+              <div class="mb-3">
+                <label for="password" class="font-weight-bold">Password<span class="text-danger">*</span></label>
+                
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password User" value="" required>
+                  <div class="invalid-feedback" style="width: 100%;">
+                    Password perlu di isi!.
+                  </div>
+                
+              </div>
+
+
+              <div class="mb-3">
+                <label for="alamat" class="font-weight-bold">Alamat <span class="text-danger">*</span></label>
+                <textarea type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat User" value="" required></textarea>
+                <div class="invalid-feedback">
+                  Alamat User perlu di isi.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="email" class="font-weight-bold">E-Mail</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail User" value="">
+                <div class="invalid-feedback">
+                  Error : Input E-Mail bermasalah!
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="nope" class="font-weight-bold">Nomer Telepon/HP <span class="text-danger">*</span></label>
+                <input type="number" class="form-control" id="nope" name="nope" placeholder="Nomer Telepon/HP User" value="" required>
+                <div class="invalid-feedback">
+                  Nomer Telepon/HP User perlu di isi.
+                </div>
+              </div>
+
+
+                <div class="mb-3">
+                    <label for="privilege" class="font-weight-bold">Privilege User<span class="text-danger">*</span></label>
+                    <select class="form-control" id="privilege" name="privilege" required>
+                        <option value="" disabled selected>--Pilih Privilege--</option>
+                        <option value="admin">ADMIN</option>
+                        <option value="owner">OWNER</option>
+                        <option value="staff">STAFF</option>
+                        <option value="sales">SALES</option>
+                        <option value="pelanggan">PELANGGAN</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Privilege perlu di isi.
+                    </div>
+                </div>
+                
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block mb-5" type="submit">Simpan Data Pembelian</button>
+                
             
-            <div class="mb-3">
-              <label for="stok" class="font-weight-bold">Mobil Terjual<span class="text-danger">*</span></label>
-              <div class="input-group">
-                  <select id="stok" name="stok" class="form-control" required>
-                      <option disabled selected>--Pilih Barang--</option>
-                      <option value="test">test1</option>
-                      <option value="test2">test2</option>
-                  </select>
-                <!--<input type="text" class="form-control" id="warna" placeholder="Warna Mobil" required>-->
-                <div class="invalid-feedback" style="width: 100%;">
-                  Mobil yang terjual harus di isi!
-                </div>
-              </div>
-            </div>
-
-
-            <div class="mb-3">
-              <label for="tahun" class="font-weight-bold">Tahun <span class="text-danger">*</span></label>
-              <input type="number" class="form-control" id="tahun" placeholder="Tahun Mobil" required>
-              <div class="invalid-feedback">
-                Tahun perlu di isi.
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="jarakTempuh" class="font-weight-bold">Jarak Tempuh (Optional)</label>
-              <input type="number" class="form-control" id="jarakTempuh" placeholder="Jarak Tempuh Mobil Saat Ini">
-              <div class="invalid-feedback">
-                Jarak Tempuh Mengalami Error !
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="jenisBbm" class="font-weight-bold">Jenis BBM (Optional)</label>
-              <input type="text" class="form-control" id="jenisBbm" placeholder="Jenis BBM Mobil">
-              <div class="invalid-feedback">
-                Jenis BBM Mengalami Error !
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="tglBeli" class="font-weight-bold">Tanggal Jual<span class="text-danger">*</span></label>
-              <input type="date" class="form-control" id="tglJual" placeholder="" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="hrgJual" class="font-weight-bold">Harga Jual<span class="text-danger">*</span></label>
-              <input type="text" class="form-control rupiah" id="hrgJual" placeholder="Harga Jual" required>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="mediator" class="font-weight-bold live-search-input">Mediator (Optional)</label>
-                <input type="text" class="form-control live-search-input" id="mediator" placeholder="Mediator Beli">
-                <div class="list-group liveSearch" id="mediatorSearch"></div>
-                <div class="invalid-feedback">
-                  Mediator wajib di isi!.
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="feeMediator" class="font-weight-bold">Fee Mediator (Optional)</label>
-                <input type="text" class="form-control rupiah" id="feeMediator" placeholder="Fee Mediator">
-                <div class="invalid-feedback">
-                  Fee Mediator Error!.
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="mediator" class="font-weight-bold live-search-input">Sales (Optional)</label>
-                <input type="text" class="form-control live-search-input" id="mediator" placeholder="Mediator Beli">
-                <div class="list-group liveSearch" id="mediatorSearch"></div>
-                <div class="invalid-feedback">
-                  Mediator wajib di isi!.
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="feeMediator" class="font-weight-bold">Fee Sales (Optional)</label>
-                <input type="text" class="form-control rupiah" id="feeMediator" placeholder="Fee Mediator">
-                <div class="invalid-feedback">
-                  Fee Mediator Error!.
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="pajak" class="font-weight-bold">Pajak (Optional)</label>
-              <input type="text" class="form-control rupiah" id="pajak" placeholder="Bulan Pajak">
-              <div class="invalid-feedback">
-                Pajak perlu di isi.
-              </div>
-            </div>
-
-
-            <div class="mb-3">
-              <label for="rekondisi" class="font-weight-bold">Rekondisi (Optional)</label>
-              <input type="text" class="form-control rupiah" id="rekondisi" placeholder="Biaya Rekondisi">
-              <div class="invalid-feedback">
-                rekondisi mengalami kesalahan!!!.
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="rekondisi" class="font-weight-bold">Tenor (Optional)</label>
-              <input type="text" class="form-control rupiah" id="tenor" placeholder="Biaya Rekondisi">
-            </div>
-
-            <div class="mb-3">
-              <label for="rekondisi" class="font-weight-bold">Leasing (Optional)</label>
-              <input type="text" class="form-control rupiah" id="leas" placeholder="Biaya Rekondisi">
-            </div>
-
-            <div class="mb-3">
-              <label for="rekondisi" class="font-weight-bold">Author (Optional)</label>
-              <input type="text" class="form-control rupiah" id="leas" placeholder="Biaya Rekondisi">
-            </div>
-
-            <hr class="mb-4">
-            <button class="btn btn-danger btn-lg btn-block mb-5" type="submit">Tambahkan Sebagai Terjual</button>
           </form>
         </div>
       </div>
@@ -273,24 +226,16 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
         });
 
         $('#submitDB').on('click', function() {
-          var fd = new FormData();
-          var files = $('#gambar')[0].files;
-          if (files.length > 0) {
-            fd.append('gambar', files[0]);
-          }
-          fd.append('tipe', $('#tipe').val());
-          fd.append('nopol', $('#nopol').val());
-          fd.append('warna', $('#warna').val());
-          fd.append('tahun', $('#tahun').val());
-          fd.append('jarak_tempuh', $('#jarakTempuh').val());
-          fd.append('jenis_bbm', $('#jenisBbm').val());
-          fd.append('tgl_beli', $('#tglBeli').val());
-          fd.append('hrg_beli', $('#hrgBeli').val());
-          fd.append('hrg_jual', $('#hrgJual').val());
-          fd.append('mediator', $('#mediator').val());
-          fd.append('feeMediator', $('#feeMediator').val());
-          fd.append('pajak', $('#pajak').val());
-          fd.append('rekondisi', $('#rekondisi').val());
+          var fd = new FormData();  
+            
+          fd.append('nama', $('#nama').val());
+          fd.append('username', $('#username').val());
+          fd.append('password', $('#password').val());
+          fd.append('alamat', $('#alamat').val());
+          fd.append('email', $('#email').val());
+          fd.append('nope', $('#nope').val());
+          fd.append('privilege', $('#privilege').val());
+          
 
           $.ajax({
             url: './php/SubmitterData.php',
@@ -443,6 +388,22 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
           $(this).data('url', tmppath);
         });
+        
+        $('.needs-validation').submit(function(event) {
+            event.preventDefault();
+//            alert("kocak");
+            $('#KonfirmasiModalBody').load("php/getterConfirm.php", {
+                nama: document.getElementById('nama').value,
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value,
+                alamat: document.getElementById('alamat').value,
+                email: document.getElementById('email').value,
+                nope: document.getElementById('nope').value,
+                privilege: document.getElementById('privilege').value
+
+            });
+              $('#KonfirmasiModal').modal('show');
+        });
 
 
         //end of Excel Reader upload
@@ -503,28 +464,24 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 //          // Loop over them and prevent submission
 //          Array.prototype.filter.call(forms, function(form) {
 //            form.addEventListener('submit', function(event) {
-//              if (form.checkValidity() === false) {
+//              
+//            if (form.checkValidity() === false) {
 //                event.preventDefault()
 //                event.stopPropagation()
 //              } else {
 //                event.preventDefault()
 //                event.stopPropagation()
-//
+//                
 //                //                      console.log(document.getElementById('gambar').value);
 //                $('#KonfirmasiModalBody').load("php/getterConfirm.php", {
-//                  tipe: document.getElementById('tipe').value,
-//                  nopol: document.getElementById('nopol').value,
-//                  warna: document.getElementById('warna').value,
-//                  tahun: document.getElementById('tahun').value,
-//                  jarak_tempuh: document.getElementById('jarakTempuh').value,
-//                  jenis_bbm: document.getElementById('jenisBbm').value,
-//                  tgl_beli: document.getElementById('tglBeli').value,
-//                  hrg_beli: document.getElementById('hrgBeli').value,
-//                  hrg_jual: document.getElementById('hrgJual').value,
-//                  mediator: document.getElementById('mediator').value,
-//                  feeMediator: document.getElementById('feeMediator').value,
-//                  pajak: document.getElementById('pajak').value,
-//                  rekondisi: document.getElementById('rekondisi').value
+//                  nama: document.getElementById('nama').value,
+//                  username: document.getElementById('username').value,
+//                  password: document.getElementById('password').value,
+//                  alamat: document.getElementById('alamat').value,
+//                  email: document.getElementById('email').value,
+//                  nope: document.getElementById('nope').value,
+//                  privilege: document.getElementById('privilege').value
+//                  
 //                });
 //                $('#KonfirmasiModal').modal('show');
 //              }

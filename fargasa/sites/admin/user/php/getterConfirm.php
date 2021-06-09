@@ -1,107 +1,63 @@
 <?php
-$tipe = $_POST['tipe'];
-$nopol = $_POST['nopol'];
-$warna = $_POST['warna'];
-$tahun = $_POST['tahun'];
-$jarak_tempuh= $_POST['jarak_tempuh'];
-$jenis_bbm = $_POST['jenis_bbm'];
-$tgl_beli = $_POST['tgl_beli'];
-$hrg_beli = $_POST['hrg_beli'];
-$hrg_jual = $_POST['hrg_jual'];
-$mediator = $_POST['mediator'];
-$feeMediator = $_POST['feeMediator'];
-$pajak = $_POST['pajak'];
-$rekondisi = $_POST['rekondisi'];
+$nama = $_POST['nama'];
+$username = $_POST['username'];
+$password = $_POST['password'];
+$alamat = $_POST['alamat'];
+$email = $_POST['email'];
+$nope = $_POST['nope'];
+$privilege = $_POST['privilege'];
 
 echo '<ul class="list-group mb-3">
         
 
         <li class="list-group-item list-group-item-action d-flex lh-condensed">
           <div>
-            <h6 class="my-0">'.$tipe .'</h6>
-            <small class="text-muted">Merk/Tipe Mobil</small>
+            <h6 class="my-0">'.$nama .'</h6>
+            <small class="text-muted">Nama User</small>
           </div>
         </li>
         <li class="list-group-item list-group-item-action d-flex lh-condensed">
           <div>
-            <h6 class="my-0">'.$nopol .'</h6>
-            <small class="text-muted">Nomor Polisi</small>
+            <h6 class="my-0">'.$username .'</h6>
+            <small class="text-muted">Username</small>
           </div>
         </li>
         <li class="list-group-item list-group-item-action d-flex lh-condensed">
           <div>
-            <h6 class="my-0">'.$warna .'</h6>
-            <small class="text-muted">Warna Mobik</small>
+            <h6 class="my-0">'.$password .'</h6>
+            <small class="text-muted">Password</small>
+          </div>
+          
+        </li>
+        <li class="list-group-item list-group-item-action d-flex ">
+          <div>
+            <h6 class="my-0">'.$alamat .'</h6>
+            <small class="text-muted">Alamat</small>
+          </div>
+          
+        </li>
+        <li class="list-group-item list-group-item-action d-flex ">
+          <div>
+            <h6 class="my-0">'.$email .'</h6>
+            <small>Email</small>
           </div>
           
         </li>
         <li class="list-group-item list-group-item-action d-flex bg-light">
           <div>
-            <h6 class="my-0">'.$tahun .'</h6>
-            <small>Tahun Mobil</small>
-          </div>
-          
-        </li>
-        <li class="list-group-item list-group-item-action d-flex bg-light">
-          <div>
-            <h6 class="my-0">'.$jarak_tempuh .'</h6>
-            <small>Tahun Mobil</small>
-          </div>
-          
-        </li>
-        <li class="list-group-item list-group-item-action d-flex bg-light">
-          <div>
-            <h6 class="my-0">'.$jenis_bbm .'</h6>
-            <small>Tahun Mobil</small>
+            <h6 class="my-0">'.$nope .'</h6>
+            <small>Nomer Telepon/HP</small>
           </div>
           
         </li>
         
         <li class="list-group-item list-group-item-action d-flex">
           <div>
-            <h6 class="my-0">'.$tgl_beli .'</h6>
-            <small>Tanggal Beli</small>
+            <h6 class="my-0">'.$privilege .'</h6>
+            <small>Privilege</small>
           <div>
-        </li>
-        <li class="list-group-item list-group-item-action d-flex">
-          <div>
-          <h6 class="my-0">'.$hrg_beli .'</h6>
-          <small>Harga Beli</small>
-          </div>
-        </li>
-        <li class="list-group-item list-group-item-action d-flex">
-          <div>
-          <h6 class="my-0">'.$hrg_jual .'</h6>
-          <small>Harga Jual</small>
-          </div>
         </li>
         
-
-        <li class="list-group-item list-group-item-action d-flex">
-        <div>
-          <h6 class="my-0">'.$mediator .'</h6>
-          <small>Mediator Beli</small>
-        </div>
-        </li>
-        <li class="list-group-item list-group-item-action d-flex">
-        <div>
-          <h6 class="my-0">'.$feeMediator .'</h6>
-          <small>Fee Mediator</small>
-        </div>
-        </li>
-        
-        <li class="list-group-item list-group-item-action d-flex">
-        <div>
-          <h6 class="my-0">'.$pajak .'</h6>
-          <small>Pajak</small>
-        </div>
-        </li>
-        <li class="list-group-item list-group-item-action d-flex">
-        <div>
-          <h6 class="my-0">'.$rekondisi .'</h6>
-          <small>Biaya Rekondisi</small>
-        </div>
-        </li>
       </ul>';
 
 ?>

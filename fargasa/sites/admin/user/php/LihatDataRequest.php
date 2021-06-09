@@ -13,10 +13,10 @@ if (isset($tipe)) {
         $query = "SELECT * from user ";
     } else if ($tipe == 'search') {
         $keyword = $_GET['query'];
-        $query = "SELECT DISTINCT * from user  LIKE '%" . trim($keyword) . "%' OR "
+        $query = "SELECT DISTINCT * from user where nama LIKE '%" . trim($keyword) . "%' OR "
             . "username LIKE '%" . trim($keyword) . "%' OR "
             . "email LIKE '%" . trim($keyword) . "%' OR "
-            . "prifilege LIKE '%" . trim($keyword) . "%' ";
+            . "privilege LIKE '%" . trim($keyword) . "%' ";
     }
 
 
@@ -34,12 +34,11 @@ if (isset($tipe)) {
                         <input type="hidden" value="' . $row['id_user'] . '"/>
                         <td>' . $row['nama'] . '</td>
                         <td>' . $row['username'] . '</td>
-                        <td>' . $row['password'] . '</td>
                         <td>' . $row['email'] . '</td>
                         <td>' . $row['no_hp'] . '</td>
                         <td>' . $row['privilege'] . '</td>
                         <td><div id="action-button" class="d-inline mx-1" style="width:100%;">
-                            
+                            <a class="btn-action btn btn-dark text-white btn-sm detail m-1" data-href="' . $row['id_user'] . '" title="Detail"><i class="fa fa-eye" aria-hidden="true"></i></a>
                             <a class="btn-action btn btn-primary text-white btn-sm edit m-1" data-href="' . $row['id_user'] . '" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                             <a class="btn-action btn btn-danger text-white btn-sm delete m-1" data-href="' . $row['id_user'] . '" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 

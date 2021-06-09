@@ -65,6 +65,8 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                         ...
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-success updateStatus" data-dismiss="modal" data-action="selesai">Tandai Selesai</button>
+                        <button type="button" class="btn btn-danger updateStatus" data-dismiss="modal" data-action="dibatalkan">Tandai Cancel</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -275,8 +277,6 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
             //            reg js end
         </script>
 
-        <script src="js/chartJS.js"></script>
-
         <script>
             $(document).ready(function() {
                 //                jquery start
@@ -475,6 +475,30 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                     // });
 
                 });
+                
+                
+                $('.updateStatus').click(function(){
+                    var id = $('#core-penawaran').data('id');
+                    var aksi = $(this).data('action');
+                    if (confirm('Yakin Mengganti status menjadi '+aksi+', data ini?')) {
+                        $.post("php/updateSubmitter.php", {
+                                id: id,
+                                aksi: aksi
+
+                            },
+                            function(data, status) {
+                                if (status == "success") {
+                                    $('#statInputMsg').html(data);
+                                    $('#statInputMsg').toast('show');
+                                    inisiateData();
+                                } else {
+                                    alert("Error tidak bisa mengirim data!");
+                                }
+
+                                // alert("Data: " + data + "\nStatus: " + status);
+                            });
+                    }
+                });
 
 
 
@@ -547,53 +571,14 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                     addActionButtonEvent();
 
                 });
-
-                //inisisasi filter Grafik data
-                $.get('php/TahunGetter.php', function(data) {
-                    $('#filterTahun').html('<option>SEMUA TAHUN</option>' + data);
-                    $('#filterGrafik').html(data);
-                    var dd = $('#filterGrafik');
-                    var tahunTerbaru = $('#filterGrafik > option').eq(dd.length - 1).val();
-                    // dd.val(tahunTerbaru);
-                    dd.val(tahunTerbaru);
-                    // console.log(dd.val());
-                    // console.log(tahunTerbaru);
-
-                    updateChart(tahunTerbaru);
-                    // updateChart(tahunTerbaru);
-                });
-                // console.log($('#filterGrafik').val());
-                //inisisasi chartJmlBeli data
-
             }
+               
 
             
 
             //Rubah input ke rupiah
             //update Chart Event
-            function updateChart(tahun) {
-                $.get('php/chartMaker.php?tahun=' + tahun + "&tipe=chartJmlBeli", function(data) {
-                    var result = jQuery.parseJSON(data);
-                    var masukan = result[0].split(",");
-                    chartJmlBeli.config.options.scales.yAxes[0].ticks.max = result[1] + 10 - (result[1] % 10);
-                    chartJmlBeli.data.datasets[0].data = masukan;
-                    chartJmlBeli.update();
-                });
-
-                $.get('php/chartMaker.php?tahun=' + tahun + "&tipe=chartJmlHarga", function(data) {
-                    var result = jQuery.parseJSON(data);
-                    var masukan = result[0].split(",");
-                    // debugger;
-                    for (var i = masukan.length - 1; i >= 0; i--) {
-                        masukan[i] = masukan[i] / 1000000;
-                    }
-                    var maxPerJuta = result[1] / 1000000;
-                    chartJmlHarga.config.options.scales.yAxes[0].ticks.max = maxPerJuta + 100 - (maxPerJuta % 100);
-                    // chartJmlHarga.config.options.scales.yAxes[0].ticks.max = 500;
-                    chartJmlHarga.data.datasets[0].data = masukan;
-                    chartJmlHarga.update();
-                });
-            }
+            
 
 
             function addActionRupiah() {
@@ -623,6 +608,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                 rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
                 return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
             }
+            
             
         </script>
 

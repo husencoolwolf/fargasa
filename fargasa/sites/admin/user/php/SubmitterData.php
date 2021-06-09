@@ -4,14 +4,6 @@ $conn = new createCon();
 $con = $conn->connect();
 session_start();
 
-$filename="default.png";
-if(isset($_FILES['gambar']['name'])){
-    $filename = $_FILES['gambar']['name'];
-    $location = $_SERVER['DOCUMENT_ROOT']."/fargasa/assets/gambar/".$filename;
-    move_uploaded_file($_FILES['gambar']['tmp_name'],$location);
-}
-
-
 $id = createId(8);
 //$idstok = createId(8);
 
@@ -20,60 +12,26 @@ $id = createId(8);
 //      $idstok = checkId($con,$idstok);
 //
 
-$tipe = $_POST['tipe'];
-$nopol = $_POST['nopol'];
-$warna = $_POST['warna'];
-$tahun = $_POST['tahun'];
-$jarak_tempuh = $_POST['jarak_tempuh'];
-$jenis_bbm = $_POST['jenis_bbm'];
-$tgl_beli = $_POST['tgl_beli'];
-$hrg_beli = $_POST['hrg_beli'];
-$hrg_beli = $conn->rupiahToInt($hrg_beli);
-$hrg_jual = $_POST['hrg_jual'];
-$hrg_jual = $conn->rupiahToInt($hrg_jual);
-$mediator = $_POST['mediator'];
-$feeMediator = $_POST['feeMediator'];
-$feeMediator = $conn->rupiahToInt($feeMediator);
-$pajak = $_POST['pajak'];
-$pajak = $conn->rupiahToInt($pajak);
-$rekondisi = $_POST['rekondisi'];
-$rekondisi = $conn->rupiahToInt($rekondisi);
-$nama = $_SESSION['nama'];
+$nama = $_POST['nama'];
+$username = $_POST['username'];
+$password = $_POST['password'];
+$alamat = $_POST['alamat'];
+$email = $_POST['email'];
+$nope = $_POST['nope'];
+$privilege = $_POST['privilege'];
 
-$input	= mysqli_query($con,"INSERT INTO `pembelian` (`id_pembelian`, `nopol`, `tipe`, `warna`, `tahun`, `jarak_tempuh`, `jenis_bbm`, `mediator`, `tgl_beli`, `hrg_beli`, `hrg_jual` , `fee_mediator`, `pajak`, `rekondisi`, `status`, `author`, `gambar`, `id_pelanggan`) 
+
+$input	= mysqli_query($con,"INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `alamat`, `email`, `no_hp`, `privilege`) 
     VALUES ('".$id ."', "
-        . "'".$nopol."', "
-        . "'".$tipe."', "
-        . "'".$warna."', "
-        . "'".$tahun."', "
-        . "'".$jarak_tempuh."', "
-        . "'".$jenis_bbm."', "
-        . "'".$mediator."', "
-        . "'".$tgl_beli."', "
-        . "'".$hrg_beli."', "
-        . "'".$hrg_jual."', "
-        . "'".$feeMediator."', "
-        . "'".$pajak."', "
-        . "'".$rekondisi."', "
-        . "'siap', "
         . "'".$nama."', "
-        . "'".$filename."', "
-        . "NULL);");
+        . "'".$username."', "
+        . "'".$password."', "
+        . "'".$alamat."', "
+        . "'".$email."', "
+        . "'".$nope."', "
+        . "'".$privilege."');");
 
-$input2	= mysqli_query($con,"INSERT INTO `stok` (`id_pembelian`, `nopol`, `tipe`, `warna`, `tahun`, `jarak_tempuh`, `jenis_bbm`, `hrg_jual`, `author`, `gambar`, `booked`, `id_pelanggan`) "
-        . "VALUES ('".$id."', "
-        . "'".$nopol."', "
-        . "'".$tipe."', "
-        . "'".$warna."', "
-        . "'".$tahun."', "
-        . "'".$jarak_tempuh."', "
-        . "'".$jenis_bbm."', "
-        . "'".$hrg_jual."', "
-        . "'".$nama."', "
-        . "'".$filename."', "
-        . "'0', "
-        . "NULL);");
-    if ($input && $input2) {
+    if ($input) {
         //Jika Sukses
         //update stok
         echo   '<div class="toast-body alert alert-success text-center" id="isiStat" value="success">
@@ -86,11 +44,11 @@ $input2	= mysqli_query($con,"INSERT INTO `stok` (`id_pembelian`, `nopol`, `tipe`
         
     }
 function checkId($con,$id2){
-    $cekuser = mysqli_query($con ,"SELECT id FROM user WHERE username = '$id2'");
-        if(!$cekuser){
+    $cekuser = mysqli_query($con ,"SELECT id_user FROM user WHERE id_user = '$id2'");
+        if(mysqli_num_rows($cekuser)==0){
             return $id2;
         }else{
-            $id2 = createId();
+            $id2 = createId($con,$id2);
             checkId($con,$id2);
            }
 }

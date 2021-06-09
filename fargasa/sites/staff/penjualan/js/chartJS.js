@@ -44,7 +44,7 @@
             data: {
                 labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"],
                 datasets: [{
-                    label: 'Biaya Pembelian Bulanan (Juta)',
+                    label: 'Profit Bulanan (Juta)',
                     backgroundColor: 'rgba(255, 99, 132, 0)',
                     borderColor: 'rgb(54, 162, 235)',
                     pointHoverBorderWidth: 10,

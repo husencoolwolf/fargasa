@@ -11,6 +11,12 @@ if(isset($_SESSION['privilege'])){
         header("Location: sites/staff/staffMainMenu.php");
     }elseif ($_SESSION['privilege']=='pelanggan'){
         header("Location: sites/pelanggan/pelangganMainMenu.php");
+    }elseif ($_SESSION['privilege']=='admin'){
+        header("Location: sites/admin/adminMainMenu.php");
+    }elseif ($_SESSION['privilege']=='sales'){
+        header("Location: sites/sales/salesMainMenu.php");
+    }elseif ($_SESSION['privilege']=='owner'){
+        header("Location: sites/owner/ownerMainMenu.php");
     }
     
 }else{

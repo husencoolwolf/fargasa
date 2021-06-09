@@ -6,7 +6,7 @@ $con = $conn->connect();
 session_start();
 
 $_SESSION['page'] = "user";
-$_SESSION['subPage'] = "staffLihatUser";
+$_SESSION['subPage'] = "adminLihatUser";
 if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 ?>
   <script language="JavaScript">
@@ -31,13 +31,13 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
     <link rel="stylesheet" href="/fargasa/dist/DataTables/datatables.min.css">
 
 
-    <title>Lihat Penjualan</title>
+    <title>Manage User</title>
   </head>
 
   <body>
 
     <!-- navbar -->
-    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/fargasa/sites/misc/navbar/staffNavbar.php"; ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/fargasa/sites/misc/navbar/adminNavbar.php"; ?>
 
     <!--Toast-->
     <div class="toast" id="statInputMsg" data-delay="10000">
@@ -84,110 +84,71 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <input type="hidden" name="idEdit" value="">
-                  <label for="tipe" class="font-weight-bold">Tipe<span class="text-danger">*</span></label>
-                  <input type="text" class="form-control live-search-input" id="tipe" placeholder="Tipe Mobil" value="" required>
-                  <div class="list-group liveSearch" id="tipeSearch"></div>
+                  <label for="nama" class="font-weight-bold">Nama<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="nama" placeholder="Nama User" value="" required>
                   <div class="invalid-feedback">
-                    Tipe wajib di isi!.
+                    Nama wajib di isi!.
                   </div>
                 </div>
                 <div class="col-md-6 mb-3">
-                  <label for="nopol" class="font-weight-bold">Nomor Polisi<span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="nopol" placeholder="A 0000 AAA" value="" required>
+                  <label for="username" class="font-weight-bold">Username<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="username" placeholder="Username User" value="" required>
                   <div class="invalid-feedback">
-                    Nopol wajib di isi!.
+                    Username User wajib di isi!.
                   </div>
                 </div>
               </div>
 
               <div class="mb-3">
-                <label for="warna" class="font-weight-bold">Warna<span class="text-danger">*</span></label>
+                <label for="password" class="font-weight-bold">Password<span class="text-danger">*</span></label>
                 <div class="input-group">
-                  <input type="text" class="form-control" id="warna" placeholder="Warna Mobil" value="" required>
+                  <input type="password" class="form-control" id="password" placeholder="Password User" value="" required>
                   <div class="invalid-feedback" style="width: 100%;">
-                    Warna perlu di isi!.
+                    Password perlu di isi!.
                   </div>
                 </div>
               </div>
 
 
               <div class="mb-3">
-                <label for="tahun" class="font-weight-bold">Tahun <span class="text-danger">*</span></label>
-                <input type="number" class="form-control" id="tahun" placeholder="Tahun Mobil" value="" required>
+                <label for="alamat" class="font-weight-bold">Alamat <span class="text-danger">*</span></label>
+                <textarea type="text" class="form-control" id="alamat" placeholder="Alamat User" value="" required></textarea>
                 <div class="invalid-feedback">
-                  Tahun perlu di isi.
+                  Alamat User perlu di isi.
                 </div>
               </div>
 
               <div class="mb-3">
-                <label for="jarakTempuh" class="font-weight-bold">Jarak Tempuh</label>
-                <input type="number" class="form-control" id="jarakTempuh" placeholder="Jarak Tempuh Mobil" value="">
+                <label for="email" class="font-weight-bold">E-Mail</label>
+                <input type="email" class="form-control" id="email" placeholder="E-Mail User" value="">
                 <div class="invalid-feedback">
-                  Error : Input Jarak temput bermasalah!
+                  Error : Input E-Mail bermasalah!
                 </div>
               </div>
 
               <div class="mb-3">
-                <label for="jenisBbm" class="font-weight-bold">Jenis BBM</label>
-                <input type="text" class="form-control" id="jenisBbm" placeholder="Jenis BBM Mobil" value="">
+                <label for="nope" class="font-weight-bold">Nomer Telepon/HP</label>
+                <input type="text" class="form-control" id="nope" placeholder="Nomer Telepon/HP User" value="" required>
                 <div class="invalid-feedback">
-                  Error : Input Jenis BBM bermasalah!
+                  Nomer Telepon/HP User perlu di isi.
                 </div>
               </div>
 
 
               <div class="mb-3">
-                <label for="tglJual" class="font-weight-bold">Tanggal Jual<span class="text-danger">*</span></label>
-                <input type="date" class="form-control" id="tglJual" placeholder="" value="" required>
+                <label for="privilege" class="font-weight-bold">Tanggal Jual<span class="text-danger">*</span></label>
+                <select class="form-control" id="privilege" required>
+                    <option value="admin">ADMIN</option>
+                    <option value="owner">OWNER</option>
+                    <option value="staff">STAFF</option>
+                    <option value="sales">SALES</option>
+                    <option value="pelanggan">PELANGGAN</option>
+                </select>
                 <div class="invalid-feedback">
-                  Tanggal Beli perlu di isi.
+                  Privilege perlu di isi.
                 </div>
               </div>
 
-
-
-              <div class="mb-3">
-                <label for="hrgJual" class="font-weight-bold">Harga Jual<span class="text-danger">*</span></label>
-                <input type="text" class="form-control rupiah" id="hrgJual" placeholder="Harga Jual" value="" required>
-                <div class="invalid-feedback">
-                  Harga Jual perlu di isi.
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="mediator" class="font-weight-bold live-search-input">Mediator</label>
-                  <input type="text" class="form-control live-search-input" id="mediator" placeholder="Mediator Beli" value="">
-                  <div class="list-group liveSearch" id="mediatorSearch"></div>
-                  <div class="invalid-feedback">
-                    Mediator Error!.
-                  </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="feeMediator" class="font-weight-bold">Fee Mediator</label>
-                  <input type="text" class="form-control rupiah" id="feeMediator" placeholder="Fee Mediator" value="">
-                  <div class="invalid-feedback">
-                    Fee Mediator Error!.
-                  </div>
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <label for="pajak" class="font-weight-bold">Pajak</label>
-                <input type="text" class="form-control rupiah" id="pajak" placeholder="Bulan Pajak" value="">
-                <div class="invalid-feedback">
-                  Pajak perlu di isi.
-                </div>
-              </div>
-
-
-              <div class="mb-5">
-                <label for="rekondisi" class="font-weight-bold">Rekondisi</label>
-                <input type="text" class="form-control rupiah" id="rekondisi" placeholder="Biaya Rekondisi" value="">
-                <div class="invalid-feedback">
-                  rekondisi mengalami kesalahan!!!.
-                </div>
-              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -212,6 +173,12 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
             </div>
           </div>
+          <div class="col order-0">
+                <div id="action-button" class="responsive-text" style="height: 100%">
+                    <a href="adminInputUser.php"><button class="btn btn-outline-dark" title="Tambah User"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Data</button></a>
+                    
+                </div>
+            </div>
         </div>
       </div>
 
@@ -219,15 +186,14 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
 
       <!-- <div  class="scrollTable"> -->
-      <table class="table table-striped table-hover table-bordered responsive-text" id="dataPenjualan" style="">
+      <table class="table table-striped table-hover table-bordered responsive-text table-responsive-md" id="dataPenjualan" style="">
         <thead class="thead-dark">
           <tr>
             <th scope="col">Nama</th>
             <th scope="col">Username</th>
-            <th scope="col">Password</th>
             <th scope="col">Email</th>
             <th scope="col">No Hp</th>
-            <th scope="col">Role</th>
+            <th scope="col">Privilege</th>
             <th scope="col">Aksi</th>
           </tr>
         </thead>
@@ -270,7 +236,6 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
         //                jquery start
         //                data inisiate
         inisiateData();
-        inisiateDataTables();
         addActionRupiah();
         var bulanss = [];
         // Data Tables inisiasi
@@ -489,21 +454,15 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
       function setNilaiEditDialog(data) {
 
-
         $('input[name ="idEdit"]').val(data[0]);
-        $('#tipe').val(data[1]);
-        $('#nopol').val(data[2]);
-        $('#warna').val(data[3]);
-        $('#tahun').val(data[4]);
-        $('#jarakTempuh').val(data[5]);
-        $('#jenisBbm').val(data[6]);
-        $('#tglJual').val(data[8]);
-        $('#hrgjual').val(data[9]);
-        $('#mediator').val(data[7]);
-        $('#feeMediator').val(data[10]);
-        $('#pajak').val(data[11]);
-        $('#rekondisi').val(data[12]);
-        //                    $('#gambarEdit').attr('src',data[15]);
+        $('#nama').val(data[1]);
+        $('#username').val(data[2]);
+        $('#password').val(data[3]);
+        $('#email').val(data[4]);
+        $('#nope').val(data[5]);
+        $('#privilege').val(data[6]);
+        $('#alamat').html(data[7]);
+        
       }
 
       function inisiateData() {
@@ -534,18 +493,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
       }
 
-      function inisiateDataTables() {
-        // $("#dataPenjualan").DataTable().destroy()
-        $('#dataPenjualan').DataTable({
-          "searching": false,
-          "processing": true,
-          "scrollY": "28rem",
-          // "sScrollX": "100%",
-          "scrollCollapse": true,
-          "paging": false,
-          "info": false
-        });
-      }
+      
 
       //Rubah input ke rupiah
       //update Chart Event
@@ -621,18 +569,14 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                 if (confirm('Yakin edit data ini?')) {
                   $.post("php/editSubmitter.php", {
                       id: $('input[name ="idEdit"]').val(),
-                      tipe: $('#tipe').val(),
-                      nopol: $('#nopol').val(),
-                      warna: $('#warna').val(),
-                      tahun: $('#tahun').val(),
-                      jarak_tempuh: $('#jarakTempuh').val(),
-                      jenis_bbm: $('#jenisBbm').val(),
-                      tglJual: $('#tglJual').val(),
-                      hrgJual: $('#hrgJual').val(),
-                      mediator: $('#mediator').val(),
-                      feeMediator: $('#feeMediator').val(),
-                      pajak: $('#pajak').val(),
-                      rekondisi: $('#rekondisi').val()
+                      nama: $('#nama').val(),
+                      username: $('#username').val(),
+                      password: $('#password').val(),
+                      alamat: $('#alamat').val(),
+                      email: $('#email').val(),
+                      nope: $('#nope').val(),
+                      privilege: $('#privilege').val()
+                      
                       //Nanti mengembalikan kalau berhasil di edit bernilai 1 kalau gagal nilai 0
                     },
                     function(data, status) {

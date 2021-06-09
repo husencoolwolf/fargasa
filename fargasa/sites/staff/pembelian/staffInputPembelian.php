@@ -168,7 +168,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                     <div class="invalid-feedback">
                       Jenis BBM Mengalami Error !
                     </div>
-                  </div
+                  </div>
 
 
                   <div class="mb-3">

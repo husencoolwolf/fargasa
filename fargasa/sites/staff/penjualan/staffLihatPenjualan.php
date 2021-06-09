@@ -217,7 +217,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
             <a class="nav-link active" style="cursor: pointer">Banyak Transaksi</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " style="cursor: pointer">Total Penjualan</a>
+            <a class="nav-link " style="cursor: pointer">Total Profit</a>
           </li>
           <!-- <li class="nav-item">
                 <a class="nav-link " style="cursor: pointer">Total Penjualan</a>
