@@ -457,7 +457,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
           if($(this).hasClass("disabled")){
           }else{
             var id = $('.form-control#stok').val();
-            $('#DetailModalBody').load("php/detailGetter.php", {
+            $('#DetailModalBody').load("php/detailGetterInput.php", {
                 id: id
               });
               $('#DetailModal').modal('show'); 

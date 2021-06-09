@@ -85,7 +85,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                 <div class="col-md-6 mb-3">
                   <input type="hidden" name="idEdit" value="">
                   <label for="tipe" class="font-weight-bold">Tipe<span class="text-danger">*</span></label>
-                  <input type="text" class="form-control live-search-input" id="tipe" placeholder="Tipe Mobil" value="" required>
+                  <input type="text" class="form-control live-search-input" id="tipe" placeholder="Tipe Mobil" value="" required disabled>
                   <div class="list-group liveSearch" id="tipeSearch"></div>
                   <div class="invalid-feedback">
                     Tipe wajib di isi!.
@@ -93,7 +93,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="nopol" class="font-weight-bold">Nomor Polisi<span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="nopol" placeholder="A 0000 AAA" value="" required>
+                  <input type="text" class="form-control" id="nopol" placeholder="A 0000 AAA" value="" required disabled>
                   <div class="invalid-feedback">
                     Nopol wajib di isi!.
                   </div>
@@ -103,7 +103,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
               <div class="mb-3">
                 <label for="warna" class="font-weight-bold">Warna<span class="text-danger">*</span></label>
                 <div class="input-group">
-                  <input type="text" class="form-control" id="warna" placeholder="Warna Mobil" value="" required>
+                  <input type="text" class="form-control" id="warna" placeholder="Warna Mobil" value="" required disabled>
                   <div class="invalid-feedback" style="width: 100%;">
                     Warna perlu di isi!.
                   </div>
@@ -113,25 +113,35 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
               <div class="mb-3">
                 <label for="tahun" class="font-weight-bold">Tahun <span class="text-danger">*</span></label>
-                <input type="number" class="form-control" id="tahun" placeholder="Tahun Mobil" value="" required>
+                <input type="number" class="form-control" id="tahun" placeholder="Tahun Mobil" value="" required disabled>
                 <div class="invalid-feedback">
                   Tahun perlu di isi.
                 </div>
               </div>
 
               <div class="mb-3">
-                <label for="jarakTempuh" class="font-weight-bold">Jarak Tempuh</label>
-                <input type="number" class="form-control" id="jarakTempuh" placeholder="Jarak Tempuh Mobil" value="">
+                <label for="jarakTempuh" class="font-weight-bold">Harga Jual</label>
+                <input type="text" class="form-control rupiah" id="hrgJual" placeholder="Harga Penjualan" value="" required>
                 <div class="invalid-feedback">
-                  Error : Input Jarak temput bermasalah!
+                  Harga Penjualan Harus Di isi!
                 </div>
               </div>
 
-              <div class="mb-3">
-                <label for="jenisBbm" class="font-weight-bold">Jenis BBM</label>
-                <input type="text" class="form-control" id="jenisBbm" placeholder="Jenis BBM Mobil" value="">
-                <div class="invalid-feedback">
-                  Error : Input Jenis BBM bermasalah!
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="sales" class="font-weight-bold live-search-input">Sales</label>
+                  <input type="text" class="form-control live-search-input" id="sales" placeholder="Sales Jual" value="" required>
+                  <div class="list-group liveSearch" id="salesSearch"></div>
+                  <div class="invalid-feedback">
+                    Sales Wajib diisi!.
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="feeSales" class="font-weight-bold">Fee Sales</label>
+                  <input type="text" class="form-control rupiah" id="feeSales" placeholder="Fee Sales Jual" value="">
+                  <div class="invalid-feedback">
+                    Fee Sales Error!.
+                  </div>
                 </div>
               </div>
 
@@ -140,24 +150,15 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                 <label for="tglJual" class="font-weight-bold">Tanggal Jual<span class="text-danger">*</span></label>
                 <input type="date" class="form-control" id="tglJual" placeholder="" value="" required>
                 <div class="invalid-feedback">
-                  Tanggal Beli perlu di isi.
+                  Tanggal Jual perlu di isi.
                 </div>
               </div>
 
-
-
-              <div class="mb-3">
-                <label for="hrgJual" class="font-weight-bold">Harga Jual<span class="text-danger">*</span></label>
-                <input type="text" class="form-control rupiah" id="hrgJual" placeholder="Harga Jual" value="" required>
-                <div class="invalid-feedback">
-                  Harga Jual perlu di isi.
-                </div>
-              </div>
 
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="mediator" class="font-weight-bold live-search-input">Mediator</label>
-                  <input type="text" class="form-control live-search-input" id="mediator" placeholder="Mediator Beli" value="">
+                  <input type="text" class="form-control live-search-input" id="mediator" placeholder="Mediator Jual" value="">
                   <div class="list-group liveSearch" id="mediatorSearch"></div>
                   <div class="invalid-feedback">
                     Mediator Error!.
@@ -165,27 +166,35 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="feeMediator" class="font-weight-bold">Fee Mediator</label>
-                  <input type="text" class="form-control rupiah" id="feeMediator" placeholder="Fee Mediator" value="">
+                  <input type="text" class="form-control rupiah" id="feeMediator" placeholder="Fee Mediator Jual" value="">
                   <div class="invalid-feedback">
                     Fee Mediator Error!.
                   </div>
                 </div>
               </div>
-
+                
+                <div class="mb-3">
+                    <label for="pajak" class="font-weight-bold">Leasing</label>
+                    <input type="text" class="form-control" id="leas" placeholder="Perusahaan Leasing" value="">
+                    <div class="invalid-feedback">
+                      Leasing Error!.
+                    </div>
+                </div>
+                
               <div class="mb-3">
-                <label for="pajak" class="font-weight-bold">Pajak</label>
-                <input type="text" class="form-control rupiah" id="pajak" placeholder="Bulan Pajak" value="">
+                <label for="tenor" class="font-weight-bold">Tenor</label>
+                <input type="number" class="form-control" id="tenor" placeholder="Lama Angsuran Leasing" value="">
                 <div class="invalid-feedback">
-                  Pajak perlu di isi.
+                  Tenor Error!.
                 </div>
               </div>
 
 
               <div class="mb-5">
-                <label for="rekondisi" class="font-weight-bold">Rekondisi</label>
-                <input type="text" class="form-control rupiah" id="rekondisi" placeholder="Biaya Rekondisi" value="">
+                <label for="rekondisi" class="font-weight-bold">Refund / Bunga</label>
+                <input type="text" class="form-control rupiah" id="refund" placeholder="Refund / Bunga dari Leasing" value="">
                 <div class="invalid-feedback">
-                  rekondisi mengalami kesalahan!!!.
+                  Refund mengalami kesalahan!!!.
                 </div>
               </div>
             </div>
@@ -650,7 +659,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
               setNilaiEditDialog(dataEdit);
             },
           });
-          console.log(dataEdit);
+//          console.log(dataEdit);
 
           addActionRupiah();
           $('#EditModal').modal('show');
@@ -697,14 +706,16 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
         $('#nopol').val(data[2]);
         $('#warna').val(data[3]);
         $('#tahun').val(data[4]);
-        $('#jarakTempuh').val(data[5]);
-        $('#jenisBbm').val(data[6]);
+        $('#hrgJual').val(data[5]);
+        $('#sales').val(data[6]);
+        $('#feeSales').val(data[10]);
         $('#tglJual').val(data[8]);
-        $('#hrgjual').val(data[9]);
         $('#mediator').val(data[7]);
-        $('#feeMediator').val(data[10]);
-        $('#pajak').val(data[11]);
-        $('#rekondisi').val(data[12]);
+        $('#feeMediator').val(data[9]);
+        $('#leas').val(data[11]);
+        $('#tenor').val(data[12]);
+        $('#refund').val(data[13]);
+
         //                    $('#gambarEdit').attr('src',data[15]);
       }
 
@@ -823,19 +834,16 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
                 event.stopPropagation()
                 if (confirm('Yakin edit data ini?')) {
                   $.post("php/editSubmitter.php", {
-                      id: $('input[name ="idEdit"]').val(),
-                      tipe: $('#tipe').val(),
-                      nopol: $('#nopol').val(),
-                      warna: $('#warna').val(),
-                      tahun: $('#tahun').val(),
-                      jarak_tempuh: $('#jarakTempuh').val(),
-                      jenis_bbm: $('#jenisBbm').val(),
-                      tglJual: $('#tglJual').val(),
-                      hrgJual: $('#hrgJual').val(),
-                      mediator: $('#mediator').val(),
-                      feeMediator: $('#feeMediator').val(),
-                      pajak: $('#pajak').val(),
-                      rekondisi: $('#rekondisi').val()
+                      id:  $('input[name ="idEdit"]').val(),
+                      hrgJual:  $('#hrgJual').val(),
+                      sales:  $('#sales').val(),
+                      feeSales:  $('#feeSales').val(),
+                      tglJual:  $('#tglJual').val(),
+                      mediator:  $('#mediator').val(),
+                      feeMediator:  $('#feeMediator').val(),
+                      leas:  $('#leas').val(),
+                      tenor:  $('#tenor').val(),
+                      refund:  $('#refund').val()
                       //Nanti mengembalikan kalau berhasil di edit bernilai 1 kalau gagal nilai 0
                     },
                     function(data, status) {

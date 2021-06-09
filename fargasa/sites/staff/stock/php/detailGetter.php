@@ -7,7 +7,14 @@ session_start();
 $id = $_POST['id'];
 
 $data = mysqli_query($con, "SELECT * FROM pembelian where id_pembelian='" . $id . "'");
+$dataPelanggan = mysqli_query($con, "SELECT u.nama from pembelian p
+    RIGHT JOIN book b
+        INNER JOIN user u
+        ON b.id_pelanggan=u.id_user
+    ON p.id_pembelian=b.id_pembelian 
+    where p.id_pembelian= $id AND b.booking_stop >= now()");
 $output = array();
+$pelanggan = "";
 while ($row = mysqli_fetch_array($data)) {
 /*0*/        array_push($output, $row['id_pembelian']);
 /*1*/        array_push($output, $row['tipe']);
@@ -27,7 +34,19 @@ while ($row = mysqli_fetch_array($data)) {
 /*15*/       array_push($output, $row['gambar']);
 }
 
-echo '<ul class="list-group mb-3">
+while ($row = mysqli_fetch_array($dataPelanggan)) {
+    $pelanggan .='
+        <li class="list-group-item list-group-item-action d-flex">
+        <div>
+          <h6 class="my-0">'.$row['nama'] .'</h6>
+          <small>Biaya Rekondisi</small>
+        </div>
+        </li>
+        ';
+}
+
+echo '<div><span class="badge badge-pill badge-primary mb-2">Informasi Mobil</span></div>
+    <ul class="list-group mb-3">
         
         <li class="list-group-item list-group-item-action d-flex lh-condensed">
           <div class="w-100 text-center">
@@ -120,4 +139,9 @@ echo '<ul class="list-group mb-3">
           <small>Biaya Rekondisi</small>
         </div>
         </li>
-      </ul>';
+        
+        
+      </ul>
+      <div><span class="badge badge-pill badge-primary mb-2">Informasi Pelanggan</span></div>
+      '.$pelanggan.'
+        ';

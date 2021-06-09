@@ -311,7 +311,6 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'pelanggan') {
                             } else {
                                 event.preventDefault()
                                 event.stopPropagation()
-                                alert('aa');
 
                                 //                      console.log(document.getElementById('gambar').value);
                                 $('#KonfirmasiModalBody').load("php/getterConfirm.php", {

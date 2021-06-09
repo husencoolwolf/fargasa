@@ -31,7 +31,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
     <link rel="stylesheet" href="/fargasa/dist/font-awesome-4.7.0/css/font-awesome.css"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/fargasa/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="/fargasa/dist/DataTables/datatables.min.css">
+    <!--<link rel="stylesheet" href="/fargasa/dist/DataTables/datatables.min.css">-->
     
 
     <title>Lihat Pembelian</title>
@@ -409,7 +409,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                 
            
           <!-- <div  class="scrollTable"> -->
-            <table class="table table-striped table-hover table-bordered responsive-text" id="dataPembelian" style="">
+            <table class="table table-striped table-hover table-bordered table-responsive-md" id="dataPembelian" style="">
                 <thead class="thead-dark">
                     <tr>
                       <th scope="col">Merk/Tipe</th>
@@ -442,7 +442,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
         <script src="/fargasa/dist/js/jquery-3.5.1.js"></script>
         <script src="/fargasa/dist/js/bootstrap.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-        <script src="/fargasa/dist/DataTables/datatables.min.js"></script>
+        <!--<script src="/fargasa/dist/DataTables/datatables.min.js"></script>-->
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
         
         <script>
@@ -461,7 +461,7 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
 //                jquery start
 //                data inisiate
                 inisiateData();
-                inisiateDataTables();
+//                inisiateDataTables();
                 addActionRupiah();
                 var bulanss = [];
                 // Data Tables inisiasi
@@ -763,18 +763,18 @@ if(!isset($_SESSION['username']) && $_SESSION['privilege']<>'staff'){
                   
                 }
 
-                function inisiateDataTables(){
-                  // $("#dataPembelian").DataTable().destroy()
-                  $('#dataPembelian').DataTable({
-                      "searching": false,
-                      "processing": true,
-                      "scrollY": "28rem",
-                      // "sScrollX": "100%",
-                      "scrollCollapse": true,
-                      "paging": false,
-                      "info":     false
-                  });
-                }
+//                function inisiateDataTables(){
+//                  // $("#dataPembelian").DataTable().destroy()
+//                  $('#dataPembelian').DataTable({
+//                      "searching": false,
+//                      "processing": true,
+//                      "scrollY": "28rem",
+//                      // "sScrollX": "100%",
+//                      "scrollCollapse": true,
+//                      "paging": false,
+//                      "info":     false
+//                  });
+//                }
 
         //Rubah input ke rupiah
                 //update Chart Event

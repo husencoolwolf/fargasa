@@ -31,7 +31,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
     <link rel="stylesheet" href="/fargasa/dist/DataTables/datatables.min.css">
 
 
-    <title>Lihat Penjualan</title>
+    <title>Data Pelanggan</title>
   </head>
 
   <body>

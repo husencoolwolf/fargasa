@@ -6,7 +6,7 @@ if (isset($_SESSION['subPage'])) {
 }
 ?>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="/fargasa/">
           <img class="" src="/fargasa/assets/Fargasa Logo Circle.png" alt="Dashboard">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,7 @@ if (isset($_SESSION['subPage'])) {
               </div>
             </li>
             <li class="nav-item px-3">
-              <a class="nav-link" href="#">Laporan</a>
+                <a class="nav-link" href="/fargasa/sites/staff/user/staffLihatUser.php">Data Pelanggan</a>
             </li>
           </ul>
           <ul class="navbar-nav">
