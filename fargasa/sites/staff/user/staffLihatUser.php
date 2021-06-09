@@ -219,15 +219,13 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
 
       <!-- <div  class="scrollTable"> -->
-      <table class="table table-striped table-hover table-bordered responsive-text" id="dataPenjualan" style="">
+      <table class="table table-striped table-hover table-bordered responsive-text table-responsive-md" id="dataUser" style="">
         <thead class="thead-dark">
           <tr>
             <th scope="col">Nama</th>
-            <th scope="col">Username</th>
-            <th scope="col">Password</th>
             <th scope="col">Email</th>
             <th scope="col">No Hp</th>
-            <th scope="col">Role</th>
+            <th scope="col">Alamat</th>
             <th scope="col">Aksi</th>
           </tr>
         </thead>
@@ -270,7 +268,6 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
         //                jquery start
         //                data inisiate
         inisiateData();
-        inisiateDataTables();
         addActionRupiah();
         var bulanss = [];
         // Data Tables inisiasi
@@ -291,37 +288,24 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
 
 
-        $('#Charts > div').hide();
-        $('#Charts > div').eq(0).show();
+
         //livesearch Data Penjualan
         $('.form-control#searchData').on('keyup', function() {
-          if (bulanss.length == 0 || bulanss.length == 12) {
             var tipe = "";
             if ($(this).val().length == 0) {
               tipe = "Init";
               $.get('php/LihatDataRequest.php?tipe=' + tipe, function(data) {
-                $('#dataPenjualan tbody').html(data);
+                $('#dataUser tbody').html(data);
                 addActionButtonEvent();
               });
             } else {
               tipe = "search";
               $.get('php/LihatDataRequest.php?query=' + $(this).val() + '&tipe=' + tipe, function(data) {
-                $('#dataPenjualan tbody').html(data);
+                $('#dataUser tbody').html(data);
                 addActionButtonEvent();
               });
             }
-          } else {
-            bulanss = [];
-            for (var i = 0; i < $('#filterBulan input:checked').length; i++) {
-              var data = $('#filterBulan input:checked').eq(i).val();
-              bulanss.push(data);
-            }
-            var bulan2 = JSON.stringify(bulanss);
-            $.get('php/LihatDataRequest.php?tipe=' + 'searchFilter&bulan=' + bulan2 + '&query=' + $('.form-control#searchData').val(), function(data) {
-              $('#dataPenjualan tbody').html(data);
-              addActionButtonEvent();
-            });
-          }
+          
 
 
         });
@@ -391,7 +375,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
           var bulan2 = JSON.stringify(bulanss);
           var tahun = $('#filterTahun').val();
           $.get('php/LihatDataRequest.php?tipe=' + 'searchFilter&bulan=' + bulan2 + '&query=' + $('.form-control#searchData').val() + '&tahun=' + tahun, function(data) {
-            $('#dataPenjualan tbody').html(data);
+            $('#dataUser tbody').html(data);
           });
           $('#filterBulan').toggle(function() {
             $(this).animate({
@@ -429,56 +413,9 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
       //Event click table
       function addActionButtonEvent() {
-        //edit button table
-        $('#dataPenjualan > tbody > tr > td > div > .btn-action.edit').on("click", function() {
-
-          var id = $(this).attr('data-href');
-          var dataEdit = [];
-          //                        debugger;
-          $.ajax({
-            url: 'php/editGetter.php',
-            type: 'post',
-            data: {
-              id: id
-            },
-            success: function(response) {
-
-              dataEdit = JSON.parse(response);
-              setNilaiEditDialog(dataEdit);
-            },
-          });
-          console.log(dataEdit);
-
-          addActionRupiah();
-          $('#EditModal').modal('show');
-
-        });
-
-        //                delete button table
-        $('#dataPenjualan > tbody > tr > td > div > a.delete').click(function() {
-          var ids = $(this).attr('data-href');
-          if (confirm('Yakin Menghapus data ini?')) {
-            $.post("php/deleteSubmitter.php", {
-                id: ids
-
-              },
-              function(data, status) {
-                if (status == "success") {
-                  $('#statInputMsg').html(data);
-                  $('#statInputMsg').toast('show');
-                  inisiateData();
-                } else {
-                  alert("Error tidak bisa mengirim data!");
-                }
-
-                // alert("Data: " + data + "\nStatus: " + status);
-              });
-          } else {
-            //tidak terjadi apa apa
-          }
-        });
-
-        $('#dataPenjualan > tbody > tr > td > div > a.detail').click(function() {
+        
+//detail button event
+        $('#dataUser > tbody > tr > td > div > a.detail').click(function() {
           var id = $(this).attr('data-href');
           $('#DetailModalBody').load("php/detailGetter.php", {
             id: id
@@ -487,91 +424,29 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
         });
       }
 
-      function setNilaiEditDialog(data) {
 
-
-        $('input[name ="idEdit"]').val(data[0]);
-        $('#tipe').val(data[1]);
-        $('#nopol').val(data[2]);
-        $('#warna').val(data[3]);
-        $('#tahun').val(data[4]);
-        $('#jarakTempuh').val(data[5]);
-        $('#jenisBbm').val(data[6]);
-        $('#tglJual').val(data[8]);
-        $('#hrgjual').val(data[9]);
-        $('#mediator').val(data[7]);
-        $('#feeMediator').val(data[10]);
-        $('#pajak').val(data[11]);
-        $('#rekondisi').val(data[12]);
-        //                    $('#gambarEdit').attr('src',data[15]);
-      }
 
       function inisiateData() {
         //inisiasi tabel data
         $.get('php/LihatDataRequest.php?tipe=Init', function(data) {
-          $('#dataPenjualan tbody').html(data);
+          $('#dataUser tbody').html(data);
           //                      console.log(data);
           addActionButtonEvent();
 
         });
 
-        //inisisasi filter Grafik data
-        $.get('php/TahunGetter.php', function(data) {
-          $('#filterTahun').html('<option>SEMUA TAHUN</option>' + data);
-          $('#filterGrafik').html(data);
-          var dd = $('#filterGrafik');
-          var tahunTerbaru = $('#filterGrafik > option').eq(dd.length - 1).val();
-          // dd.val(tahunTerbaru);
-          dd.val(tahunTerbaru);
-          // console.log(dd.val());
-          // console.log(tahunTerbaru);
 
-          updateChart(tahunTerbaru);
           // updateChart(tahunTerbaru);
-        });
+       
         // console.log($('#filterGrafik').val());
         //inisisasi chartJmlBeli data
 
       }
 
-      function inisiateDataTables() {
-        // $("#dataPenjualan").DataTable().destroy()
-        $('#dataPenjualan').DataTable({
-          "searching": false,
-          "processing": true,
-          "scrollY": "28rem",
-          // "sScrollX": "100%",
-          "scrollCollapse": true,
-          "paging": false,
-          "info": false
-        });
-      }
 
       //Rubah input ke rupiah
-      //update Chart Event
-      function updateChart(tahun) {
-        $.get('php/chartMaker.php?tahun=' + tahun + "&tipe=chartJmlJual", function(data) {
-          var result = jQuery.parseJSON(data);
-          var masukan = result[0].split(",");
-          chartJmlJual.config.options.scales.yAxes[0].ticks.max = result[1] + 10 - (result[1] % 10);
-          chartJmlJual.data.datasets[0].data = masukan;
-          chartJmlJual.update();
-        });
 
-        $.get('php/chartMaker.php?tahun=' + tahun + "&tipe=chartJmlHarga", function(data) {
-          var result = jQuery.parseJSON(data);
-          var masukan = result[0].split(",");
-          // debugger;
-          for (var i = masukan.length - 1; i >= 0; i--) {
-            masukan[i] = masukan[i] / 1000000;
-          }
-          var maxPerJuta = result[1] / 1000000;
-          chartJmlHarga.config.options.scales.yAxes[0].ticks.max = maxPerJuta + 100 - (maxPerJuta % 100);
-          // chartJmlHarga.config.options.scales.yAxes[0].ticks.max = 500;
-          chartJmlHarga.data.datasets[0].data = masukan;
-          chartJmlHarga.update();
-        });
-      }
+      
 
 
       function addActionRupiah() {
@@ -602,69 +477,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
         return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
       }
       //        fungsi formedit
-      (function() {
-        'use strict'
-
-        window.addEventListener('load', function() {
-          // Fetch all the forms we want to apply custom Bootstrap validation styles to
-          var forms = document.getElementsByClassName('needs-validation')
-
-          // Loop over them and prevent submission
-          Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-              if (form.checkValidity() === false) {
-                event.preventDefault()
-                event.stopPropagation()
-              } else {
-                event.preventDefault()
-                event.stopPropagation()
-                if (confirm('Yakin edit data ini?')) {
-                  $.post("php/editSubmitter.php", {
-                      id: $('input[name ="idEdit"]').val(),
-                      tipe: $('#tipe').val(),
-                      nopol: $('#nopol').val(),
-                      warna: $('#warna').val(),
-                      tahun: $('#tahun').val(),
-                      jarak_tempuh: $('#jarakTempuh').val(),
-                      jenis_bbm: $('#jenisBbm').val(),
-                      tglJual: $('#tglJual').val(),
-                      hrgJual: $('#hrgJual').val(),
-                      mediator: $('#mediator').val(),
-                      feeMediator: $('#feeMediator').val(),
-                      pajak: $('#pajak').val(),
-                      rekondisi: $('#rekondisi').val()
-                      //Nanti mengembalikan kalau berhasil di edit bernilai 1 kalau gagal nilai 0
-                    },
-                    function(data, status) {
-                      if (status == "success") {
-                        //                            console.log(typeof data);
-                        //                            console.log(data);
-                        $('#statInputMsg').html(data);
-                        $('#statInputMsg').toast('show');
-                        inisiateData();
-                        $('#EditModal').modal('hide');
-                        $('#formInput').removeClass('was-validated');
-                      } else {
-                        $('#formInput').removeClass('was-validated');
-                        alert("Error tidak bisa mengirim data!");
-                      }
-
-                      // alert("Data: " + data + "\nStatus: " + status);
-                    });
-
-                  // inisiateData();
-                } else {
-                  $('#formInput').removeClass('was-validated');
-                }
-                //TODO : Tambah event ajax masukin data edit modal ke database. lalu refresh ulang table Penjualan
-
-              }
-              form.classList.add('was-validated')
-
-            }, false)
-          })
-        }, false)
-      }())
+      
     </script>
 
   </body>
