@@ -54,6 +54,7 @@ $input	= mysqli_query($con,"INSERT INTO `penjualan` (`id_penjualan`, `id_pembeli
         . "'$id_pelanggan');");
 
 
+
     if ($input) {
         //Jika Sukses
         //update stok

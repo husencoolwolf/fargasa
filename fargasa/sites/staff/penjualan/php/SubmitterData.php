@@ -37,7 +37,6 @@ if($id_pelanggan==""){
 $feeMediator = $_POST['feeMediator'];
 
 $nama = $_SESSION['nama'];
-
 $input	= mysqli_query($con,"INSERT INTO `penjualan` (`id_penjualan`, `id_pembelian`, `mediator`, `sales`, `tgl_jual`, `hrg_jual`, `fee_mediator`, `fee_sales`, `leas`, `tenor`, `refund` , `author`, `id_pelanggan`) "
         . "VALUES ($id, "
         . "'$id_pembelian', "
@@ -52,6 +51,7 @@ $input	= mysqli_query($con,"INSERT INTO `penjualan` (`id_penjualan`, `id_pembeli
         . "'$refund', "
         . "'$nama', "
         . "'$id_pelanggan');");
+
 
 
     if ($input) {

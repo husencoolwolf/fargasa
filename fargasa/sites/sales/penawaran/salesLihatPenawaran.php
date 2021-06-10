@@ -9,7 +9,7 @@ $dataChartTotalPembelian = $conn->ChartTotalPembelianBulanan($tahunData[$indTahu
 
 session_start();
 
-$_SESSION['page'] = "pembelian";
+$_SESSION['page'] = "salesLihatPenawaran";
 $_SESSION['subPage'] = "salesLihatPenawaran";
 if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'sales') {
 ?>

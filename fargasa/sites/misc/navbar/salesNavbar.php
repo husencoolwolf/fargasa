@@ -25,8 +25,8 @@ if (isset($_SESSION['subPage'])) {
           <a class="nav-link <?php if ($page == "salesLihatPenawaran") echo "font-weight-bold"; ?>" href="/fargasa/sites/sales/penawaran/salesLihatPenawaran.php">Lihat Penawaran</a>
       </li>
 
-      <li class="nav-item px-3">
-        <a class="nav-link" href="/fargasa/sites/sales/user/salesLihatUser.php">Data Pelanggan</a>
+      <li class="nav-item <?php if ($page == "salesLihatUser") echo "active"; ?> px-3">
+        <a class="nav-link <?php if ($page == "salesLihatUser") echo "font-weight-bold"; ?>" href="/fargasa/sites/sales/user/salesLihatUser.php">Data Pelanggan</a>
       </li>
     </ul>
 

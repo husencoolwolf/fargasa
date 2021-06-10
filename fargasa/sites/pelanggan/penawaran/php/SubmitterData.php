@@ -28,7 +28,7 @@ $jenis_bbm = $_POST['jenis_bbm'];
 $harga = $_POST['harga'];
 $harga = $conn->rupiahToInt($harga);
 
-$query="INSERT INTO `penawaran` (`id_penawaran`, `id_pelanggan`, `tipe`, `warna`, `tahun`, `jarak_tempuh`, `jenis_bbm`, `harga`, `gambar`) 
+$query="INSERT INTO `penawaran` (`id_penawaran`, `id_pelanggan`, `tipe`, `warna`, `tahun`, `jarak_tempuh`, `jenis_bbm`, `harga`, `gambar`, `author`) 
     VALUES ('" . $id . "', "
     . "'" . $id_pelanggan . "', "
     . "'" . $tipe . "', "
@@ -37,7 +37,8 @@ $query="INSERT INTO `penawaran` (`id_penawaran`, `id_pelanggan`, `tipe`, `warna`
     . "'" . $jarak_tempuh . "', "
     . "'" . $jenis_bbm . "', "
     . "'" . $harga . "', "
-    . "'" . $filename . "');";
+    . "'" . $filename . "',"
+    . "'" . $_SESSION['nama'] . "');";
 $input    = mysqli_query($con, $query);
 
 

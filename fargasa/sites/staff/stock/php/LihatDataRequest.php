@@ -119,7 +119,6 @@ if (isset($tipe)) {
                         ' . $statusBadge . '
                         <td><div id="action-button" class="d-inline" style="width:100%;">
                             <a class="btn-action btn btn-dark text-white btn-sm detail" data-href="' . $row['id_pembelian'] . '" title="Detail"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                            <a class="btn-action btn btn-primary text-white btn-sm edit" data-href="' . $row['id_pembelian'] . '" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 
                         </div>
                         </td>

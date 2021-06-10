@@ -94,70 +94,11 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'sales') {
                         </div>
                     </div>
 
-                    <button class="btn btn-primary mx-auto d-flex justify-content-center detailbtn mt-5" data-toggle="modal" data-target="#detailmodal" data-id="<?= $elements["id_user"]; ?>">
-                        Ubah Data
-                    </button>
+                    
                 </div>
             </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="detailmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="tipe">Profil Pribadi</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body" id="data_pribadi">
-                            <div class="container">
-                                <div class="text-left">
-
-                                    <div class="col align-self-center order-md-1">
-                                        <form method="POST" action="">
-
-                                            <input type="hidden" name="id" value="<?= $elements["id_user"]; ?>">
-                                            <div class="mb-3">
-                                                <label for="nama" class="font-weight-bold">Nama</label>
-                                                <input type="text" class="form-control" name="nama" value="<?= $elements['nama']; ?>">
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="username" class="font-weight-bold">Username </span></label>
-                                                <input type="text" class="form-control" name="username" value="<?= $elements['username']; ?>">
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="password" class="font-weight-bold">Password</label>
-                                                <input type="password" class="form-control" name="password" value="<?= $elements['password']; ?>">
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="email" class="font-weight-bold">Email </label>
-                                                <input type="text" class="form-control" name="email" value="<?= $elements['email']; ?>">
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="no_hp" class="font-weight-bold">Nomor Telepon </span></label>
-                                                <input type="number" class="form-control" name="no_hp" value="<?= $elements['no_hp']; ?>" required>
-                                            </div>
-
-
-
-
-                                            <hr class="mb-4">
-
-                                            <button class="btn btn-primary btn-lg btn-block mb-5" type="submit" name="edit">Simpan Data</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+            
         </div>
 
         </div>

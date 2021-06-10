@@ -6,8 +6,9 @@ session_start();
 
 $id =$_POST['id'];
 $aksi = $_POST['aksi'];
-
-$input	=mysqli_query($con,"Update `penawaran` set status='$aksi' WHERE id_penawaran='$id'");
+$author = $_SESSION['nama'];
+$query="Update `penawaran` set status='$aksi', author='".$author."' WHERE id_penawaran='$id'";
+$input	=mysqli_query($con,$query);
 
 if (mysqli_affected_rows($con) >=0){
 	echo '<div class="toast-body alert alert-success text-center" id="isiStat" value="success">
@@ -15,7 +16,7 @@ if (mysqli_affected_rows($con) >=0){
                 </div>';
 }else{
 	echo '<div class="toast-body alert alert-danger text-center" id="isiStat" value="error">
-                  Upps, Ada kesalahan dalam program saat proses Menghapus data!!!<br>Silahkan Hubungi Administrator!!!<br>'.mysqli_error($con).'
+                  Upps, Ada kesalahan dalam program saat proses Update data!!!<br>Silahkan Hubungi Administrator!!!<br>'.mysqli_error($con).'
                 </div>';
 }
 ?>

@@ -22,6 +22,7 @@ $refund = $conn->rupiahToInt($refund);
 
 $input	=mysqli_query($con,"UPDATE `penjualan` SET `hrg_jual`='$hrgJual', `sales`='$sales',`fee_sales`='$feeSales', `tgl_jual`= '$tglJual', `mediator`='$mediator', `fee_mediator`='$feeMediator' , `leas`='$leas', `tenor`='$tenor', `refund`='$refund' WHERE id_penjualan='$id'");
 
+
 if (mysqli_affected_rows($con) >=0){
 	echo '<div class="toast-body alert alert-success text-center" id="isiStat" value="success">
                   Data Telah Berhasil di Edit!!!

@@ -48,17 +48,175 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'admin') {
 
 
     <div class="container mt-5">
+        <div class="row justify-content-between d-flex align-items-center">
+          <div class="col order-1">
+            <div class="form-inline my-2 float-right responsive-text">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchData">
+              <button class="btn btn-outline-primary my-2" id="filterButton" type="submit"><i class="fa fa-filter" aria-hidden="true"></i></button>
 
+            </div>
+
+          </div>
+          <div class="col order-0">
+            <div id="action-button" class="responsive-text" style="height: 100%">
+              <a href="adminInputPenjualan.php"><button class="btn btn-outline-dark" title="Tambah Data"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Data</button></a>
+
+            </div>
+          </div>
+        </div>
+        <div id="filterBulan" class="border border-primary mb-2">
+          <!-- filter Bulan -->
+          <!-- Tahun -->
+          <div class="row mt-2 mb-2 p-2">
+            <div class="col-md">
+              <div class="form-group">
+                <label for="filterTahun ml-2">Tahun</label>
+                <select class="form-control" id="filterTahun">
+                  <option>Semua Tahun</option>
+
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <!-- Bulan -->
+          <!-- Januari -->
+          <div class="row mb-2 p-2">
+            <div class="col-md">
+              <div class="form-check">
+                <input class="form-check-input filterBulan" type="checkbox" value="1" id="filter-januari">
+                <label class="form-check-label" for="filter-januari">
+                  Januari
+                </label>
+              </div>
+            </div>
+            <!-- februari -->
+            <div class="col-md">
+              <div class="form-check">
+                <input class="form-check-input filterBulan" type="checkbox" value="2" id="filter-februari">
+                <label class="form-check-label" for="filter-februari">
+                  Februari
+                </label>
+              </div>
+            </div>
+            <!-- Maret -->
+            <div class="col-md">
+              <div class="form-check">
+                <input class="form-check-input filterBulan" type="checkbox" value="3" id="filter-maret">
+                <label class="form-check-label" for="filter-maret">
+                  Maret
+                </label>
+              </div>
+            </div>
+            <!-- April -->
+            <div class="col-md">
+              <div class="form-check">
+                <input class="form-check-input filterBulan" type="checkbox" value="4" id="filter-april">
+                <label class="form-check-label" for="filter-april">
+                  April
+                </label>
+              </div>
+            </div>
+            <!-- Mei -->
+            <div class="col-md">
+              <div class="form-check">
+                <input class="form-check-input filterBulan" type="checkbox" value="5" id="filter-mei">
+                <label class="form-check-label" for="filter-mei">
+                  Mei
+                </label>
+              </div>
+            </div>
+            <!-- Juni -->
+            <div class="col-md">
+              <div class="form-check">
+                <input class="form-check-input filterBulan" type="checkbox" value="6" id="filter-juni">
+                <label class="form-check-label" for="filter-juni">
+                  Juni
+                </label>
+              </div>
+            </div>
+            <!-- end of row -->
+          </div>
+          <div class="row mb-2 p-2">
+            <!-- Juli -->
+            <div class="col-md">
+              <div class="form-check">
+                <input class="form-check-input filterBulan" type="checkbox" value="7" id="filter-juli">
+                <label class="form-check-label" for="filter-juli">
+                  Juli
+                </label>
+              </div>
+            </div>
+            <!-- Agustus -->
+            <div class="col-md">
+              <div class="form-check">
+                <input class="form-check-input filterBulan" type="checkbox" value="8" id="filter-agustus">
+                <label class="form-check-label" for="filter-agustus">
+                  Agustus
+                </label>
+              </div>
+            </div>
+            <!-- September -->
+            <div class="col-md">
+              <div class="form-check">
+                <input class="form-check-input filterBulan" type="checkbox" value="9" id="filter-september">
+                <label class="form-check-label" for="filter-september">
+                  September
+                </label>
+              </div>
+            </div>
+            <!-- Oktober -->
+            <div class="col-md">
+              <div class="form-check">
+                <input class="form-check-input filterBulan" type="checkbox" value="10" id="filter-oktober">
+                <label class="form-check-label" for="filter-oktober">
+                  Oktober
+                </label>
+              </div>
+            </div>
+            <!-- November -->
+            <div class="col-md">
+              <div class="form-check">
+                <input class="form-check-input filterBulan" type="checkbox" value="11" id="filter-november">
+                <label class="form-check-label" for="filter-november">
+                  November
+                </label>
+              </div>
+            </div>
+            <!-- Desember -->
+            <div class="col-md">
+              <div class="form-check">
+                <input class="form-check-input filterBulan" type="checkbox" value="12" id="filter-desember">
+                <label class="form-check-label" for="filter-desember">
+                  Desember
+                </label>
+              </div>
+            </div>
+            <!-- end of row 2 -->
+          </div>
+          <div class="row my-2 justify-content-between px-2">
+            <div class="col-md-auto my-2">
+              <button class="btn btn-info" id="checkedBulan">Ceklis Semua</button>
+              <button class="btn btn-secondary" id="ResetFilter">Reset</button>
+            </div>
+            <div class="col-md-auto my-2">
+              <button class="btn btn-primary" id="submitFilter">Filter</button>
+            </div>
+          </div>
+
+        </div>
 
 
 
 
       <!-- <div  class="scrollTable"> -->
-      <table class="table table-striped table-hover table-bordered responsive-text" id="dataPenjualan">
+      <table class="table table-striped table-hover table-bordered responsive-text table-responsive-md" id="dataPenjualan">
         <thead class="thead-dark">
           <tr>
             <th scope="col">Tanggal</th>
-            <th scope="col">Aktivitas</th>
+            <th scope="col">Tipe</th>
+            <th scope="col">Author</th>
+            <th scope="col">Aktifitas</th>
           </tr>
         </thead>
         <tbody class="align-middle">
@@ -98,8 +256,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'admin') {
         //                jquery start
         //                data inisiate
         inisiateData();
-        inisiateDataTables();
-        addActionRupiah();
+//        addActionRupiah();
         var bulanss = [];
         // Data Tables inisiasi
 
@@ -305,18 +462,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'admin') {
 
       }
 
-      function inisiateDataTables() {
-        // $("#dataPenjualan").DataTable().destroy()
-        $('#dataPenjualan').DataTable({
-          "searching": false,
-          "processing": true,
-          "scrollY": "28rem",
-          // "sScrollX": "100%",
-          "scrollCollapse": true,
-          "paging": false,
-          "info": false
-        });
-      }
+      
 
 
 

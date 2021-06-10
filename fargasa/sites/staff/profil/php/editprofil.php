@@ -21,11 +21,12 @@ function edit($con, $data)
     $sql = "UPDATE user SET 
      id_user  =   '$id',
      nama = '$nama', 
-     username = '$username',
      password = '$password',
      email = '$email',
      no_hp = '$no_hp' 
      WHERE id_user = '$id'";
     mysqli_query($con, $sql) or die(mysqli_error($con));
+    
+
     return mysqli_affected_rows($con);
 }

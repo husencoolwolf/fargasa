@@ -8,6 +8,7 @@ $id =$_POST['id'];
 
 $input	=mysqli_query($con,"DELETE FROM `penjualan` WHERE id_penjualan='$id'");
 
+
 if (mysqli_affected_rows($con) >=0){
 	echo '<div class="toast-body alert alert-success text-center" id="isiStat" value="success">
                   Data Telah Terhapus !!!

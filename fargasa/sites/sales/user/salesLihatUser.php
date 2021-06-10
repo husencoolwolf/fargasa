@@ -5,7 +5,7 @@ $con = $conn->connect();
 
 session_start();
 
-$_SESSION['page'] = "user";
+$_SESSION['page'] = "salesLihatUser";
 $_SESSION['subPage'] = "salesLihatUser";
 if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'sales') {
 ?>
