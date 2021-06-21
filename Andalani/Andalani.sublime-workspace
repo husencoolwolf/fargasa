@@ -328,11 +328,11 @@
 			}
 		},
 		{
-			"contents": "INSERT INTO `penjualan` (`id_penjualan`, `id_pembelian`, `mediator`, `sales`, `tgl_jual`, `hrg_jual`, `fee_mediator`, `fee_sales`, `leas`, `tenor`, `refund`, `author`, `id_pelanggan`) VALUES (NULL, '57800832', '', 'IIP', '2021-05-03', '114000000', '0', '1000000', 'BCA', '4', '0', 'hsuen', '40871900'), (NULL, '78081683', '', 'IIP', '2021-06-09', '130000000', '0', '1000000', '', '', '0', 'husen', '77945793')",
+			"file": "/C/Users/Coolwolf/Downloads/fargasa (5).sql",
 			"settings":
 			{
-				"buffer_size": 409,
-				"line_ending": "Windows"
+				"buffer_size": 11364,
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -974,8 +974,8 @@
 						"selection":
 						[
 							[
-								1614,
-								1614
+								711,
+								711
 							]
 						],
 						"settings":
@@ -985,7 +985,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 558.4,
+						"translation.y": 123.4,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -993,10 +993,11 @@
 				},
 				{
 					"buffer": 8,
+					"file": "/C/Users/Coolwolf/Downloads/fargasa (5).sql",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 409,
+						"buffer_size": 11364,
 						"regions":
 						{
 						},
@@ -1004,15 +1005,17 @@
 						[
 							[
 								0,
-								409
+								11364
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"syntax": "Packages/SQL/SQL.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 2264.60644531,
-						"translation.y": 0.0,
+						"translation.x": 0.0,
+						"translation.y": 1350.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

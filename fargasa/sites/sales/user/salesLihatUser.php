@@ -52,7 +52,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'sales') {
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="DetailModalLabel">Detail Mobil</h5>
+            <h5 class="modal-title" id="DetailModalLabel">Detail Pelanggan</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>

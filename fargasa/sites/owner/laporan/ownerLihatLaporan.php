@@ -256,7 +256,11 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'owner') {
 
 
     <div class="container mb-3">
-        <button class="btn btn-primary" id="printChart">Print</button>
+        <button class="btn btn-primary mb-3" id="printChart">Print Grafik</button>
+        <a href="php/cetak/Print Laporan.php" target="_blank"><button class="btn btn-primary mb-3" id="printLaporan">Print Laporan</button></a>
+
+        <!--<a href="php/cetak/Print Laporan.php"><button class="btn btn-primary mb-3" id="printLaporan">Print Laporan</button></a>-->
+        
       <div class="shadow-lg p-2">
         <!--border-->
         <div class="row justify-content-between d-flex align-items-center">
@@ -423,13 +427,9 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'owner') {
           <thead class="thead-dark">
             <tr>
               <th scope="col">Merk/Tipe</th>
-              <th scope="col">Tahun</th>
-              <th scope="col">Warna</th>
-              <th scope="col">Tgl Beli</th>
-              <th scope="col">Tgl Jual</th>
               <th scope="col">Nopol</th>
-              <th scope="col">Hrg Beli</th>
-              <th scope="col">Hrg Jual</th>
+              <th scope="col">Tanggal Jual</th>
+              <th scope="col">Harga Jual</th>
               <th scope="col">Aksi</th>
             </tr>
           </thead>
@@ -640,6 +640,10 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'owner') {
             window.open(blob);
 //           $('canvas#chartJmlHargaBeli').render();
 //           $('canvas#chartJmlHargaBeli').print();
+        });
+        
+        $('#printLaporan').click(function(){
+            
         });
 
 
