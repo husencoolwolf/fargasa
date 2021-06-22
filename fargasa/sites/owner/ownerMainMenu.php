@@ -4,8 +4,9 @@ date_default_timezone_set("Asia/Jakarta");
 $conn = new createCon();
 $con = $conn->connect();
 $dataStok = mysqli_query($con, "SELECT count(id_stok) as stock FROM stok");
-$dataPembelian = mysqli_query($con, "SELECT * FROM pembelian");
-$dataPenjualan = mysqli_query($con, "SELECT * FROM penjualan");
+$dataPembelian = mysqli_query($con, "SELECT id_pembelian FROM pembelian where month(tgl_beli)=".date('m'));
+$dataPenjualan = mysqli_query($con, "SELECT id_penjualan FROM penjualan where month(tgl_jual)=".date('m'));
+$dataProfit = mysqli_query($con, "SELECT(SELECT (SUM(penjualan.hrg_jual)-SUM(penjualan.fee_mediator)-SUM(penjualan.fee_sales)+SUM(penjualan.refund) - SUM(pembelian.hrg_beli)-SUM(pembelian.fee_mediator)-SUM(pembelian.pajak)-SUM(pembelian.rekondisi)) FROM penjualan INNER JOIN pembelian ON penjualan.id_pembelian=pembelian.id_pembelian where month(penjualan.tgl_jual)='".date('m')."') as profit");
 session_start();
 $_SESSION['page'] = "staffMainMenu";
 if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
@@ -45,36 +46,66 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'staff') {
 
       </div>
     </div>
+    
+    <div class="w-100 bg-light">
+        <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <!--Stok Mobil-->
+                <div class="card m-5 text-center mx-auto w-100" style="width: 18rem;  ">
+                    <div class="card-body ">
+                      <h5 class="card-title mt-4">Stok Mobil</h5>
+                      <h2 class="card-text"> <?php
+                                              while ($row = mysqli_fetch_array($dataStok)) {
+                                                echo ($row[0]);
+                                              }
+                                              ?></h2>
 
-    <div class="data d-flex justify-content-center m-5">
-      <div class="card m-5 text-center d-flex  " style="width: 18rem;  ">
-        <div class="card-body ">
-          <h5 class="card-title mt-4">Stok Mobil</h5>
-          <h2 class="card-text"> <?php
-                                  while ($row = mysqli_fetch_array($dataStok)) {
-                                    echo ($row[0]);
-                                  }
-                                  ?></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <!--Transaksi Pembelian-->
+            <div class="col-md">
+                <div class="card m-5 text-center mx-auto w-100" style="width: 18rem;  ">
+                    <div class="card-body ">
+                      <h5 class="card-title mt-4">Transaksi Pembelian Bulan Ini</h5>
+                      <h2 class="card-text"> <?= mysqli_num_rows($dataPembelian); ?></h2>
+                      <a href="/fargasa/sites/owner/pembelian/ownerLihatPembelian.php" class=" stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card m-5 text-center mx-auto w-100" style="width: 18rem;  ">
+                    <div class="card-body ">
+                      <h5 class="card-title mt-4">Transaksi Penjualan Bulan Ini</h5>
+                      <h2 class="card-text"> <?= mysqli_num_rows($dataPenjualan); ?></h2>
+                      <a href="/fargasa/sites/owner/penjualan/ownerLihatPenjualan.php" class=" stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md">
+                <div class="card m-5 text-center mx-auto w-100" style="width: 18rem;  ">
+                    <div class="card-body ">
+                      <h5 class="card-title mt-4">Profit Penjualan Bulan Ini</h5>
+                      <h2 class="card-text"> <?php $row = mysqli_fetch_array($dataProfit); echo $conn->intToRupiah($row['profit']); ?></h2>
+                      <a href="/fargasa/sites/owner/penjualan/ownerLihatPenjualan.php" class=" stretched-link"></a>
+                    </div>
+                </div>
+            </div>
 
         </div>
-      </div>
-
-      <div class="card m-5 text-center d-flex  " style="width: 18rem;  ">
-        <div class="card-body ">
-          <h5 class="card-title mt-4">Total Pembelian </h5>
-          <h2 class="card-text"> <?= mysqli_num_rows($dataPembelian); ?></h2>
-          <a href="/fargasa/sites/owner/pembelian/ownerLihatPembelian.php" class=" stretched-link"></a>
         </div>
-      </div>
-
-      <div class="card m-5 text-center d-flex  " style="width: 18rem;  ">
-        <div class="card-body ">
-          <h5 class="card-title mt-4">Total Penjualan</h5>
-          <h2 class="card-text"> <?= mysqli_num_rows($dataPenjualan); ?></h2>
-          <a href="/fargasa/sites/owner/penjualan/ownerLihatPenjualan.php" class=" stretched-link"></a>
-        </div>
-      </div>
     </div>
+      
+
+      
+
+      
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="/fargasa/dist/js/jquery-3.5.1.js"></script>
     <script src="/fargasa/dist/js/bootstrap.js"></script>

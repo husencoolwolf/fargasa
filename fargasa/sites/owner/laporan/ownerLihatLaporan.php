@@ -631,10 +631,19 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'owner') {
         });
 
         $('#printChart').click(function(){
-             var canvas = document.querySelector("canvas#chartJmlHargaBeli");
-            var canvas_img = canvas.toDataURL("image/png",1.0); //JPEG will not match background color
+             var canvas1 = document.querySelector("canvas#chartJmlJual");
+            var canvas_img1 = canvas1.toDataURL("image/png",1.0); //JPEG will not match background color
+            var canvas2 = document.querySelector("canvas#chartJmlHarga");
+            var canvas_img2 = canvas2.toDataURL("image/png",1.0);
+            var canvas3 = document.querySelector("canvas#chartJmlHargaBeli");
+            
+            var canvas_img3 = canvas3.toDataURL("image/png",1.0);
             var pdf = new jsPDF('landscape','in', 'letter'); //orientation, units, page size
-            pdf.addImage(canvas_img, 'png', .5, 1.75, 10, 5); //image, type, padding left, padding top, width, height
+            pdf.addImage(canvas_img1, 'png', .5, 1.75, 10, 5); //image, type, padding left, padding top, width, height
+            pdf.addPage();
+            pdf.addImage(canvas_img2, 'png', .5, 1.75, 10, 5);
+            pdf.addPage();
+            pdf.addImage(canvas_img3, 'png', .5, 1.75, 10, 5);
             pdf.autoPrint(); //print window automatically opened with pdf
             var blob = pdf.output("bloburl");
             window.open(blob);
