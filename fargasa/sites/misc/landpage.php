@@ -209,15 +209,16 @@ foreach($stok as $x){
   <div class="container py-5 " style=" max-width: 100%;">
     <section id="contact">
       <h4 style="text-align: center; font-family: Glegoo,serif; font-size:40px">CONTACT US AT</h4>
-        <div class="row " style="text-align: center; ">
-            <div class="col-md my-1 mx-1 pt-3">
-                <div class="row text-center" style="background-color: green; border-radius: 20px;  min-width: 100px;">
-                    <a href="#" class="fa fa-whatsapp" aria-hidden="true" style="text-decoration: none; font-size: 30px; color:white;">Alam </a>
-                    <p style="color:white; font-size: 1vw;">Senior Sales Fargasa</p>
+        <div class="row" style="text-align: center; ">
+            <div class="col-md my-1 mx-1 pt-3 my-auto">
+                <div class="row text-center">
+                    <button class="btn btn-success w-100 m-4 rounded rounded-pill btn-wa"> <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                        Alam<span><p style="color:white; font-size: 1vw;">Senior Sales Fargasa</p></span></button>
+
                 </div>
-                <div class="row text-center" style="background-color: green; border-radius: 20px;  min-width: 100px;">
-                    <a href="#" class="fa fa-whatsapp" aria-hidden="true" style="text-decoration: none; font-size: 30px; color:white;">Ninit</a>
-                    <p style="color:white; font-size: 1vw;">CEO Fargasa</p>
+                <div class="row text-center">
+                    <button class="btn btn-success w-100 m-4 rounded rounded-pill btn-wa"> <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                        Renita<span><p style="color:white; font-size: 1vw;">CEO Fargasa</p></span></button>
                 </div>
             </div>
             <div class="col-md my-1 mx-1 pt-3">
@@ -234,6 +235,13 @@ foreach($stok as $x){
       <a href=""> Alibaba Group</a>
     </div>
   </footer>
+  <style>
+      .btn-wa{
+          background-color: green
+      }.btn-wa:hover{
+          background-color: rgb(14, 173, 5);
+      }
+  </style>
   <script src="/fargasa/dist/js/jquery-3.5.1.js"></script>
   <script src="/fargasa/dist/js/bootstrap.js"></script>
 </body>

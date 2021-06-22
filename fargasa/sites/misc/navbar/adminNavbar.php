@@ -17,9 +17,6 @@ if (isset($_SESSION['subPage'])) {
             <li class='nav-item <?php if ($page=="adminMainMenu") echo "active"; ?>'>
               <a class="nav-link <?php if ($page=="adminMainMenu") echo "font-weight-bold"; ?>" href="/fargasa/">Dashboard</a>
             </li>
-            <li class="nav-item <?php if ($page == "logactivity") echo "active"; ?> px-3">
-                <a class="nav-link <?php if ($page == "logactivity") echo "font-weight-bold"; ?>" href="/fargasa/sites/admin/log/logactivity.php">Log Aktivitas</a>
-            </li>
             
             <li class="nav-item <?php if ($page=="adminCekStok") echo "active"; ?> px-3">
                 <a class="nav-link <?php if ($page=="adminCekStok") echo "font-weight-bold"; ?>" href="/fargasa/sites/admin/stock/adminLihatStock.php">Cek Stok</a>

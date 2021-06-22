@@ -238,25 +238,29 @@ if(!isset($_SESSION['username']) && $_SESSION['pelanggan']<>'staff'){
         </section>
 
       <!-- Contact -->
-      <section id="contact">
       <div class="container py-5 " style=" max-width: 100%;">
-        
+        <section id="contact">
           <h4 style="text-align: center; font-family: Glegoo,serif; font-size:40px">CONTACT US AT</h4>
-          <div class="container  w-50">
-            <div class="row " style="text-align: center; ">
-              <div class="col my-1 mx-1 pt-3 " style="background-color: green; border-radius: 20px;  min-width: 100px;">
-                <a href="" class="fa fa-whatsapp" aria-hidden="true" style="text-decoration: none; font-size: 30px; color:white;">Alam </a>
-                <p style="color:white; font-size: 1vw;">Senior Sales Fargasa</p>
-              </div>
-              <div class="col my-1 mx-1 pt-3" style="background-color: green; border-radius: 20px;  min-width: 100px;">
-                <a href="" class="fa fa-whatsapp" aria-hidden="true" style="text-decoration: none; font-size: 30px; color:white;">Ninit</a>
-                <p style="color:white; font-size: 1vw;">CEO Fargasa</p>
-              </div>
-            </div>
+            <div class="row" style="text-align: center; ">
+                <div class="col-md my-1 mx-1 pt-3 my-auto">
+                    <div class="row text-center">
+                        <button class="btn btn-success w-100 m-4 rounded rounded-pill btn-wa"> <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                            Alam<span><p style="color:white; font-size: 1vw;">Senior Sales Fargasa</p></span></button>
+
+                    </div>
+                    <div class="row text-center">
+                        <button class="btn btn-success w-100 m-4 rounded rounded-pill btn-wa"> <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                            Renita<span><p style="color:white; font-size: 1vw;">CEO Fargasa</p></span></button>
+                    </div>
+                </div>
+                <div class="col-md my-1 mx-1 pt-3">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d991.9363610246983!2d106.07542542916208!3d-6.0296340997270645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e418d54e2d91d2d%3A0x33178893f5540c59!2sShow%20Room%20Fargasa%20Mobilindo!5e0!3m2!1sid!2sid!4v1624358803962!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
 
           </div>
-      </div>
         </section>
+      </div>
 
       <footer style="background-color: black;">
         <div class="footer-copyright text-center py-3">© 2021 Copyright:
