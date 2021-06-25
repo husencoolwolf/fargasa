@@ -33,13 +33,13 @@ while ($row = mysqli_fetch_array($data)) {
 /*14*/       array_push($output, $row['status']);
 /*15*/       array_push($output, $row['gambar']);
 }
-
+$i=1;
 while ($row = mysqli_fetch_array($dataPelanggan)) {
     $pelanggan .='
         <li class="list-group-item list-group-item-action d-flex">
         <div>
           <h6 class="my-0">'.$row['nama'] .'</h6>
-          <small>Biaya Rekondisi</small>
+          <small>Pelanggan '.$i++.'</small>
         </div>
         </li>
         ';

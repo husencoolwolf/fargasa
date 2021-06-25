@@ -278,16 +278,8 @@
 			"file": "/C/xampp/htdocs/fargasa/sites/misc/landpage.php",
 			"settings":
 			{
-				"buffer_size": 10660,
+				"buffer_size": 12194,
 				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/xampp/htdocs/fargasa/sites/staff/penjualan/php/LihatDataRequest.php",
-			"settings":
-			{
-				"buffer_size": 7287,
 				"line_ending": "Windows"
 			}
 		},
@@ -313,7 +305,7 @@
 			"file": "/C/xampp/htdocs/fargasa/sites/pelanggan/pelangganMainMenu.php",
 			"settings":
 			{
-				"buffer_size": 16169,
+				"buffer_size": 16631,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -336,11 +328,28 @@
 			}
 		},
 		{
-			"file": "/C/xampp/htdocs/fargasa/sites/pelanggan/css/style.css",
+			"contents": "=IF(ISBLANK([@NOPOL]),\"\",IFERROR(INDEX('../../Fargasa Book 2021.xlsx'!SaleJuni[REFUND BUNGA / ASURANSI],MATCH([@NOPOL],'../../Fargasa Book 2021.xlsx'!SaleJuni[NOPOL],0)),\"Nopol Salah!!!\"))\n=IF(ISBLANK([@NOPOL]),\"\",IFERROR(INDEX('C:\\Pembukuan-Fargasa\\Fargasa Book 2021.xlsx'!SaleMei[REFUND BUNGA / ASURANSI],MATCH([@NOPOL],'C:\\Pembukuan-Fargasa\\Fargasa Book 2021.xlsx'!SaleMei[NOPOL],0)),\"Nopol Salah!!!\"))",
 			"settings":
 			{
-				"buffer_size": 404,
+				"buffer_size": 405,
+				"line_ending": "Windows",
+				"name": "=IF(ISBLANK([@NOPOL]),\"\",IFERROR(INDEX('../../Farg"
+			}
+		},
+		{
+			"file": "/C/xampp/htdocs/fargasa/sites/admin/adminMainMenu.php",
+			"settings":
+			{
+				"buffer_size": 5131,
 				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/xampp/htdocs/fargasa/sites/owner/ownerMainMenu.php",
+			"settings":
+			{
+				"buffer_size": 5150,
 				"line_ending": "Windows"
 			}
 		},
@@ -469,15 +478,16 @@
 	[
 		"/C/xampp/htdocs",
 		"/C/xampp/htdocs/fargasa",
+		"/C/xampp/htdocs/fargasa/dist",
+		"/C/xampp/htdocs/fargasa/dist/css",
 		"/C/xampp/htdocs/fargasa/sites",
-		"/C/xampp/htdocs/fargasa/sites/staff",
-		"/C/xampp/htdocs/fargasa/sites/staff/pembelian",
-		"/C/xampp/htdocs/fargasa/sites/staff/pembelian/css",
-		"/C/xampp/htdocs/fargasa/sites/staff/penjualan",
-		"/C/xampp/htdocs/fargasa/sites/staff/penjualan/php"
+		"/C/xampp/htdocs/fargasa/sites/misc",
+		"/C/xampp/htdocs/fargasa/sites/pelanggan"
 	],
 	"file_history":
 	[
+		"/C/xampp/htdocs/fargasa/dist/css/style-index.css",
+		"/C/xampp/htdocs/fargasa/sites/pelanggan/css/style.css",
 		"/C/xampp/htdocs/fargasa/sites/staff/stock/php/LihatDataRequest.php",
 		"/C/xampp/htdocs/fargasa/sites/pelanggan/js/validatorRegister.js",
 		"/C/xampp/htdocs/fargasa/sites/pelanggan/pelangganRegister.php",
@@ -543,7 +553,7 @@
 	],
 	"find":
 	{
-		"height": 24.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
@@ -557,6 +567,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"topJumpBtn",
+			"C:\\Pembukuan-Fargasa\\Fargasa Book 2021.xlsx",
 			"foreac",
 			"fetch",
 			"toast",
@@ -676,6 +688,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"../../Fargasa Book 2021.xlsx",
+			"../../Pembukuan-Fargasa\\Fargasa Book 2021.xlsx",
+			"..\\Pembukuan-Fargasa\\Fargasa Book 2021.xlsx",
 			"SaleApril",
 			"..\\Pembukuan-Fargasa/Fargasa Book 2021.xlsx",
 			"..\\Fargasa Book 2021.xlsx",
@@ -749,7 +764,7 @@
 	"groups":
 	[
 		{
-			"selected": 8,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -778,7 +793,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -808,7 +823,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
@@ -817,15 +832,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10660,
+						"buffer_size": 12194,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								11956,
+								11956
 							]
 						],
 						"settings":
@@ -835,44 +850,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 4920.8,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "/C/xampp/htdocs/fargasa/sites/staff/penjualan/php/LihatDataRequest.php",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 7287,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 435.2,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
 					"file": "/C/xampp/htdocs/fargasa/sites/misc/navbar/landpageNavbar.php",
 					"semi_transient": false,
 					"settings":
@@ -898,11 +883,11 @@
 						"translation.y": 584.8,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 4,
 					"file": "/C/xampp/htdocs/fargasa/ref/koneksi.php",
 					"semi_transient": false,
 					"settings":
@@ -928,24 +913,24 @@
 						"translation.y": 568.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 5,
 					"file": "/C/xampp/htdocs/fargasa/sites/pelanggan/pelangganMainMenu.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 16169,
+						"buffer_size": 16631,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								16484,
+								16287
 							]
 						],
 						"settings":
@@ -955,14 +940,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 39.2,
+						"translation.y": 6667.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 6,
 					"file": "/C/Users/Coolwolf/Documents/pelangganNavbar.php",
 					"semi_transient": false,
 					"settings":
@@ -985,14 +970,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 123.4,
+						"translation.y": 123.2,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 7,
 					"file": "/C/Users/Coolwolf/Downloads/fargasa (5).sql",
 					"semi_transient": false,
 					"settings":
@@ -1015,42 +1000,102 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1350.0,
+						"translation.y": 1350.4,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
-					"file": "/C/xampp/htdocs/fargasa/sites/pelanggan/css/style.css",
+					"buffer": 8,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 404,
+						"buffer_size": 405,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
+								188,
 								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax"
+							"auto_name": "=IF(ISBLANK([@NOPOL]),\"\",IFERROR(INDEX('../../Farg",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/C/xampp/htdocs/fargasa/sites/admin/adminMainMenu.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5131,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2045,
+								2045
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1800.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 10,
+					"file": "/C/xampp/htdocs/fargasa/sites/owner/ownerMainMenu.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5150,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								163,
+								850
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
 					"file": "/C/xampp/htdocs/fargasa/sites/pelanggan/php/booking.php",
 					"semi_transient": false,
 					"settings":
@@ -1074,11 +1119,11 @@
 						"translation.y": 192.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 12,
 					"file": "/C/xampp/htdocs/fargasa/sites/misc/detail-barang.php",
 					"semi_transient": false,
 					"settings":
@@ -1102,7 +1147,7 @@
 						"translation.y": 44.8,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 12,
 					"type": "text"
 				}
 			]

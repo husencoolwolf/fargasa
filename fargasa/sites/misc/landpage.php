@@ -228,6 +228,15 @@ foreach($stok as $x){
 
       </div>
     </section>
+          <!-- Top Scroll Button -->
+          <button type="button" id="topJumpBtn" class="btn btn-primady border border-dark rounded-circle">
+              <span class="fa fa-chevron-up align-middle" role="button">
+                  <!-- <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+                  </svg> -->
+              </span>
+          </button>
+          <!-- end of Top Scroll Button -->
   </div>
 
   <footer style="background-color: black;">
@@ -271,6 +280,13 @@ foreach($stok as $x){
           $('#detailmodal').modal("show");
         }
       });
+    });
+
+    $('#topJumpBtn').each(function(){
+        $(this).click(function(){ 
+            $('html,body').animate({ scrollTop: 0 }, 'slow');
+            return false; 
+        });
     });
   })
 </script>
