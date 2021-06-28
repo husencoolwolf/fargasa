@@ -4,8 +4,8 @@ date_default_timezone_set("Asia/Jakarta");
 $conn = new createCon();
 $con = $conn->connect();
 $dataStok = mysqli_query($con, "SELECT count(id_stok) as stock FROM stok");
-$dataPembelian = mysqli_query($con, "SELECT COUNT(*) FROM pembelian");
-$dataPenjualan = mysqli_query($con, "SELECT COUNT(*) FROM penjualan");
+$dataPenawaran = mysqli_query($con, "SELECT id_penawaran FROM penawaran where status='menunggu'");
+$dataBooking = mysqli_query($con, "SELECT booking_stop FROM book where booking_stop >= now()");
 session_start();
 $_SESSION['page'] = "staffMainMenu";
 if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'sales') {
@@ -46,34 +46,50 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'sales') {
       </div>
     </div>
 
-    <div class="data d-flex justify-content-center m-5">
-      <div class="card m-5 text-center d-flex  " style="width: 18rem;  ">
-        <div class="card-body ">
-          <h5 class="card-title mt-4">Stok Mobil</h5>
-          <h2 class="card-text"> <?php
-                                  while ($row = mysqli_fetch_array($dataStok)) {
-                                    echo ($row[0]);
-                                  }
-                                  ?></h2>
-          <a href="/fargasa/sites/sales/stock/salesLihatStock.php" class="stretched-link cad"></a>
+    <div class="w-100 bg-light">
+        <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <!--Stok Mobil-->
+                <div class="card m-5 text-center mx-auto w-100" style="width: 18rem;  ">
+                    <div class="card-body ">
+                      <h5 class="card-title mt-4">Stok Mobil</h5>
+                      <h2 class="card-text"> <?php
+                                              while ($row = mysqli_fetch_array($dataStok)) {
+                                                echo ($row[0]);
+                                              }
+                                              ?></h2>
+                      <a href="/fargasa/sites/sales/stock/salesLihatStock.php" class=" stretched-link"></a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <div class="card m-5 text-center d-flex  " style="width: 18rem;  ">
-        <div class="card-body ">
-          <h5 class="card-title mt-4">Total Pembelian </h5>
-          <h2 class="card-text"> <?= mysqli_num_rows($dataPembelian); ?></h2>
+
+        <div class="row">
+            <!--Transaksi Pembelian-->
+            <div class="col-md">
+                <div class="card m-5 text-center mx-auto w-100" style="width: 18rem;  ">
+                    <div class="card-body ">
+                      <h5 class="card-title mt-4">Penawaran Menunggu</h5>
+                      <h2 class="card-text"> <?= mysqli_num_rows($dataPenawaran); ?></h2>
+                      <a href="/fargasa/sites/sales/penawaran/salesLihatPenawaran.php" class=" stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card m-5 text-center mx-auto w-100" style="width: 18rem;  ">
+                    <div class="card-body ">
+                      <h5 class="card-title mt-4">Pelanggan Booking</h5>
+                      <h2 class="card-text"> <?= mysqli_num_rows($dataBooking); ?></h2>
+                      <a href="/fargasa/sites/sales/stock/salesLihatStock.php" class=" stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+            
 
         </div>
-      </div>
-
-      <div class="card m-5 text-center d-flex  " style="width: 18rem;  ">
-        <div class="card-body ">
-          <h5 class="card-title mt-4">Total Penjualan</h5>
-          <h2 class="card-text"> <?= mysqli_num_rows($dataPenjualan); ?></h2>
-
         </div>
-      </div>
     </div>
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="/fargasa/dist/js/jquery-3.5.1.js"></script>

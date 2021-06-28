@@ -47,7 +47,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'admin') {
       </div>
     </div>
 
-    <d<div class="w-100 bg-light">
+    <div class="w-100 bg-light">
         <div class="container">
         <div class="row">
             <div class="col-md">
@@ -60,7 +60,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'admin') {
                                                 echo ($row[0]);
                                               }
                                               ?></h2>
-
+                      <a href="/fargasa/sites/admin/stock/adminLihatStock.php" class=" stretched-link"></a>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'admin') {
                     <div class="card-body ">
                       <h5 class="card-title mt-4">Transaksi Pembelian Bulan Ini</h5>
                       <h2 class="card-text"> <?= mysqli_num_rows($dataPembelian); ?></h2>
-                      <a href="/fargasa/sites/owner/pembelian/ownerLihatPembelian.php" class=" stretched-link"></a>
+                      <a href="/fargasa/sites/admin/pembelian/adminLihatPembelian.php" class=" stretched-link"></a>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'admin') {
                     <div class="card-body ">
                       <h5 class="card-title mt-4">Transaksi Penjualan Bulan Ini</h5>
                       <h2 class="card-text"> <?= mysqli_num_rows($dataPenjualan); ?></h2>
-                      <a href="/fargasa/sites/owner/penjualan/ownerLihatPenjualan.php" class=" stretched-link"></a>
+                      <a href="/fargasa/sites/admin/penjualan/adminLihatPenjualan.php" class=" stretched-link"></a>
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'admin') {
                     <div class="card-body ">
                       <h5 class="card-title mt-4">Profit Penjualan Bulan Ini</h5>
                       <h2 class="card-text"> <?php $row = mysqli_fetch_array($dataProfit); echo $conn->intToRupiah($row['profit']); ?></h2>
-                      <a href="/fargasa/sites/owner/penjualan/ownerLihatPenjualan.php" class=" stretched-link"></a>
+                      <a href="/fargasa/sites/admin/penjualan/adminLihatPenjualan.php" class=" stretched-link"></a>
                     </div>
                 </div>
             </div>

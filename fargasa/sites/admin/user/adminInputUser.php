@@ -28,7 +28,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'admin') {
     <link rel="stylesheet" href="/fargasa/dist/font-awesome-4.7.0/css/font-awesome.css" />
     <link rel="stylesheet" href="/fargasa/dist/css/bootstrap.css">
 
-    <title>Input Penjualan</title>
+    <title>Input User</title>
   </head>
 
   <body>
@@ -68,7 +68,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'admin') {
     <!-- navbar -->
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/fargasa/sites/misc/navbar/adminNavbar.php"; ?>
 
-    <h1><span class="badge badge-info mt-3 ml-3 px-5">Input Penjualan</span></h1>
+    <h1><span class="badge badge-info mt-3 ml-3 px-5">Input User</span></h1>
     <hr>
 
     <div class="toast" id="statInputMsg" data-delay="10000">
@@ -182,7 +182,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'admin') {
                 </div>
                 
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block mb-5" type="submit">Simpan Data Pembelian</button>
+                <button class="btn btn-primary btn-lg btn-block mb-5" type="submit">Tambah Data User</button>
                 
             
           </form>
