@@ -4,7 +4,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/fargasa/dist/php/dompdf/autoload.inc.
 $conn = new createCon();
 $con = $conn->connect();
 
-$bulan = date('m');
+// $bulan = date('m');
+$bulan = 6;
 $query = "SELECT * from pembelian where month(tgl_beli)=$bulan ORDER BY tgl_beli DESC";
 $queryPenjualan = "SELECT pembelian.tipe, pembelian.tahun, pembelian.warna, pembelian.fee_mediator as fee_mediator_beli, pembelian.pajak, pembelian.rekondisi, pembelian.hrg_beli, penjualan.fee_mediator as fee_mediator_jual, penjualan.fee_sales, penjualan.leas, penjualan.tenor, penjualan.refund, penjualan.hrg_jual  from penjualan INNER JOIN pembelian ON penjualan.id_pembelian=pembelian.id_pembelian where month(penjualan.tgl_jual)=$bulan ORDER BY penjualan.tgl_jual DESC";
 $data = mysqli_query($con, $query);
@@ -18,8 +19,9 @@ ob_start();
 <html>
     <head>
         <title>Laporan <?=$bulan;?></title>
-        <!--<link rel="stylesheet" href="bootstrap.css" />-->
+        <!-- <link rel="stylesheet" href="bootstrap.css" /> -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
         <style>
             .page-break{
                 page-break-before: always;
@@ -187,7 +189,7 @@ $pdf->set_option('isRemoteEnabled', TRUE);
 $pdf->set_paper("A4", "landscape");
 $pdf->render();
 $pdf->stream('Laporan '.$bulan.'.pdf', array('Attachment'=>0));
-exit(0);
+// exit(0);
 //  <div>
 //        <img src="/fargasa/assets/Fargasa Logo Circle.png">
 //    </div>
