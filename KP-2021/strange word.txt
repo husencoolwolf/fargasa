@@ -1,0 +1,11 @@
+showroom
+hardware
+software
+brainware
+semi-komputeasi
+back-end
+php
+mysql
+framework
+front-end
+booking
