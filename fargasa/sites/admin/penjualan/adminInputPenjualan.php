@@ -38,7 +38,7 @@ if (!isset($_SESSION['username']) && $_SESSION['privilege'] <> 'admin') {
     <div class="bg-white border-dark" id="excelForm">
       <div class="d-flex text-center justify-content-center">
         <div class="p-4">
-          <a href="/fargasa/assets/MULTI INPUT PEMBELIAN TEMPLATE.xls" target="_blank"><button class="btn btn-info">
+          <a href="/fargasa/assets/MULTI INPUT PENJUALAN TEMPLATE.xls" target="_blank"><button class="btn btn-info">
               <h5>Download Template untuk melakukan Multi Input <i class="fa fa-download" aria-hidden="true"></i></h5>
             </button></a>
         </div>

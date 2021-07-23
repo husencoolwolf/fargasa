@@ -4,12 +4,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/fargasa/dist/php/dompdf/autoload.inc.
 $conn = new createCon();
 $con = $conn->connect();
 
-// $bulan = date('m');
-$bulan = 6;
+$bulan = date('m');
 $query = "SELECT * from pembelian where month(tgl_beli)=$bulan ORDER BY tgl_beli DESC";
 $queryPenjualan = "SELECT pembelian.tipe, pembelian.tahun, pembelian.warna, pembelian.fee_mediator as fee_mediator_beli, pembelian.pajak, pembelian.rekondisi, pembelian.hrg_beli, penjualan.fee_mediator as fee_mediator_jual, penjualan.fee_sales, penjualan.leas, penjualan.tenor, penjualan.refund, penjualan.hrg_jual  from penjualan INNER JOIN pembelian ON penjualan.id_pembelian=pembelian.id_pembelian where month(penjualan.tgl_jual)=$bulan ORDER BY penjualan.tgl_jual DESC";
+$queryStock = "SELECT tipe, warna, tahun, nopol, month(tgl_beli) as bulan, hrg_beli, fee_mediator, pajak, rekondisi from pembelian where status!='terjual' ORDER BY tipe ASC";
 $data = mysqli_query($con, $query);
 $dataPenjualan = mysqli_query($con, $queryPenjualan);
+$dataStok = mysqli_query($con, $queryStock);
 $base = $_SERVER['DOCUMENT_ROOT'];
 
 $bulan = $conn->dateToMonth($bulan);
@@ -104,7 +105,7 @@ ob_start();
         
         <!--Halaman Baru-->
         <div class="page-break"></div>
-        
+        <!--Penjualan-->
         <img src="Fargasa Logo Circle.png" style="position: absolute;width: 60px; height: auto">
         <table style="width: 100%">
             <tr>
@@ -170,6 +171,68 @@ ob_start();
                 
             
         </table>
+        
+        <!--Halaman Baru-->
+        <div class="page-break"></div>
+        <!--Stok-->
+        <img src="Fargasa Logo Circle.png" style="position: absolute;width: 60px; height: auto">
+        <table style="width: 100%">
+            <tr>
+                <td align="center">
+                    <span>
+                        <h3 style="font-family: sans-serif">FARGASA MOBILINDO</h3>
+                        <p style="font-size: 10; padding-left: 65px">Jl. Raya Cilegon KM. 14, Cibeber, Kecamatan Cibeber, Kedaleman, Cibeber, Kec, Cibeber, Kec. Cibeber, Kota Cilegon, Banten 42426</p>
+                    </span>
+                </td>
+            </tr>
+
+        </table>
+        <hr class="bg-dark mb-3">
+        <p class="float-right"><?= date("F j, Y"); ?></p>
+        <br>
+        <h2 class="text-center mb-4">LAPORAN STOK <?php echo(date("j")." ".strtoupper($bulan)." ".date("Y"));?></h2>
+        
+        <table class="table table-bordered ml-0" id="tabelPenjualan">
+            <thead class="header-penjualan">
+                <tr>
+                <th>#</th>
+                <th>Tipe</th>
+                <th>Tahun</th>
+                <th>Warna</th>
+                <th>NOPOL</th>
+                <th>Bulan Beli</th>
+                <th>HPP</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if(mysqli_num_rows($dataStok)==0){
+                    echo'<tr colspan="12"><h4 class="w-100 text-warning text-center border border-secondary">Tidak Ada Stok Hari Ini!</h4></tr>';
+                }else{
+                    $i = 1;
+                    while($row = mysqli_fetch_array($dataStok)){
+                        echo'<tr class="data-pembelian">'
+                        . '<td class="text-center">'. $i .'</td>'
+                        . '<td>'. $row["tipe"] .'</td>'
+                        . '<td>'. $row["tahun"] .'</td>'
+                        . '<td>'. $row["warna"] .'</td>'
+                        . '<td>'. $row["nopol"] .'</td>'
+                        . '<td>'. $conn->dateToMonth($row["bulan"]) .'</td>'
+                        . '<td>'. $conn->intToRupiah((int)$row['hrg_beli']+(int)$row['fee_mediator']+(int)$row['pajak']+(int)$row['rekondisi']) .'</td>'
+                                . '</tr>';
+                        $i++;
+                    }
+                }
+                
+                ?>
+            </tbody>
+            
+                
+            
+        </table>
+        
+        
+        
 
     </body>
 </html>
@@ -188,7 +251,7 @@ $pdf->load_html($html);
 $pdf->set_option('isRemoteEnabled', TRUE);
 $pdf->set_paper("A4", "landscape");
 $pdf->render();
-$pdf->stream('Laporan '.$bulan.'.pdf', array('Attachment'=>0));
+$pdf->stream('Laporan '.date("F j, Y").'.pdf', array('Attachment'=>0));
 // exit(0);
 //  <div>
 //        <img src="/fargasa/assets/Fargasa Logo Circle.png">

@@ -30,15 +30,14 @@ $tenor = $_POST['tenor'];
 $refund = $_POST['refund'];
 $refund = $conn->rupiahToInt($refund);
 $id_pelanggan = $_POST['id_pelanggan'];
-if($id_pelanggan==""){
+if($id_pelanggan=="null"){
     $id_pelanggan="NULL";
 }
 
 $feeMediator = $_POST['feeMediator'];
 
 $nama = $_SESSION['nama'];
-
-$input	= mysqli_query($con,"INSERT INTO `penjualan` (`id_penjualan`, `id_pembelian`, `mediator`, `sales`, `tgl_jual`, `hrg_jual`, `fee_mediator`, `fee_sales`, `leas`, `tenor`, `refund` , `author`, `id_pelanggan`) "
+$queryInput = "INSERT INTO `penjualan` (`id_penjualan`, `id_pembelian`, `mediator`, `sales`, `tgl_jual`, `hrg_jual`, `fee_mediator`, `fee_sales`, `leas`, `tenor`, `refund` , `author`, `id_pelanggan`) "
         . "VALUES ($id, "
         . "'$id_pembelian', "
         . "'$mediator', "
@@ -51,7 +50,8 @@ $input	= mysqli_query($con,"INSERT INTO `penjualan` (`id_penjualan`, `id_pembeli
         . "'$tenor', "
         . "'$refund', "
         . "'$nama', "
-        . "'$id_pelanggan');");
+        . "$id_pelanggan);";
+$input	= mysqli_query($con,$queryInput);
 
 
 

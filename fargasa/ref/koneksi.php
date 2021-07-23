@@ -3,7 +3,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/fargasa/dist/php/idGenerator.php';
 class createCon  {
     var $host = 'localhost';
     var $user = 'root';
-    var $pass = '';
+    var $pass = 'fargasanafz';
     var $db = 'fargasa';
     var $myconn;
 
